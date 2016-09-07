@@ -267,6 +267,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TOKEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIGA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRONOSTICO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE__GRUPO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE__MIEMBRO);
+
         onCreate(db);
     }
 

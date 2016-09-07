@@ -20,13 +20,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView4"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.5"
+                android:text="Grupos"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView5"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.5"
+                android:text="Posición"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal" />
         </LinearLayout>
 
         <ListView

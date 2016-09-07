@@ -1,6 +1,7 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -56,13 +58,13 @@ public class PartidosActivity extends AppCompatActivity {
     private DataBaseHelper dataBaseHelper;
     private ArrayList<Semana> semanas;
     private ArrayList<Fecha> fechas;
+    private ImageButton buttonSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partidos);
         fechas = new ArrayList<>();
-
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         //solicitudpronostico();
         String respuesta = getIntent().getExtras().getString("partidos");
@@ -73,6 +75,16 @@ public class PartidosActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        buttonSettings = (ImageButton) findViewById(R.id.imageButton3);
+
+        buttonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GruposActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void procesarRespuestaPartidos(JSONArray jsonArray) {
@@ -337,17 +349,12 @@ public class PartidosActivity extends AppCompatActivity {
             tabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 70;
             TextView textView = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.parseColor("#ffffff"));
-<<<<<<< Updated upstream
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
             //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));ç
             textView.setPadding(0, 5, 0, 0);
-=======
-            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));
-            //textView.setPadding(0,0,0,0);
->>>>>>> Stashed changes
             textView.setWidth(120);
             textView.setHeight(70);
             textView.setTextSize(10);

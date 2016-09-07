@@ -29,4 +29,6 @@ public class Constantes {
     public static final String PRONOSTICO = IP + PUERTO_HOST + "/pronostico_vista/";
 
     public static final String GRUPOS = IP + PUERTO_HOST + "/obtener_grupos/";
+
+    public static final String MIEMBROS = IP + PUERTO_HOST + "/obtener_miembros/";
 }
