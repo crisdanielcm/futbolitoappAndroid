@@ -45,11 +45,11 @@
             android:layout_weight="1"
             android:gravity="center_horizontal">
 
-            <Button
+            <com.google.android.gms.common.SignInButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:id="@+id/imageButton_google"
-                android:background="@drawable/hover_button_google" />
+                android:background="@drawable/hover_button_google"/>
         </LinearLayout>
     </LinearLayout>
 

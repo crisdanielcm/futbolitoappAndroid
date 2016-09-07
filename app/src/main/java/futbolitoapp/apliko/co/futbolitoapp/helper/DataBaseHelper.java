@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import futbolitoapp.apliko.co.futbolitoapp.objects.Grupo;
+import futbolitoapp.apliko.co.futbolitoapp.objects.Miembro;
+
 /**
  * Created by iosdeveloper on 25/08/16.
  */
@@ -32,6 +35,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_TOKEN = "Token";
     private static final String TABLE_LIGA = "Liga";
     private static final String TABLE_PRONOSTICO = "Pronostico";
+    private static final String TABLE__GRUPO = "Grupo";
+    private static final String TABLE__MIEMBRO = "Miembro";
 
     // Common column names
     private static final String KEY_ID = "id";
@@ -43,7 +48,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String GOLES_LOCAL = "goles_local";
     private static final String GOLES_VISITANTE = "goles_visitante";
     private static final String ID_PARTIDO = "id_partido";
-
+    private static final String NOMBRE_GRUPO = "nombre_grupo";
+    private static final String DESCRIPCION = "descripcion";
+    private static final String FIRST_NAME = "first_name";
+    private static final String LAST_NAME = "last_name";
+    private static final String USERNAME = "username";
+    private static final String EMAIL = "email";
+    private static final String ID_GRUPO = "id_grupo";
 
     // Table Create Statements
     // Todo table create statement
@@ -62,6 +73,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + " INTEGER,"+ GOLES_VISITANTE + " INTEGER, " + ID_PARTIDO + " INTEGER, " + KEY_CREATED_AT
             + " DATETIME" + ")";
 
+    private static final String CREATE_TABLE_GRUPO = "CREATE TABLE "
+            + TABLE__GRUPO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + NOMBRE_GRUPO
+            + " TEXT,"+ DESCRIPCION + " TEXT, " + ID_PARTIDO + " INTEGER, " + KEY_CREATED_AT
+            + " DATETIME" + ")";
+
+    private static final String CREATE_TABLE_MIEMBRO = "CREATE TABLE "
+            + TABLE__MIEMBRO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + FIRST_NAME
+            + " TEXT,"+ LAST_NAME + " TEXT, " + USERNAME + " TEXT,"+ EMAIL + " TEXT,"+ ID_PARTIDO + " INTEGER, " + KEY_CREATED_AT
+            + " DATETIME" + ")";
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -69,6 +90,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TOKEN);
         db.execSQL(CREATE_TABLE_LIGA);
         db.execSQL(CREATE_TABLE_PRONOSTICO);
+        db.execSQL(CREATE_TABLE_GRUPO);
+        db.execSQL(CREATE_TABLE_MIEMBRO);
     }
 
     @Override
@@ -77,6 +100,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TOKEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LIGA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRONOSTICO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE__GRUPO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE__MIEMBRO);
 
      // create new tables
         onCreate(db);
@@ -134,6 +159,61 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         long todo_id = db.insert(TABLE_PRONOSTICO, null, values);
 
         return todo_id;
+    }
+
+    public long createToDoGrupo(Grupo grupo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, grupo.getId());
+        values.put(NOMBRE_GRUPO, grupo.getNombre());
+        values.put(DESCRIPCION,grupo.getDescripcion());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        long todo_id = db.insert(TABLE__GRUPO, null, values);
+
+        return todo_id;
+    }
+
+    public long createToDoMiembro(Miembro miembro) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, miembro.getId());
+        values.put(FIRST_NAME, miembro.getFirstName());
+        values.put(LAST_NAME, miembro.getLastname());
+        values.put(USERNAME, miembro.getUsername());
+        values.put(EMAIL, miembro.getEmail());
+        values.put(ID_GRUPO, miembro.getIdGrupo());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        long todo_id = db.insert(TABLE__MIEMBRO, null, values);
+
+        return todo_id;
+    }
+
+    public List<Grupo> getAllGrupos() {
+        List<Grupo> coordenadaList = new ArrayList<Grupo>();
+        String selectQuery = "SELECT * FROM " + TABLE__GRUPO;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Grupo td = new Grupo((c.getString(c.getColumnIndex(NOMBRE_GRUPO))), (c.getString(c.getColumnIndex(DESCRIPCION))) );
+                //td.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+                // adding to todo list
+                coordenadaList.add(td);
+            } while (c.moveToNext());
+        }
+
+        return coordenadaList;
     }
 
     public List<Liga> getAllLigas() {

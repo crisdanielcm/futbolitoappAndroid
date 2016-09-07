@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -29,6 +32,13 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,11 +56,12 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
  * A login screen that offers login via email/password.
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
 
 
     private static final String TAG = "vista_login";
+    private static final int RC_SIGN_IN = 9001;
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -63,6 +74,9 @@ public class LoginActivity extends AppCompatActivity {
     private DataBaseHelper dataBaseHelper;
     private LoginButton btnloginFB;
     private CallbackManager callbackManager;
+    private GoogleApiClient googleApiClient;
+    private SignInButton signInButtonGoogle;
+    private AccessTokenTracker accessTokenTracker;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -132,10 +146,30 @@ public class LoginActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(this);
         callbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+
+            }
+        };
         setContentView(R.layout.activity_login);
 
-        btnloginFB = (LoginButton) findViewById(R.id.imageButton_fb);
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail().requestIdToken("74936133906-ithufk33scoarsqf63ii8g3p0767jndv.apps.googleusercontent.com").build();
+        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions).build();
+        signInButtonGoogle = (SignInButton) findViewById(R.id.imageButton_google);
 
+        signInButtonGoogle.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(signIntent, RC_SIGN_IN );
+            }
+        });
+
+        btnloginFB = (LoginButton) findViewById(R.id.imageButton_fb);
         btnloginFB.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_birthday", "user_friends"));
         btnloginFB.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -153,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                                 try {
                                     String email = object.getString("email");
                                     String token = loginResult.getAccessToken().getToken();
+                                    enviarSolicitud(email,email,token);
                                     registrarUsuario(email, email, token, token);
 
                                 } catch (JSONException e) {
@@ -254,6 +289,26 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RC_SIGN_IN){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+        }
+    }
+
+    private void handleSignInResult(GoogleSignInResult result) {
+        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+            GoogleSignInAccount acct = result.getSignInAccount();
+            //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+            String tokenGoogle = acct.getIdToken();
+            String emailGoogle = acct.getEmail();
+            enviarSolicitud(emailGoogle, emailGoogle,tokenGoogle);
+            registrarUsuario(emailGoogle, emailGoogle, tokenGoogle, tokenGoogle);
+        } else {
+
+        }
     }
 
     public void registrarUsuario(String username, String email, String pass1, String pass2) {
@@ -292,7 +347,7 @@ public class LoginActivity extends AppCompatActivity {
                                             JSONObject jsonObject1 = null;
                                             try {
                                                 jsonObject1 = new JSONObject(json);
-                                                procesarRespuesta(jsonObject1);
+                                                procesarRespuestaRegistro(jsonObject1);
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
@@ -313,6 +368,8 @@ public class LoginActivity extends AppCompatActivity {
                 Token keyToken = new Token(key);
                 long id = dataBaseHelper.createToDo(keyToken);
                 Toast.makeText(LoginActivity.this,id+"", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),LigasActivity.class);
+                startActivity(intent);
             }else if(jsonObject.has("non_field_errors")){
                 Toast.makeText(LoginActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             }else if(jsonObject.has("email")){
@@ -323,6 +380,11 @@ public class LoginActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
 

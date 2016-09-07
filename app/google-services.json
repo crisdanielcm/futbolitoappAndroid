@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "74936133906",
+    "project_id": "futbolitoapp-142704"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74936133906:android:960acf9e40421b27",
+        "android_client_info": {
+          "package_name": "futbolitoapp.apliko.co.futbolitoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74936133906-tfbkp2m4fak3h9ttdldjlcu2kv4iq5ml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "futbolitoapp.apliko.co.futbolitoapp",
+            "certificate_hash": "77B9B0F1F362FFB3DDCB326700685305DA57DBD9"
+          }
+        },
+        {
+          "client_id": "74936133906-ithufk33scoarsqf63ii8g3p0767jndv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEQ6ezm9TkpAa6-L2yViPwBHlfj4wrTSo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

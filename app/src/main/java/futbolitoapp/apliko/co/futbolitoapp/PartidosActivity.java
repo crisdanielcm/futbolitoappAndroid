@@ -1,5 +1,6 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
+import android.annotation.TargetApi;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -242,6 +243,7 @@ public class PartidosActivity extends AppCompatActivity {
         tabs();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void tabs() {
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -335,11 +337,17 @@ public class PartidosActivity extends AppCompatActivity {
             tabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 70;
             TextView textView = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.parseColor("#ffffff"));
+<<<<<<< Updated upstream
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
             //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));ç
             textView.setPadding(0, 5, 0, 0);
+=======
+            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));
+            //textView.setPadding(0,0,0,0);
+>>>>>>> Stashed changes
             textView.setWidth(120);
             textView.setHeight(70);
             textView.setTextSize(10);
