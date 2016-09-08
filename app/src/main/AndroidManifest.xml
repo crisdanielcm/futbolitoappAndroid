@@ -46,7 +46,9 @@
         <activity android:name=".PartidosActivity" />
         <activity android:name=".GruposActivity" />
         <activity android:name=".adapters.GruposAdapter" />
-        <activity android:name=".CrearGrupoActivity"></activity>
+        <activity android:name=".CrearGrupoActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".adapters.ExpandableListAdapte"></activity>
     </application>
 
 </manifest>

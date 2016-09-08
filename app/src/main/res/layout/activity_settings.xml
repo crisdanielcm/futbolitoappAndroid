@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.SettingsActivity"
+    android:orientation="vertical"
+    android:background="#262626">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="1" >
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView2"
+            android:src="@drawable/logo1f"
+            android:background="#262626" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fondo_parte_de_arriba">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="AJUSTES"
+                android:id="@+id/textView"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="#FFF"
+                android:textSize="39dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="30dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp">
+
+        <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/expandableListView"
+            android:layout_gravity="center_horizontal"
+            tools:listitem="@android:layout/simple_expandable_list_item_1"
+            android:choiceMode="singleChoice" />
+    </LinearLayout>
+</LinearLayout>
