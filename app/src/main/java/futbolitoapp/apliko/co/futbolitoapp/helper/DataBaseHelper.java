@@ -50,6 +50,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String ID_PARTIDO = "id_partido";
     private static final String NOMBRE_GRUPO = "nombre_grupo";
     private static final String DESCRIPCION = "descripcion";
+    private static final String POSICION_MIEMBRO = "puesto";
+    private static final String NUMERO_INTEGRANTES = "total_miembros";
     private static final String FIRST_NAME = "first_name";
     private static final String LAST_NAME = "last_name";
     private static final String USERNAME = "username";
@@ -74,9 +76,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_GRUPO = "CREATE TABLE "
-            + TABLE__GRUPO + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + NOMBRE_GRUPO
-            + " TEXT,"+ DESCRIPCION + " TEXT, " + ID_PARTIDO + " INTEGER, " + KEY_CREATED_AT
-            + " DATETIME" + ")";
+            + TABLE__GRUPO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + NOMBRE_GRUPO
+            + " TEXT,"+ ID_PARTIDO + " INTEGER, "+ POSICION_MIEMBRO +
+            " INTEGER," + NUMERO_INTEGRANTES + " INTEGER," + KEY_CREATED_AT+ " DATETIME" + ")";
 
     private static final String CREATE_TABLE_MIEMBRO = "CREATE TABLE "
             + TABLE__MIEMBRO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + FIRST_NAME
@@ -167,7 +169,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, grupo.getId());
         values.put(NOMBRE_GRUPO, grupo.getNombre());
-        values.put(DESCRIPCION,grupo.getDescripcion());
+        values.put(POSICION_MIEMBRO,grupo.getPosicion());
+        values.put(NUMERO_INTEGRANTES,grupo.getNumeroMiembros());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -206,7 +209,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                Grupo td = new Grupo((c.getString(c.getColumnIndex(NOMBRE_GRUPO))), (c.getString(c.getColumnIndex(DESCRIPCION))) );
+                Grupo td = new Grupo((c.getString(c.getColumnIndex(NOMBRE_GRUPO))),
+                        (c.getInt(c.getColumnIndex(POSICION_MIEMBRO))), (c.getInt(c.getColumnIndex(NUMERO_INTEGRANTES))));
                 //td.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
                 // adding to todo list
                 coordenadaList.add(td);

@@ -13,12 +13,17 @@ public class GruposAdapter extends ArrayAdapter {
 
     private final Activity context;
     private final String[] itemList;
+    private final Integer[] itemList2;
+    private final Integer[] itemList3;
 
 
-    public GruposAdapter(Activity context,  String[] itemList) {
+    public GruposAdapter(Activity context,  String[] itemList, Integer[] itemList2, Integer[] itemList3) {
         super(context, R.layout.activity_grupos_adapter, itemList);
         this.context = context;
         this.itemList = itemList;
+        this.itemList2 = itemList2;
+        this.itemList3 = itemList3;
+
     }
 
     @Override
@@ -27,8 +32,11 @@ public class GruposAdapter extends ArrayAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.activity_grupos_adapter, null, true);
 
-        TextView textView = (TextView) rowView.findViewById(R.id.textView_nombre_grupo);
-        textView.setText(itemList[position]);
+        TextView textViewNombreGrupo = (TextView) rowView.findViewById(R.id.textView_nombre_grupo);
+        textViewNombreGrupo.setText(itemList[position]);
+
+        TextView textViewPosicion = (TextView) rowView.findViewById(R.id.textView_posicion_miembro);
+        textViewPosicion.setText(itemList2[position] + "/" + itemList3[position]);
 
         return rowView;
     }

@@ -14,7 +14,7 @@ public class Constantes {
     /**
      * Dirección IP de genymotion o AVD
      */
-    private static final String IP = "http://192.168.1.11:";
+    private static final String IP = "http://192.168.0.19:";
     /**
      * URLs del Web Service
      */

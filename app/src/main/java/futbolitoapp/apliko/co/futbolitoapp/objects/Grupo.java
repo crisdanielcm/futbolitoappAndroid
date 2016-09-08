@@ -9,13 +9,15 @@ public class Grupo {
 
     private int id;
     private String nombre;
-    private String descripcion;
     private ArrayList<Miembro>miembros;
+    private int posicion;
+    private int numeroMiembros;
 
-    public Grupo(String nombre, String descripcion) {
+    public Grupo(String nombre, int posicion, int numeroMiembros) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.miembros = miembros;
+        this.posicion = posicion;
+        this.numeroMiembros = numeroMiembros;
     }
 
     public String getNombre() {
@@ -24,14 +26,6 @@ public class Grupo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public ArrayList<Miembro> getMiembros() {
@@ -48,5 +42,21 @@ public class Grupo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+
+    public int getNumeroMiembros() {
+        return numeroMiembros;
+    }
+
+    public void setNumeroMiembros(int numeroMiembros) {
+        this.numeroMiembros = numeroMiembros;
     }
 }
