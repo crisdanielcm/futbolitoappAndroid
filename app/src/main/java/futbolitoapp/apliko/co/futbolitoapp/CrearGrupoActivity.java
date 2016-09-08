@@ -2,6 +2,9 @@ package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -12,12 +15,19 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
+import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
+import futbolitoapp.apliko.co.futbolitoapp.helper.Liga;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class CrearGrupoActivity extends AppCompatActivity {
 
+    private DataBaseHelper dataBaseHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +68,7 @@ public class CrearGrupoActivity extends AppCompatActivity {
                         }
                     }
                 }
-            }));
+            }, getApplicationContext()));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -75,5 +85,45 @@ public class CrearGrupoActivity extends AppCompatActivity {
 
             Toast.makeText(CrearGrupoActivity.this, "Debe completar todos los campos", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void listarLigas() {
+
+        List<Liga> ligas = new ArrayList<Liga>();
+        ligas = dataBaseHelper.getAllLigas();
+        ArrayList<String> arrayLigas = new ArrayList<>();
+        final String[] contenido = new String[ligas.size()];
+        String nombreLiga = getIntent().getStringExtra("nombreLiga");
+        int posLigaSelect = 0;
+        for (int i = 0; i < ligas.size(); i++) {
+            arrayLigas.add(ligas.get(i).getNombre());
+            contenido[i] = ligas.get(i).getNombre();
+            if(nombreLiga.equals(ligas.get(i).getNombre())){
+                posLigaSelect = i;
+            }
+        }
+
+        //ArrayAdapter<String> adapterLigas = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayLigas);
+        //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
+        //spinner_ligas.setAdapter(adapterLigas);
+        spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
+        LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
+        spinner_ligas.setAdapter(listAdapter);
+        spinner_ligas.setSelection(posLigaSelect);
+        spinner_ligas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = contenido[i];
+                int id = dataBaseHelper.getLiga(item).getId();
+              //  solicitudPartidos(id, dataBaseHelper.getLiga(item).getNombre());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+       // tabs();
     }
 }
