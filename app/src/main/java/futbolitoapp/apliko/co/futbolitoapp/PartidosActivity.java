@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -50,11 +51,13 @@ import futbolitoapp.apliko.co.futbolitoapp.objects.Partido;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Semana;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Temporada;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
+import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONArrayRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class PartidosActivity extends AppCompatActivity {
 
+    private static final String TAG = "Partidos activity";
     private DataBaseHelper dataBaseHelper;
     private ArrayList<Semana> semanas;
     private ArrayList<Fecha> fechas;
@@ -64,6 +67,7 @@ public class PartidosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partidos);
+        dataBaseHelper = new DataBaseHelper(getApplicationContext());
         fechas = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         //solicitudpronostico();
@@ -85,6 +89,47 @@ public class PartidosActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+    }
+
+    public void solicitudPartidos(int id, final String nombre){
+
+        HashMap<String, Integer> solicitudPartidos = new HashMap<>();
+        solicitudPartidos.put("id_liga", id);
+
+        JSONObject jsonObject = new JSONObject(solicitudPartidos);
+
+        CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
+                Request.Method.POST, Constantes.PARTIDOS, jsonObject, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+//                Intent intent = new Intent(getApplicationContext(), PartidosActivity.class);
+//                intent.putExtra("partidos", response.toString());
+//                intent.putExtra("nombreLiga", nombre);
+                procesarRespuestaPartidos(response);
+                tabs();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+                String respuesta = new String(networkResponse.data);
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 400:
+
+                    }
+                }
+            }
+        }, getApplicationContext());
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+
     }
 
     public void procesarRespuestaPartidos(JSONArray jsonArray) {
@@ -238,11 +283,15 @@ public class PartidosActivity extends AppCompatActivity {
         List<Liga> ligas = new ArrayList<Liga>();
         ligas = dataBaseHelper.getAllLigas();
         ArrayList<String> arrayLigas = new ArrayList<>();
-        String[] contenido = new String[ligas.size()];
-
+        final String[] contenido = new String[ligas.size()];
+        String nombreLiga = getIntent().getStringExtra("nombreLiga");
+        int posLigaSelect = 0;
         for (int i = 0; i < ligas.size(); i++) {
             arrayLigas.add(ligas.get(i).getNombre());
             contenido[i] = ligas.get(i).getNombre();
+            if(nombreLiga.equals(ligas.get(i).getNombre())){
+                posLigaSelect = i;
+            }
         }
 
         //ArrayAdapter<String> adapterLigas = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayLigas);
@@ -252,6 +301,20 @@ public class PartidosActivity extends AppCompatActivity {
         spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
         spinner_ligas.setAdapter(listAdapter);
+        spinner_ligas.setSelection(posLigaSelect);
+        spinner_ligas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = contenido[i];
+                int id = dataBaseHelper.getLiga(item).getId();
+                solicitudPartidos(id, dataBaseHelper.getLiga(item).getNombre());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         tabs();
     }
 
@@ -259,6 +322,7 @@ public class PartidosActivity extends AppCompatActivity {
     public void tabs() {
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
+        tabHost.clearAllTabs();
         //final ListView listView = (ListView) findViewById(R.id.listView_partidos);
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();

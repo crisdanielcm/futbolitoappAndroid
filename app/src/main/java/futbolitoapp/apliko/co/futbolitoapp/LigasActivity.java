@@ -31,10 +31,10 @@ public class LigasActivity extends AppCompatActivity {
 
     private DataBaseHelper dataBaseHelper;
 
-    public void procesarRespuestaLiga(JSONArray jsonArray){
+    public void procesarRespuestaLiga(JSONArray jsonArray) {
 
 
-        for (int i = 0; i < jsonArray.length(); i++){
+        for (int i = 0; i < jsonArray.length(); i++) {
 
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -49,15 +49,15 @@ public class LigasActivity extends AppCompatActivity {
         }
         List<Liga> listLigas = dataBaseHelper.getAllLigas();
 
-        final String [] contenido = new String[listLigas.size()];
+        final String[] contenido = new String[listLigas.size()];
 
-        for (int i = 0; i < listLigas.size(); i ++){
+        for (int i = 0; i < listLigas.size(); i++) {
 
             contenido[i] = listLigas.get(i).getNombre();
         }
 
         ListView listView = (ListView) findViewById(R.id.listView_ligas);
-        LigasListAdapter ligasListAdapter = new LigasListAdapter(this,contenido);
+        LigasListAdapter ligasListAdapter = new LigasListAdapter(this, contenido);
         listView.setAdapter(ligasListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,10 +71,10 @@ public class LigasActivity extends AppCompatActivity {
         });
     }
 
-    public void enviarSolicitudLigas(){
+    public void enviarSolicitudLigas() {
 
         CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
-                Request.Method.GET, Constantes.LIGAS, new Response.Listener<JSONArray>(){
+                Request.Method.GET, Constantes.LIGAS, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -97,10 +97,10 @@ public class LigasActivity extends AppCompatActivity {
         }, getApplicationContext()
         );
 
-            VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
     }
 
-    public void solicitudPartidos(int id, final String nombre){
+    public void solicitudPartidos(int id, final String nombre) {
 
         HashMap<String, Integer> solicitudPartidos = new HashMap<>();
         solicitudPartidos.put("id_liga", id);
@@ -137,12 +137,12 @@ public class LigasActivity extends AppCompatActivity {
 
     }
 
-    public void procesarrespuestaPronostico(JSONObject jsonObject){
+    public void procesarrespuestaPronostico(JSONObject jsonObject) {
 
-        if(jsonObject.has("mensaje")){
+        if (jsonObject.has("mensaje")) {
 
             Toast.makeText(LigasActivity.this, "Pronostico registrado", Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
 
         }
 
