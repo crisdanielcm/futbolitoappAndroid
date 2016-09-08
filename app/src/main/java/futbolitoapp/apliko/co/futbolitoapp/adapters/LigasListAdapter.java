@@ -7,7 +7,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 import futbolitoapp.apliko.co.futbolitoapp.R;
+import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
+import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
+import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
+import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
+import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class LigasListAdapter extends ArrayAdapter<String> {
 
@@ -31,4 +45,6 @@ public class LigasListAdapter extends ArrayAdapter<String> {
         txtTitle.setText(itemList[position]);
         return rowView;
     }
+
+
 }

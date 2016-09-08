@@ -69,7 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Enviar"
-                        android:id="@+id/button"
+                        android:id="@+id/buttonEnviar"
                         android:textSize="7dp"
                         android:textAllCaps="false"/>
 

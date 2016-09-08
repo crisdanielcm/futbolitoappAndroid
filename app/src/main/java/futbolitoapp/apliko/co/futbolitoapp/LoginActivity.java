@@ -22,6 +22,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -55,7 +56,6 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 /**
  * A login screen that offers login via email/password.
  */
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
 
@@ -91,12 +91,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         solicitudLogin.put("password", password);
 
         JSONObject jsonObject = new JSONObject(solicitudLogin);
-
-        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(new CustomJSONObjectRequest(
-                Request.Method.POST, Constantes.LOGIN, jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Constantes.LOGIN,
+                jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 procesarRespuesta(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -118,7 +118,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }
                 }
             }
-        }));
+        });
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(objectRequest);
 
     }
 
@@ -153,13 +155,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         };
         setContentView(R.layout.activity_login);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestIdToken("74936133906-ithufk33scoarsqf63ii8g3p0767jndv.apps.googleusercontent.com").build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions).build();
         signInButtonGoogle = (SignInButton) findViewById(R.id.imageButton_google);
+        signInButtonGoogle.setBackgroundResource(R.drawable.hover_button_google);
+        for (int i = 0; i < signInButtonGoogle.getChildCount(); i++) {
+            View v = signInButtonGoogle.getChildAt(i);
 
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText("");
+                tv.setBackgroundResource(R.drawable.hover_button_google);
+                break;
+            }
+
+        }
         signInButtonGoogle.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +186,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btnloginFB = (LoginButton) findViewById(R.id.imageButton_fb);
         btnloginFB.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_birthday", "user_friends"));
+        btnloginFB.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+        btnloginFB.setCompoundDrawablePadding(0);
+        btnloginFB.setBackgroundResource(R.drawable.hover_button_fb);
+
         btnloginFB.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(final LoginResult loginResult) {
@@ -213,7 +231,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         dataBaseHelper.dropDB();
         registroView = (TextView) findViewById(R.id.textView_registrar);
@@ -225,6 +242,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 String username = ((EditText) findViewById(R.id.email)).getText().toString();
                 String email = ((EditText) findViewById(R.id.email)).getText().toString();
                 String pass = ((EditText) findViewById(R.id.password)).getText().toString();
+                Log.i(TAG, "onClick: asd");
                 enviarSolicitud(username, email, pass);
             }
         });
@@ -253,7 +271,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     /**
      * Shows the progress UI and hides the login form.
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
@@ -322,7 +339,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         JSONObject jsonObject = new JSONObject(solicitudRegistro);
 
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(
-                new CustomJSONObjectRequest(
+                new JsonObjectRequest(
                         Request.Method.POST,
                         Constantes.REGISTRO, jsonObject,
                         new Response.Listener<JSONObject>() {

@@ -12,6 +12,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONException;
@@ -48,7 +49,7 @@ public class RegistroActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject(solicitudRegistro);
 
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(
-                new CustomJSONObjectRequest(
+                new JsonObjectRequest(
                         Request.Method.POST,
                         Constantes.REGISTRO, jsonObject,
                         new Response.Listener<JSONObject>() {
@@ -117,8 +118,8 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String username = ((EditText) findViewById(R.id.username_reg)).getText().toString();
                 String email = ((EditText) findViewById(R.id.email_reg)).getText().toString();
+                String username = email;
                 String pass1 = ((EditText) findViewById(R.id.pass1_reg)).getText().toString();
                 String pass2 = ((EditText) findViewById(R.id.pass2_log)).getText().toString();
                 registrarUsuario(username, email, pass1, pass2);

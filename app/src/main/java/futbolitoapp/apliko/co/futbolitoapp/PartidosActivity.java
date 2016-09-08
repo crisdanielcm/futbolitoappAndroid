@@ -161,6 +161,7 @@ public class PartidosActivity extends AppCompatActivity {
                 for (int j = 0; j < partidosListObject.length(); j++) {
                     JSONObject partido = partidosListObject.getJSONObject(j);
                     String fechaHora = partido.getString("fecha_hora");
+                    int id_partido = partido.getInt("id");
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
                     format.setTimeZone(TimeZone.getTimeZone("GMT"));
                     Date date = null;
@@ -196,6 +197,7 @@ public class PartidosActivity extends AppCompatActivity {
                     Equipo equipoVisitante = new Equipo(idVisitante, nombreVisitante, descripcioVisitante, imagen);
 
                     partidoObject = new Partido(fechaHora, equipoLocal, equipoVisitante, golesLocal, golesVisitante);
+                    partidoObject.setId(id_partido);
                     verificarExistFecha(fechas, dia, mes, anio, partidoObject);
                 }
                 Semana semana = new Semana(fechaInicioSemana, fechaFinSemana, temporada, fechas, numero);
@@ -239,44 +241,7 @@ public class PartidosActivity extends AppCompatActivity {
         }
     }
 
-    public void solicitudpronostico(int goles_local, int goles_visitante, int id_partido) {
 
-        HashMap<String, Integer> solicitud = new HashMap<>();
-        solicitud.put("goles_local", goles_local);
-        solicitud.put("goles_visitante", goles_visitante);
-        solicitud.put("id_partido", id_partido);
-        Pronostico pronostico = new Pronostico(goles_local, goles_visitante, id_partido);
-        dataBaseHelper.createToDoPronostico(pronostico);
-
-        JSONObject jsonObject = new JSONObject(solicitud);
-
-        CustomJSONObjectRequest customJSONObjectRequest = new CustomJSONObjectRequest(Request.Method.POST,
-                Constantes.PRONOSTICO, jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                String json = null;
-                NetworkResponse networkResponse = error.networkResponse;
-                String respuesta = new String(networkResponse.data);
-                if (networkResponse != null && networkResponse.data != null) {
-                    switch (networkResponse.statusCode) {
-
-                        case 400:
-
-                    }
-                }
-
-            }
-        }, getApplicationContext());
-
-        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONObjectRequest);
-
-    }
 
     public void listarLigas() {
 
@@ -348,6 +313,7 @@ public class PartidosActivity extends AppCompatActivity {
                 String[] nombreVisitante = new String[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] marcaLocal = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] marcaVisitante = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
+                Integer[] idPartido = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
 
 
                 TextView textViewFecha = new TextView(getApplicationContext());
@@ -366,7 +332,7 @@ public class PartidosActivity extends AppCompatActivity {
                     nombreVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getEquipoVisitante().getNombre();
                     marcaLocal[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getGolesLocal();
                     marcaVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getGolesVisitante();
-
+                    idPartido[k] =  semanas.get(i).getFechas().get(j).getPartidos().get(k).getId();
 
                 }
                 int image = 0;
@@ -377,7 +343,7 @@ public class PartidosActivity extends AppCompatActivity {
                 else
                     image = R.drawable.fondomarcadores02;
 
-                final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, image);
+                final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, image, idPartido);
                 ListView listView = new ListView(getApplicationContext());
 
                 listView.setAdapter(partidosAdapter);

@@ -5,6 +5,7 @@ package futbolitoapp.apliko.co.futbolitoapp.objects;
  */
 public class Partido {
 
+    private int id;
     private String fechaHora;
     private int golesLocal;
     private int golesVisitante;
@@ -18,6 +19,14 @@ public class Partido {
         this.equipoVisitante = equipoVisitante;
         this.golesLocal = golesLocal;
         this.golesVisitante = golesVisitante;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFechaHora() {
