@@ -6,217 +6,217 @@
         jumboMode="true"
         revision="24.0.1"
         sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_8a3b257233bd3a55ae017f4b4a8aaa6158b0f1e5/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_8a3b257233bd3a55ae017f4b4a8aaa6158b0f1e5.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-1.0.19_e0ceb1fd870ed3515321688f61cbee833090bf43/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/library-1.0.19_e0ceb1fd870ed3515321688f61cbee833090bf43.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="e1bec33f1ec5367e25676638b430b9d585f3dbec">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.2.1_ebc4ff3f54d3d908d4bb9033a4955bd539600450/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-9.2.1_ebc4ff3f54d3d908d4bb9033a4955bd539600450.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="045be695d968dd707691cc55d23746dbf8cf569a">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_cd2f04dc327191c9e05a2acb3cfd04b3b7ac0c91/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_cd2f04dc327191c9e05a2acb3cfd04b3b7ac0c91.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.2.0_a6eca1a613e50658ffe8440402a2e9b7981c9f97/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-24.2.0_a6eca1a613e50658ffe8440402a2e9b7981c9f97.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="5337354083e89ed67151859ab0b6b80935c60eaf">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.2.1_86d659d0784c58d9b4063da3b61888eb53a29d02/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-impl-9.2.1_86d659d0784c58d9b4063da3b61888eb53a29d02.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="6b896c1067633db41e9c10a3a5d0919c5c4cfc8c">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.2.1_3e7fffd6f8e79e739c9d4b2c3fe295462c6ecc06/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.2.1_3e7fffd6f8e79e739c9d4b2c3fe295462c6ecc06.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="421b36cf4f0d3bbd75e8f28647fccf36674ef049">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.2.1_8abccfb2c034240ef1881051500500440534169b/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.2.1_8abccfb2c034240ef1881051500500440534169b.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_80c78420f0e4d136b1d5fd5e11c5a354b84901a2/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_80c78420f0e4d136b1d5fd5e11c5a354b84901a2.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-24.2.0_8a54bf7a43f22b5bb2e08463ae400ae9eadd002e/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-24.2.0_8a54bf7a43f22b5bb2e08463ae400ae9eadd002e.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="48917c60ea81213ea39cbd7123996a5401106dc3">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.2.1_097ca19d148258ca48272938a32bdf86133c70db/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-base-9.2.1_097ca19d148258ca48272938a32bdf86133c70db.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-android-1.1.4_5dc8eb2e083896c69e4db1fbb316182e76914d1b/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/bolts-android-1.1.4_5dc8eb2e083896c69e4db1fbb316182e76914d1b.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="3627eacd7f7cafb5e8ae683992e7b2f9b7dcab1a">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.2.1_ae04e603dfbad1f33c857ff1bc021476afd112bf/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.2.1_ae04e603dfbad1f33c857ff1bc021476afd112bf.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.2.0_066c54c5db42f375dbe0a79d9af66b83de8269f9/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-24.2.0_066c54c5db42f375dbe0a79d9af66b83de8269f9.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_d74bd6db345d67e4c67c94ae113c7dbe776e1188/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_d74bd6db345d67e4c67c94ae113c7dbe776e1188.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/libs/internal_impl-24.2.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.2.0_1a057d25585e44ac4b19e8e3a03a9da300a8dc0a/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.0_1a057d25585e44ac4b19e8e3a03a9da300a8dc0a.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/design/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.2.0_7a2052dce921d96981132d04a0e53d7e021680a6/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-design-24.2.0_7a2052dce921d96981132d04a0e53d7e021680a6.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.0.0_d38f590430b1d678d380386740508f4e838f2ac5/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-android-sdk-4.0.0_d38f590430b1d678d380386740508f4e838f2ac5.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-fragment/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-24.2.0_006b3bf993cc64b6e465dd04d5ab703ee39a2555/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-24.2.0_006b3bf993cc64b6e465dd04d5ab703ee39a2555.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-24.2.0_52e631720962aef632114db3c48070f21688e03c/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.0_52e631720962aef632114db3c48070f21688e03c.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.2.0_62cc2932c06ef0e7c1b0010802ba453127add3a7/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-24.2.0_62cc2932c06ef0e7c1b0010802ba453127add3a7.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="d41b5d21cc9dd7d210f0ae82ac509ba7f091d611">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.2.1_9b60007d795f77c4e2f25be389ba134fdb3b6fc1/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-iid-9.2.1_9b60007d795f77c4e2f25be389ba134fdb3b6fc1.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.2.0_d7aa110ea2713448d6bfa562c2c58ca86c5d91a9/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.0_d7aa110ea2713448d6bfa562c2c58ca86c5d91a9.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.2.0_9cda0fb1f8e805c2f2b6f1d048799d9969f7320c/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.2.0_9cda0fb1f8e805c2f2b6f1d048799d9969f7320c.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="9d1bf3f58e9bad4d9d446148959870140b455f8a">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_3b8254fc5a89ec956471da9fa403fcd8e9e54d21/classes.dex" />
+        sha1="fa850ac40df961602db9f483a0ac01e741e460e0">
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/instant-run_3b8254fc5a89ec956471da9fa403fcd8e9e54d21.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="819c2c3a4fb135e085445d11131d069cf9c32b2a">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.2.1_e58ad58123ae4233b61a06523b74c5f460a16927/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.2.1_e58ad58123ae4233b61a06523b74c5f460a16927.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-24.2.0_fd23e9ed8d077e1dca2fde24831f268d22656990/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-24.2.0_fd23e9ed8d077e1dca2fde24831f268d22656990.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.0/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-24.2.0_e1c9a550f079106697ea456c7919dbfb6c9c79a4/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.0_e1c9a550f079106697ea456c7919dbfb6c9c79a4.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="24.0.1"
-        sha1="c9af476e5711b707820ed3ed344bae5995886192">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_ad1be5b40dc30ca765382375953bc63727036af4/classes.dex" />
+        sha1="b3ef07951697b6c1e56a831167aa20f26e45263f">
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_ad1be5b40dc30ca765382375953bc63727036af4.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.0/support-annotations-24.2.0.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.2.0_88698fcce49176b07924b3e9cf41df87281d7bde/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.0_88698fcce49176b07924b3e9cf41df87281d7bde.jar" />
     </item>
     <item
         jar="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.2.1/jars/classes.jar"
         jumboMode="true"
         revision="24.0.1"
         sha1="6a0f2d219f82db499ac03d5a985c4eb3e83fc422">
-        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.2.1_e132289b4d2f10f75ed937c45aa350c367993f37/classes.dex" />
+        <dex dex="/Users/iosdeveloper/Documents/futbolitoappAndroid/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-9.2.1_e132289b4d2f10f75ed937c45aa350c367993f37.jar" />
     </item>
 
 </items>
