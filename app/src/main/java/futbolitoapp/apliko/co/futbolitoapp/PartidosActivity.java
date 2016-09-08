@@ -2,6 +2,7 @@ package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -378,7 +379,7 @@ public class PartidosActivity extends AppCompatActivity {
 
             tabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 70;
             TextView textView = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
-            textView.setTextColor(Color.parseColor("#ffffff"));
+            //textView.setTextColor(ColorStateList.createFromXml(getResources().getDrawable(R.drawable.textcolortabs)));
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
