@@ -299,4 +299,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return td;
     }
 
+    public Grupo getGrupo(String nombreGrupo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE__GRUPO + " WHERE "
+                + NOMBRE_GRUPO + " = '" + nombreGrupo +"'";
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Grupo td = new Grupo(c.getString(c.getColumnIndex(NOMBRE_GRUPO)), c.getInt(c.getColumnIndex(POSICION_MIEMBRO)), c.getInt(c.getColumnIndex(NUMERO_INTEGRANTES)));
+
+        return td;
+    }
+
 }

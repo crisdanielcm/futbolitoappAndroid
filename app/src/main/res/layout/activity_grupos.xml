@@ -53,6 +53,8 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/fondotitulotabla"
                 android:layout_weight="1"
+                android:textColor="#ffd11b" />
+                android:layout_weight="1"
                 android:textColor="#FFFFD11B" />
 
             <Space

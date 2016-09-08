@@ -1,8 +1,7 @@
-package futbolitoapp.apliko.co.futbolitoapp;
+﻿package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,7 +44,6 @@ import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.adapters.PartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Liga;
-import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Equipo;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Fecha;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Partido;
@@ -53,7 +51,6 @@ import futbolitoapp.apliko.co.futbolitoapp.objects.Semana;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Temporada;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONArrayRequest;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class PartidosActivity extends AppCompatActivity {
@@ -62,7 +59,7 @@ public class PartidosActivity extends AppCompatActivity {
     private DataBaseHelper dataBaseHelper;
     private ArrayList<Semana> semanas;
     private ArrayList<Fecha> fechas;
-    private ImageButton buttonSettings;
+    private ImageButton buttonGrupos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +78,15 @@ public class PartidosActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        buttonSettings = (ImageButton) findViewById(R.id.imageButton3);
-
-        buttonSettings.setOnClickListener(new View.OnClickListener() {
+        buttonGrupos = (ImageButton) findViewById(R.id.imageButton2);
+        buttonGrupos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), GruposActivity.class);
+                String nombre = ((Spinner)findViewById(R.id.spinner_ligas)).getPrompt().toString();
+                intent.putExtra("nombreLiga",nombre);
+
                 startActivity(intent);
             }
         });
@@ -241,8 +241,6 @@ public class PartidosActivity extends AppCompatActivity {
             listFecha.add(newFecha);
         }
     }
-
-
 
     public void listarLigas() {
 
