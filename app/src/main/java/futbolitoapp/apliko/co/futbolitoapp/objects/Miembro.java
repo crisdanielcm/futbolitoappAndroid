@@ -11,13 +11,25 @@ public class Miembro {
     private String username;
     private String email;
     private int idGrupo;
+    private boolean esCreador;
+    private int puestoActual;
+    private int puestoAnterior;
+    private int puntaje;
 
-    public Miembro(String firstName, String lastname, String username, String email, int idGrupo) {
+
+
+    public Miembro(String firstName, String lastname, String username, String email, int idGrupo, boolean esCreador,
+                   int puestoActual, int puestoAnterior, int puntaje) {
         this.firstName = firstName;
         this.lastname = lastname;
         this.username = username;
         this.email = email;
         this.idGrupo = idGrupo;
+        this.esCreador = esCreador;
+        this.puestoActual = puestoActual;
+        this.puestoAnterior = puestoAnterior;
+        this.puntaje = puntaje;
+
     }
 
     public String getFirstName() {
@@ -66,5 +78,37 @@ public class Miembro {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isEsCreador() {
+        return esCreador;
+    }
+
+    public void setEsCreador(boolean esCreador) {
+        this.esCreador = esCreador;
+    }
+
+    public int getPuestoActual() {
+        return puestoActual;
+    }
+
+    public void setPuestoActual(int puestoActual) {
+        this.puestoActual = puestoActual;
+    }
+
+    public int getPuestoAnterior() {
+        return puestoAnterior;
+    }
+
+    public void setPuestoAnterior(int puestoAnterior) {
+        this.puestoAnterior = puestoAnterior;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
     }
 }

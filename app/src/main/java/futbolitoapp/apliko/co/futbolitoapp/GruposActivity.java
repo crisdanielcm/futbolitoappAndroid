@@ -3,9 +3,12 @@ package futbolitoapp.apliko.co.futbolitoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -16,10 +19,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import futbolitoapp.apliko.co.futbolitoapp.adapters.GruposAdapter;
+import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
+import futbolitoapp.apliko.co.futbolitoapp.helper.Liga;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Grupo;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONArrayRequest;
@@ -27,8 +34,10 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class GruposActivity extends AppCompatActivity {
 
+    private static final String TAG = "GruposActivity";
     private DataBaseHelper dataBaseHelper;
     private ImageButton buttonRegistro;
+    private int idSelect = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,7 @@ public class GruposActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grupos);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         enviarSolicitudGrupos();
+        listarLigas();
         ImageButton buttonRegistro = (ImageButton) findViewById(R.id.imageButton_crear_grupo);
 
 
@@ -43,6 +53,7 @@ public class GruposActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CrearGrupoActivity.class);
+                intent.putExtra("idLiga", idSelect);
                 startActivity(intent);
             }
         });
@@ -50,6 +61,7 @@ public class GruposActivity extends AppCompatActivity {
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {
 
+        final int[] arrayGrupo = new int[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
 
             try {
@@ -61,13 +73,15 @@ public class GruposActivity extends AppCompatActivity {
                 Grupo grupo = new Grupo(nombre, posicion, numeroIntegrantes);
                 grupo.setId(idGrupo);
                 long id=dataBaseHelper.createToDoGrupo(grupo);
+                Log.i(TAG, "procesarRespuestaGrupos: "+id);
+                arrayGrupo[i] = (int) id;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
         List<Grupo> grupos = dataBaseHelper.getAllGrupos();
-        String[] contenido = new String[grupos.size()];
+        final String[] contenido = new String[grupos.size()];
         Integer[] posiciones = new Integer[grupos.size()];
         Integer[] numeroMiembros = new Integer[grupos.size()];
 
@@ -80,6 +94,16 @@ public class GruposActivity extends AppCompatActivity {
         GruposAdapter gruposAdapter = new GruposAdapter(this, contenido, posiciones, numeroMiembros);
         ListView listView = (ListView) findViewById(R.id.listView_grupos);
         listView.setAdapter(gruposAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String item = contenido[i];
+                int id = arrayGrupo[i];
+                enviarSolicitudMiembros(id, dataBaseHelper.getGrupo(item).getNombre());
+            }
+        });
     }
 
 
@@ -112,5 +136,81 @@ public class GruposActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
     }
 
+
+    public void listarLigas() {
+
+        List<Liga> ligas = new ArrayList<Liga>();
+        ligas = dataBaseHelper.getAllLigas();
+        ArrayList<String> arrayLigas = new ArrayList<>();
+        final String[] contenido = new String[ligas.size()];
+        String nombreLiga = getIntent().getStringExtra("nombreLiga");
+        int posLigaSelect = 0;
+        for (int i = 0; i < ligas.size(); i++) {
+            arrayLigas.add(ligas.get(i).getNombre());
+            contenido[i] = ligas.get(i).getNombre();
+
+            if(nombreLiga.equals(ligas.get(i).getNombre())){
+                posLigaSelect = i;
+            }
+        }
+
+        //ArrayAdapter<String> adapterLigas = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayLigas);
+        //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
+        //spinner_ligas.setAdapter(adapterLigas);
+        spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
+        LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
+        spinner_ligas.setAdapter(listAdapter);
+        spinner_ligas.setSelection(posLigaSelect);
+        idSelect = dataBaseHelper.getLiga(contenido[posLigaSelect]).getId();
+        spinner_ligas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = contenido[i];
+                idSelect = dataBaseHelper.getLiga(item).getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void enviarSolicitudMiembros(int idGrupo, final String nombre){
+
+        HashMap<String, Integer> solicitudMiembros = new HashMap<>();
+        solicitudMiembros.put("id_grupo", idGrupo);
+
+        JSONObject jsonObject = new JSONObject(solicitudMiembros);
+
+        CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
+                Request.Method.POST, Constantes.MIEMBROS, jsonObject, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Intent intent = new Intent(getApplicationContext(), MiembrosActivity.class);
+                intent.putExtra("miembros",response.toString());
+                intent.putExtra("nombreGrupo", nombre);
+                startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+                String respuesta = new String(networkResponse.data);
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 400:
+
+                    }
+                }
+            }
+        }, getApplicationContext());
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+    }
 
 }

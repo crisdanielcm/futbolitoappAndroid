@@ -14,18 +14,18 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".RegistroActivity" />
+        <activity
+            android:name=".RegistroActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -42,11 +42,28 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".LigasActivity" />
-        <activity android:name=".PartidosActivity" />
-        <activity android:name=".GruposActivity" />
-        <activity android:name=".adapters.GruposAdapter" />
-        <activity android:name=".CrearGrupoActivity"></activity>
+        <activity
+            android:name=".LigasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PartidosActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GruposActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CrearGrupoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MiembrosActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Splash" android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

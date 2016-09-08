@@ -1,9 +1,12 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -32,6 +35,26 @@ public class CrearGrupoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_grupo);
+        final int idLiga = (int) getIntent().getExtras().get("idLiga");
+        dataBaseHelper = new DataBaseHelper(getApplicationContext());
+
+        Button buttonCrearGrupo = (Button) findViewById(R.id.button_crear_grupo);
+        buttonCrearGrupo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nombreGrupo = ((EditText) findViewById(R.id.textview_nombre_grupo)).getText().toString();
+                enviarSolicitudNuevoGrupo(nombreGrupo, nombreGrupo,idLiga);
+            }
+        });
+
+        ImageButton buttonGrupos = (ImageButton) findViewById(R.id.imageButton5);
+        buttonGrupos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CrearGrupoActivity.this.finish();
+            }
+        });
+
     }
 
     public void enviarSolicitudNuevoGrupo(String nombre, String descripción, int idLiga){
@@ -82,6 +105,8 @@ public class CrearGrupoActivity extends AppCompatActivity {
         if(jsonObject.has("id_grupo")){
 
             Toast.makeText(CrearGrupoActivity.this, "Grupo creado con éxito", Toast.LENGTH_SHORT).show();
+
+
         }
         else{
 
@@ -128,4 +153,5 @@ public class CrearGrupoActivity extends AppCompatActivity {
         });
        // tabs();
     }
+
 }

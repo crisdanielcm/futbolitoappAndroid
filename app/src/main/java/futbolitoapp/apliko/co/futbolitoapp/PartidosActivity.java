@@ -2,7 +2,6 @@ package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -240,8 +239,6 @@ public class PartidosActivity extends AppCompatActivity {
             listFecha.add(newFecha);
         }
     }
-
-
 
     public void listarLigas() {
 
