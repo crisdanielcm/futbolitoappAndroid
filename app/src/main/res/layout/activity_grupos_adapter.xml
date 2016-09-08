@@ -1,31 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="futbolitoapp.apliko.co.futbolitoapp.adapters.GruposAdapter">
+    android:layout_height="wrap_content"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.adapters.GruposAdapter"
+    android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp">
 
-        <ImageView
-            android:layout_width="74dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:id="@+id/imageView3"
-            android:src="@drawable/iconogrupos" />
+            android:background="@drawable/fondomarcadores02"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:weightSum="1" >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textView_nombre_grupo"
-            android:layout_weight="0.2" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="10dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/textView_posicion_miembro"
-            android:layout_weight="0.2" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:id="@+id/imageView3"
+                        android:src="@drawable/iconogrupos"
+                        android:scaleType="fitCenter" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView_nombre_grupo"
+                        android:textColor="#ffffff"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView_posicion_miembro"
+                        android:layout_weight="0.2"
+                        android:textColor="#ffffff"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_weight="0.1" >
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/flechanext"
+                    android:scaleType="fitStart" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>
