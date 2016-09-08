@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="futbolitoapp.apliko.co.futbolitoapp.GruposActivity">
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.GruposActivity"
+    android:background="#262626">
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,34 +15,105 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="69dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView_header_partidos"
+                android:src="@drawable/logo1f"
+                android:background="#262626" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_ligas"
+                android:background="@drawable/fondo_arriba_con_flecha"
+                android:spinnerMode="dropdown"
+                android:popupBackground="#000"
+                android:textAlignment="center"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="66dp">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:layout_weight="0.5"
                 android:text="Grupos"
                 android:textStyle="bold"
                 android:textSize="14dp"
                 android:layout_gravity="center"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/fondotitulotabla"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/textView5"
-                android:layout_weight="0.5"
                 android:text="Posición"
                 android:textStyle="bold"
                 android:textSize="14dp"
                 android:layout_gravity="center"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/fondotitulotabla"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
-        <ListView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/listView_grupos" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/listView_grupos" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButton_crear_grupo"
+                    android:layout_weight="1"
+                    android:src="@drawable/btcreargrupo"
+                    android:scaleType="fitCenter"
+                    android:background="#00ffffff" />
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageButton_unirse_grupo"
+                    android:layout_weight="1"
+                    android:src="@drawable/btunirtegrupo"
+                    android:scaleType="fitCenter"
+                    android:background="#00ffffff" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

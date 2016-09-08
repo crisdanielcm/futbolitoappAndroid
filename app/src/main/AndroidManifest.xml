@@ -45,7 +45,8 @@
         <activity android:name=".LigasActivity" />
         <activity android:name=".PartidosActivity" />
         <activity android:name=".GruposActivity" />
-        <activity android:name=".adapters.GruposAdapter"></activity>
+        <activity android:name=".adapters.GruposAdapter" />
+        <activity android:name=".CrearGrupoActivity"></activity>
     </application>
 
 </manifest>

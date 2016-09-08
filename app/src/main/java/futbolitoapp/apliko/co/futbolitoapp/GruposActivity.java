@@ -1,7 +1,10 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.android.volley.NetworkResponse;
@@ -25,6 +28,7 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 public class GruposActivity extends AppCompatActivity {
 
     private DataBaseHelper dataBaseHelper;
+    private ImageButton buttonRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,14 @@ public class GruposActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grupos);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         enviarSolicitudGrupos();
+
+        buttonRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CrearGrupoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {
@@ -66,8 +78,6 @@ public class GruposActivity extends AppCompatActivity {
         GruposAdapter gruposAdapter = new GruposAdapter(this, contenido, posiciones, numeroMiembros);
         ListView listView = (ListView) findViewById(R.id.listView_grupos);
         listView.setAdapter(gruposAdapter);
-
-
     }
 
 
@@ -99,4 +109,6 @@ public class GruposActivity extends AppCompatActivity {
 
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
     }
+
+
 }
