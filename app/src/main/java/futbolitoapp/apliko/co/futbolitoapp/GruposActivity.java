@@ -61,6 +61,7 @@ public class GruposActivity extends AppCompatActivity {
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {
 
+        List<Grupo> grupos = new ArrayList<>();
         final int[] arrayGrupo = new int[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -72,7 +73,9 @@ public class GruposActivity extends AppCompatActivity {
                 int idGrupo = jsonObject.getInt("id_grupo");
                 Grupo grupo = new Grupo(nombre, posicion, numeroIntegrantes);
                 grupo.setId(idGrupo);
-                long id=dataBaseHelper.createToDoGrupo(grupo);
+                grupos.add(grupo);
+//                long id=dataBaseHelper.createToDoGrupo(grupo);
+                int id = idGrupo;
                 Log.i(TAG, "procesarRespuestaGrupos: "+id);
                 arrayGrupo[i] = (int) id;
             } catch (JSONException e) {
@@ -80,7 +83,7 @@ public class GruposActivity extends AppCompatActivity {
             }
         }
 
-        List<Grupo> grupos = dataBaseHelper.getAllGrupos();
+        //List<Grupo> grupos = dataBaseHelper.getAllGrupos();
         final String[] contenido = new String[grupos.size()];
         Integer[] posiciones = new Integer[grupos.size()];
         Integer[] numeroMiembros = new Integer[grupos.size()];
@@ -101,7 +104,7 @@ public class GruposActivity extends AppCompatActivity {
 
                 String item = contenido[i];
                 int id = arrayGrupo[i];
-                enviarSolicitudMiembros(id, dataBaseHelper.getGrupo(item).getNombre());
+                enviarSolicitudMiembros(id, item);
             }
         });
     }
@@ -121,7 +124,7 @@ public class GruposActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 String json = null;
                 NetworkResponse networkResponse = error.networkResponse;
-                String respuesta = new String(networkResponse.data);
+//                String respuesta = new String(networkResponse.data);
                 if (networkResponse != null && networkResponse.data != null) {
                     switch (networkResponse.statusCode) {
 
@@ -199,7 +202,7 @@ public class GruposActivity extends AppCompatActivity {
 
                 String json = null;
                 NetworkResponse networkResponse = error.networkResponse;
-                String respuesta = new String(networkResponse.data);
+//                String respuesta = new String(networkResponse.data);
                 if (networkResponse != null && networkResponse.data != null) {
                     switch (networkResponse.statusCode) {
 
