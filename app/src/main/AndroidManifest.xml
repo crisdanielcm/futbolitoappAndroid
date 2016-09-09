@@ -41,16 +41,6 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
-<<<<<<< HEAD
-        <activity android:name=".LigasActivity" />
-        <activity android:name=".PartidosActivity" />
-        <activity android:name=".GruposActivity" />
-        <activity android:name=".adapters.GruposAdapter" />
-        <activity android:name=".CrearGrupoActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".adapters.ExpandableListAdapte"></activity>
-=======
         <activity
             android:name=".LigasActivity"
             android:screenOrientation="portrait" />
@@ -73,7 +63,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
->>>>>>> origin/master
     </application>
 
 </manifest>

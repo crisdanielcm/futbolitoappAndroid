@@ -109,7 +109,6 @@ public class GruposActivity extends AppCompatActivity {
         });
     }
 
-
     public void enviarSolicitudGrupos() {
 
         CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
@@ -139,17 +138,14 @@ public class GruposActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
     }
 
-
     public void listarLigas() {
 
         List<Liga> ligas = new ArrayList<Liga>();
         ligas = dataBaseHelper.getAllLigas();
-        ArrayList<String> arrayLigas = new ArrayList<>();
         final String[] contenido = new String[ligas.size()];
         String nombreLiga = getIntent().getStringExtra("nombreLiga");
         int posLigaSelect = 0;
         for (int i = 0; i < ligas.size(); i++) {
-            arrayLigas.add(ligas.get(i).getNombre());
             contenido[i] = ligas.get(i).getNombre();
 
             if(nombreLiga.equals(ligas.get(i).getNombre())){
@@ -161,7 +157,7 @@ public class GruposActivity extends AppCompatActivity {
         //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
         //spinner_ligas.setAdapter(adapterLigas);
-        spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
+        spinner_ligas.setPrompt(nombreLiga);
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
         spinner_ligas.setAdapter(listAdapter);
         spinner_ligas.setSelection(posLigaSelect);

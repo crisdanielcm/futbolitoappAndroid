@@ -1,4 +1,4 @@
-﻿package futbolitoapp.apliko.co.futbolitoapp;
+package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -382,7 +382,7 @@ public class PartidosActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
-            //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));ç
+            //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));?
             textView.setPadding(0, 5, 0, 0);
             textView.setWidth(120);
             textView.setHeight(70);

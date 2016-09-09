@@ -28,7 +28,7 @@
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner_ligas"
+                android:id="@+id/spinner_grupos"
                 android:background="@drawable/fondo_arriba_con_flecha"
                 android:spinnerMode="dropdown"
                 android:popupBackground="#000"

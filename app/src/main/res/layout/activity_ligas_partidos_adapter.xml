@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="245dp"
         android:layout_height="65dp"
         android:id="@+id/textView_ligas_partidos"
         android:layout_alignParentTop="true"
