@@ -2,7 +2,6 @@ package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
@@ -50,7 +49,6 @@ import java.util.HashMap;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Token;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 /**
@@ -83,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
      */
 
 
-    public void enviarSolicitud(String username, String email, String password) {
+    public void enviarSolicitud(String username, final String email, final String password) {
 
         HashMap<String, String> solicitudLogin = new HashMap<>();
         solicitudLogin.put("username", username);
@@ -95,7 +93,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                procesarRespuesta(response);
+                procesarRespuesta(response, email, password);
 
             }
         }, new Response.ErrorListener() {
@@ -111,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             JSONObject jsonObject1 = null;
                             try {
                                 jsonObject1 = new JSONObject(json);
-                                procesarRespuesta(jsonObject1);
+                                procesarRespuesta(jsonObject1, email, password);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -124,7 +122,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
 
-    public void procesarRespuesta(JSONObject jsonObject) {
+    public void procesarRespuesta(JSONObject jsonObject, String email, String password) {
 
         try {
             if(jsonObject.has("key")){
@@ -135,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Intent intent = new Intent(getApplicationContext(),LigasActivity.class);
                 startActivity(intent);
             }else if(jsonObject.has("non_field_errors")){
-                Toast.makeText(LoginActivity.this, "Los datos que esta ingresando no son correctos.", Toast.LENGTH_SHORT).show();
+                registrarUsuario(email, email, password, password);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -328,10 +326,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    public void registrarUsuario(String username, String email, String pass1, String pass2) {
+    public void registrarUsuario(String username, final String email, final String pass1, String pass2) {
 
         HashMap<String, String> solicitudRegistro = new HashMap<>();
-        solicitudRegistro.put("username", username);
+        String [] usernameA = username.split("@");
+        String newUesername = usernameA[0];
+
+        solicitudRegistro.put("username", newUesername);
         solicitudRegistro.put("password1", pass1);
         solicitudRegistro.put("password2", pass2);
         solicitudRegistro.put("email", email);
@@ -346,7 +347,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             @Override
                             public void onResponse(JSONObject response)
                             {
-                                procesarRespuesta(response);
+                                procesarRespuestaRegistro(response);
                             }
                         },
                         new Response.ErrorListener()
@@ -390,7 +391,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }else if(jsonObject.has("non_field_errors")){
                 Toast.makeText(LoginActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
             }else if(jsonObject.has("email")){
-                Toast.makeText(LoginActivity.this, "Ya existe un usuario con el email registrado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Su contraseña es incorrecta", Toast.LENGTH_SHORT).show();
             }else if(jsonObject.has("username")){
                 Toast.makeText(LoginActivity.this, "Ya existe un usuario con el nombre de usuario registrado", Toast.LENGTH_SHORT).show();
             }
