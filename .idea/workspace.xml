@@ -71,41 +71,27 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.611276">
-              <caret line="393" column="79" selection-start-line="393" selection-start-column="79" selection-end-line="393" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.61290324">
+              <caret line="327" column="60" selection-start-line="327" selection-start-column="60" selection-end-line="327" selection-end-column="60" />
               <folding>
-                <element signature="docComment;method#enviarSolicitud#0;class#LoginActivity#0" expanded="false" />
                 <element signature="e#3416#3620#0" expanded="true" />
                 <element signature="e#3619#3620#0" expanded="true" />
                 <element signature="e#3622#4530#0" expanded="true" />
                 <element signature="e#4529#4530#0" expanded="true" />
-                <element signature="method#onCreate#0;class#LoginActivity#0" expanded="false" />
+                <element signature="e#6916#7187#0" expanded="true" />
+                <element signature="e#7186#7187#0" expanded="true" />
+                <element signature="e#7949#8828#0" expanded="true" />
+                <element signature="e#8827#8828#0" expanded="true" />
                 <element signature="method#isEmailValid#0;class#LoginActivity#0" expanded="false" />
                 <element signature="method#isPasswordValid#0;class#LoginActivity#0" expanded="false" />
                 <element signature="docComment;method#showProgress#0;class#LoginActivity#0" expanded="false" />
                 <element signature="method#showProgress#0;class#LoginActivity#0" expanded="false" />
                 <element signature="method#onActivityResult#0;class#LoginActivity#0" expanded="false" />
-                <element signature="method#handleSignInResult#0;class#LoginActivity#0" expanded="false" />
-                <element signature="e#14135#14437#0" expanded="true" />
-                <element signature="e#14436#14437#0" expanded="true" />
-                <element signature="e#14463#15691#0" expanded="true" />
-                <element signature="e#15690#15691#0" expanded="true" />
+                <element signature="e#14421#14723#0" expanded="true" />
+                <element signature="e#14722#14723#0" expanded="true" />
+                <element signature="e#14749#15977#0" expanded="true" />
+                <element signature="e#15976#15977#0" expanded="true" />
                 <element signature="method#onConnectionFailed#0;class#LoginActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegistroActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/RegistroActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
-              <folding>
-                <element signature="e#2361#3581#0" expanded="true" />
-                <element signature="e#3580#3581#0" expanded="true" />
-                <element signature="e#5016#5528#0" expanded="true" />
-                <element signature="e#5527#5528#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2044,7 +2030,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
+              <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2510,7 +2496,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32612312" sideWeight="0.52100164" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39967105" sideWeight="0.4838449" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39967105" sideWeight="0.4838449" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.49676898" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.49676898" order="10" side_tool="false" content_ui="tabs" />
@@ -2523,7 +2509,7 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39273927" sideWeight="0.49353796" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39144737" sideWeight="0.49353796" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2548,12 +2534,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java</url>
-          <line>199</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/GruposActivity.java</url>
           <line>123</line>
@@ -2590,8 +2570,14 @@
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java</url>
+          <line>319</line>
+          <properties />
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="60" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3047,7 +3033,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/RegistroActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.8534483">
           <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
           <folding>
             <element signature="e#2361#3581#0" expanded="true" />
@@ -3060,25 +3046,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.611276">
-          <caret line="393" column="79" selection-start-line="393" selection-start-column="79" selection-end-line="393" selection-end-column="79" />
+        <state vertical-scroll-proportion="0.61290324">
+          <caret line="327" column="60" selection-start-line="327" selection-start-column="60" selection-end-line="327" selection-end-column="60" />
           <folding>
-            <element signature="docComment;method#enviarSolicitud#0;class#LoginActivity#0" expanded="false" />
             <element signature="e#3416#3620#0" expanded="true" />
             <element signature="e#3619#3620#0" expanded="true" />
             <element signature="e#3622#4530#0" expanded="true" />
             <element signature="e#4529#4530#0" expanded="true" />
-            <element signature="method#onCreate#0;class#LoginActivity#0" expanded="false" />
+            <element signature="e#6916#7187#0" expanded="true" />
+            <element signature="e#7186#7187#0" expanded="true" />
+            <element signature="e#7949#8828#0" expanded="true" />
+            <element signature="e#8827#8828#0" expanded="true" />
             <element signature="method#isEmailValid#0;class#LoginActivity#0" expanded="false" />
             <element signature="method#isPasswordValid#0;class#LoginActivity#0" expanded="false" />
             <element signature="docComment;method#showProgress#0;class#LoginActivity#0" expanded="false" />
             <element signature="method#showProgress#0;class#LoginActivity#0" expanded="false" />
             <element signature="method#onActivityResult#0;class#LoginActivity#0" expanded="false" />
-            <element signature="method#handleSignInResult#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#14135#14437#0" expanded="true" />
-            <element signature="e#14436#14437#0" expanded="true" />
-            <element signature="e#14463#15691#0" expanded="true" />
-            <element signature="e#15690#15691#0" expanded="true" />
+            <element signature="e#14421#14723#0" expanded="true" />
+            <element signature="e#14722#14723#0" expanded="true" />
+            <element signature="e#14749#15977#0" expanded="true" />
+            <element signature="e#15976#15977#0" expanded="true" />
             <element signature="method#onConnectionFailed#0;class#LoginActivity#0" expanded="false" />
           </folding>
         </state>

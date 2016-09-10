@@ -241,7 +241,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 String email = ((EditText) findViewById(R.id.email)).getText().toString();
                 String pass = ((EditText) findViewById(R.id.password)).getText().toString();
                 Log.i(TAG, "onClick: asd");
-                enviarSolicitud(username, email, pass);
+                String [] usernameA = username.split("@");
+                String newUesername = usernameA[0];
+                enviarSolicitud(newUesername, email, pass);
             }
         });
 
@@ -319,8 +321,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             //mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             String tokenGoogle = acct.getIdToken();
             String emailGoogle = acct.getEmail();
-            enviarSolicitud(emailGoogle, emailGoogle,tokenGoogle);
-            registrarUsuario(emailGoogle, emailGoogle, tokenGoogle, tokenGoogle);
+
+            String [] usernameA = emailGoogle.split("@");
+            String newUesername = usernameA[0];
+            Log.i(TAG, "handleSignInResult: "+newUesername);
+            enviarSolicitud(newUesername, emailGoogle,tokenGoogle);
+            //registrarUsuario(emailGoogle, emailGoogle, tokenGoogle, tokenGoogle);
         } else {
 
         }
