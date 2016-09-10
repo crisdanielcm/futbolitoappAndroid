@@ -66,7 +66,11 @@ public class LigasActivity extends AppCompatActivity {
 
                 String item = contenido[i];
                 int id = dataBaseHelper.getLiga(item).getId();
-                solicitudPartidos(id, dataBaseHelper.getLiga(item).getNombre());
+                Intent intent = new Intent(getApplicationContext(), PartidosActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("nombreLiga",dataBaseHelper.getLiga(item).getNombre());
+                startActivity(intent);
+
             }
         });
     }
@@ -141,7 +145,7 @@ public class LigasActivity extends AppCompatActivity {
 
         if (jsonObject.has("mensaje")) {
 
-            Toast.makeText(LigasActivity.this, "Pronostico registrado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LigasActivity.this, "PronosticoP registrado", Toast.LENGTH_SHORT).show();
         } else {
 
         }

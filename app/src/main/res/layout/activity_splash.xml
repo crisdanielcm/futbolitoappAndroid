@@ -5,12 +5,49 @@
     android:layout_height="match_parent"
 
     tools:context="futbolitoapp.apliko.co.futbolitoapp.Splash"
-    android:background="#242424">
+    android:background="#242424"
+    android:orientation="vertical">
 
-    <ImageView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="50dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView4"
+            android:src="@drawable/logo1fsplash"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:background="#00ffffff" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView4"
-        android:src="@drawable/vista_0"
-        android:scaleType="fitCenter" />
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView6"
+            android:src="@drawable/balongrande"
+            android:scaleType="fitEnd"
+            android:layout_weight="0.3" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView5"
+            android:layout_weight="1"
+            android:src="@drawable/logoapliko"
+            android:scaleType="fitEnd"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
 </LinearLayout>

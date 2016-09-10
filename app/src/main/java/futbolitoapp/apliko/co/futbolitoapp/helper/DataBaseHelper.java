@@ -34,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // Table Names
     private static final String TABLE_TOKEN = "Token";
     private static final String TABLE_LIGA = "Liga";
-    private static final String TABLE_PRONOSTICO = "Pronostico";
+    private static final String TABLE_PRONOSTICO = "PronosticoP";
     private static final String TABLE__GRUPO = "Grupo";
     private static final String TABLE__MIEMBRO = "Miembro";
 

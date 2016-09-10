@@ -1,6 +1,5 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -44,9 +43,11 @@ import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.adapters.PartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Liga;
+import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Equipo;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Fecha;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Partido;
+import futbolitoapp.apliko.co.futbolitoapp.objects.PronosticoP;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Semana;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Temporada;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
@@ -69,6 +70,8 @@ public class PartidosActivity extends AppCompatActivity {
         fechas = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         //solicitudpronostico();
+        int idLiga = getIntent().getExtras().getInt("id");
+        solicitudPartidos(idLiga);
         String respuesta = getIntent().getExtras().getString("partidos");
         try {
             JSONArray jsonArray = new JSONArray(respuesta);
@@ -84,8 +87,8 @@ public class PartidosActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), GruposActivity.class);
-                String nombre = ((Spinner)findViewById(R.id.spinner_ligas)).getPrompt().toString();
-                intent.putExtra("nombreLiga",nombre);
+                String nombre = ((Spinner) findViewById(R.id.spinner_ligas)).getPrompt().toString();
+                intent.putExtra("nombreLiga", nombre);
 
                 startActivity(intent);
             }
@@ -94,7 +97,7 @@ public class PartidosActivity extends AppCompatActivity {
 
     }
 
-    public void solicitudPartidos(int id, final String nombre){
+    public void solicitudPartidos(int id) {
 
         HashMap<String, Integer> solicitudPartidos = new HashMap<>();
         solicitudPartidos.put("id_liga", id);
@@ -109,6 +112,7 @@ public class PartidosActivity extends AppCompatActivity {
 //                intent.putExtra("partidos", response.toString());
 //                intent.putExtra("nombreLiga", nombre);
                 procesarRespuestaPartidos(response);
+
                 tabs();
 
             }
@@ -205,7 +209,7 @@ public class PartidosActivity extends AppCompatActivity {
                 semanas.add(semana);
                 fechas = new ArrayList<>();
             }
-
+            getPronosticos(semanas);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -253,7 +257,7 @@ public class PartidosActivity extends AppCompatActivity {
         for (int i = 0; i < ligas.size(); i++) {
             arrayLigas.add(ligas.get(i).getNombre());
             contenido[i] = ligas.get(i).getNombre();
-            if(nombreLiga.equals(ligas.get(i).getNombre())){
+            if (nombreLiga.equals(ligas.get(i).getNombre())) {
                 posLigaSelect = i;
             }
         }
@@ -271,7 +275,7 @@ public class PartidosActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = contenido[i];
                 int id = dataBaseHelper.getLiga(item).getId();
-                solicitudPartidos(id, dataBaseHelper.getLiga(item).getNombre());
+                solicitudPartidos(id);
             }
 
             @Override
@@ -282,7 +286,7 @@ public class PartidosActivity extends AppCompatActivity {
         tabs();
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     public void tabs() {
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
@@ -312,6 +316,8 @@ public class PartidosActivity extends AppCompatActivity {
                 String[] nombreVisitante = new String[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] marcaLocal = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] marcaVisitante = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
+                Integer[] pronosticoLocal = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
+                Integer[] pronosticoVisitante = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] idPartido = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
 
 
@@ -331,7 +337,14 @@ public class PartidosActivity extends AppCompatActivity {
                     nombreVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getEquipoVisitante().getNombre();
                     marcaLocal[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getGolesLocal();
                     marcaVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getGolesVisitante();
-                    idPartido[k] =  semanas.get(i).getFechas().get(j).getPartidos().get(k).getId();
+                    idPartido[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getId();
+                    if (semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico() != null) {
+                        pronosticoLocal[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().getPronosticoLocal();
+                        pronosticoVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().getPronosticoLocal();
+                    } else {
+                        pronosticoLocal[k] = -1;
+                        pronosticoVisitante[k] = -1;
+                    }
 
                 }
                 int image = 0;
@@ -342,7 +355,7 @@ public class PartidosActivity extends AppCompatActivity {
                 else
                     image = R.drawable.fondomarcadores02;
 
-                final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, image, idPartido);
+                final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, pronosticoLocal, pronosticoVisitante, image, idPartido, semanas);
                 ListView listView = new ListView(getApplicationContext());
 
                 listView.setAdapter(partidosAdapter);
@@ -397,4 +410,49 @@ public class PartidosActivity extends AppCompatActivity {
         int px = Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
         return px;
     }
+
+    public void getPronosticos(final List<Semana> semanas) {
+        VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(new CustomJSONArrayRequest(
+                Request.Method.GET, Constantes.PRONOSTICO, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    List<Pronostico> pronosticoList = new ArrayList<Pronostico>();
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject jsonObject = response.getJSONObject(i);
+                        int goles_local = jsonObject.getInt("goles_local");
+                        int goles_visitante = jsonObject.getInt("goles_visitante");
+                        int id_pronostico = jsonObject.getInt("id_pronostico");
+                        Pronostico pronostico = new Pronostico(goles_local,goles_visitante,jsonObject.getJSONObject("partido").getInt("id"));
+                        pronostico.setId(id_pronostico);
+                        pronosticoList.add(pronostico);
+                    }
+                    for (int i = 0; i < semanas.size(); i++) {
+                        for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
+                            for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
+                                Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
+                                for (int z = 0; z < pronosticoList.size(); z++) {
+                                    if(partido.getId() == pronosticoList.get(z).getId()){
+                                        partido.setPronostico(new PronosticoP(pronosticoList.get(z).getId(),pronosticoList.get(z).getGolesLocal(),pronosticoList.get(z).getGolesVisitante()));
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }, getApplicationContext()));
+    }
+
+
 }

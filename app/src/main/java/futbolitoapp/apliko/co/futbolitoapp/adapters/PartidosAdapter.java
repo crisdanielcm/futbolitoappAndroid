@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,14 +21,20 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import futbolitoapp.apliko.co.futbolitoapp.R;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
+import futbolitoapp.apliko.co.futbolitoapp.objects.Partido;
+import futbolitoapp.apliko.co.futbolitoapp.objects.PronosticoP;
+import futbolitoapp.apliko.co.futbolitoapp.objects.Semana;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
@@ -39,20 +44,25 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
  */
 public class PartidosAdapter extends ArrayAdapter<String> {
 
+    private static final String TAG = "PartidoAdapter";
     private final Activity context;
     private final String[] nombreLocal;
     private final String[] nombreVisitante;
     private final Integer[] marcaLocal;
     private final Integer[] marcaVisitante;
+    private final Integer[] pronosticoLocal;
+    private final Integer[] pronosticoVisitante;
     private final int imageBackground;
     private Integer[] idPartido;
+    private List<Semana> semanas;
 
     //private final String[] item5;
     //private final String[] item6;
     //private final String[] item7;
 
     public PartidosAdapter(Activity context, String[] nombreLocal, String[] nombreVisitante, Integer[] marcaLocal,
-                           Integer[] marcaVisitante, int image, Integer []id) {
+                           Integer[] marcaVisitante, Integer[] pronosticoLocal,
+                           Integer[] pronosticoVisitante, int image, Integer[] id, ArrayList<Semana> semanas) {
         super(context, R.layout.activity_partidos_list_adapter, nombreLocal);
         this.context = context;
         this.nombreLocal = nombreLocal;
@@ -61,9 +71,36 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         this.marcaVisitante = marcaVisitante;
         this.imageBackground = image;
         this.idPartido = id;
+        this.semanas = semanas;
+        this.pronosticoLocal = pronosticoLocal;
+        this.pronosticoVisitante = pronosticoVisitante;
         //this.item5 = item5;
         //this.item6 = item6;
         //this.item7 = item7;
+    }
+
+    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color) {
+        final int count = numberPicker.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = numberPicker.getChildAt(i);
+            if (child instanceof EditText) {
+                try {
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint) selectorWheelPaintField.get(numberPicker)).setColor(color);
+                    ((EditText) child).setTextColor(color);
+                    numberPicker.invalidate();
+                    return true;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+        return false;
     }
 
     @Override
@@ -81,14 +118,14 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(20);
         numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setValue(marcaLocal[position]);
+        numberPicker.setValue(pronosticoLocal[position]);
         setNumberPickerTextColor(numberPicker, Color.WHITE);
 
         final NumberPicker numberPicker1 = (NumberPicker) rowView.findViewById(R.id.textView_marcador_visitante);
         numberPicker1.setMinValue(0);
         numberPicker1.setMaxValue(20);
         numberPicker1.setWrapSelectorWheel(false);
-        numberPicker1.setValue(marcaVisitante[position]);
+        numberPicker1.setValue(pronosticoVisitante[position]);
         setNumberPickerTextColor(numberPicker1, Color.WHITE);
 
         TextView txtTitleLocal = (TextView) rowView.findViewById(R.id.textView_nombre_local);
@@ -107,7 +144,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
                 int value = numberPicker.getValue();
-                numberPicker.setValue(value+1);
+                numberPicker.setValue(value + 1);
             }
         });
 
@@ -115,7 +152,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View view) {
                 int value = numberPicker1.getValue();
-                numberPicker1.setValue(value+1);
+                numberPicker1.setValue(value + 1);
             }
         });
 
@@ -125,45 +162,37 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             public void onClick(View view) {
                 int valueLocal = numberPicker.getValue();
                 int valueVisitante = numberPicker1.getValue();
-                solicitudpronostico(valueLocal,valueVisitante,idPartido[position]);
+                for (int i = 0; i < semanas.size(); i++) {
+                    for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
+                        for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
+                            Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
+                            if (partido.getId() == idPartido[position]) {
+                                try {
+                                    if (partido.getPronostico() == null) {
+                                        solicitudpronostico(valueLocal, valueVisitante, idPartido[position], i, j, k);
+                                    } else {
+                                        actualizarPronostico(partido.getPronostico().getId(), valueLocal, valueVisitante, i, j, k);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }
 
             }
         });
         return rowView;
     }
 
-    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color)
-    {
-        final int count = numberPicker.getChildCount();
-        for(int i = 0; i < count; i++){
-            View child = numberPicker.getChildAt(i);
-            if(child instanceof EditText){
-                try{
-                    Field selectorWheelPaintField = numberPicker.getClass()
-                            .getDeclaredField("mSelectorWheelPaint");
-                    selectorWheelPaintField.setAccessible(true);
-                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(color);
-                    ((EditText)child).setTextColor(color);
-                    numberPicker.invalidate();
-                    return true;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }
-        return false;
-    }
-
-    public void solicitudpronostico(int goles_local, int goles_visitante, int id_partido) {
+    public void solicitudpronostico(final int goles_local, final int goles_visitante, final int id_partido, final int i, final int j, final int k) {
 
         HashMap<String, Integer> solicitud = new HashMap<>();
         solicitud.put("goles_local", goles_local);
         solicitud.put("goles_visitante", goles_visitante);
         solicitud.put("id_partido", id_partido);
-        Pronostico pronostico = new Pronostico(goles_local, goles_visitante, id_partido);
+        final Pronostico pronostico = new Pronostico(goles_local, goles_visitante, id_partido);
         DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
         dataBaseHelper.createToDoPronostico(pronostico);
 
@@ -173,7 +202,14 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 Constantes.PRONOSTICO, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(context, "El pronostico se ha registrado", Toast.LENGTH_SHORT).show();
+                try {
+                    int idPronostico = response.getInt("id_pronostico");
+                    PronosticoP pronosticoP = new PronosticoP(idPronostico, goles_local, goles_visitante);
+                    semanas.get(i).getFechas().get(j).getPartidos().get(k).setPronostico(pronosticoP);
+                    Toast.makeText(context, "El pronostico se ha registrado ", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
         }, new Response.ErrorListener() {
@@ -196,6 +232,28 @@ public class PartidosAdapter extends ArrayAdapter<String> {
 
         VolleySingleton.getInstance(context).addToRequestQueue(customJSONObjectRequest);
 
+    }
+
+    public void actualizarPronostico(int id, final int goles_local, final int goles_visitante, final int i, final int j, final int k) throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id_pronostico", id);
+        jsonObject.put("goles_local", goles_local);
+        jsonObject.put("goles_visitante", goles_visitante);
+        VolleySingleton.getInstance(context).addToRequestQueue(new CustomJSONObjectRequest(
+                Request.Method.PUT, Constantes.PRONOSTICO, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().setPronosticoLocal(goles_local);
+                semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().setPronosticoVisitante(goles_visitante);
+                Toast.makeText(context, "El pronostico se ha actualizado ", Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }, context
+        ));
     }
 
 }

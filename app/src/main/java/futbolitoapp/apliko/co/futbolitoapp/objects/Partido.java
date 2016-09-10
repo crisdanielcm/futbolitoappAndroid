@@ -11,6 +11,7 @@ public class Partido {
     private int golesVisitante;
     private Equipo equipoLocal;
     private Equipo equipoVisitante;
+    private PronosticoP pronostico;
 
 
     public Partido(String fechaHora, Equipo equipoLocal, Equipo equipoVisitante, int golesLocal, int golesVisitante) {
@@ -19,6 +20,14 @@ public class Partido {
         this.equipoVisitante = equipoVisitante;
         this.golesLocal = golesLocal;
         this.golesVisitante = golesVisitante;
+    }
+
+    public PronosticoP getPronostico() {
+        return pronostico;
+    }
+
+    public void setPronostico(PronosticoP pronostico) {
+        this.pronostico = pronostico;
     }
 
     public int getId() {
@@ -68,4 +77,5 @@ public class Partido {
     public void setEquipoVisitante(Equipo equipoVisitante) {
         this.equipoVisitante = equipoVisitante;
     }
+
 }
