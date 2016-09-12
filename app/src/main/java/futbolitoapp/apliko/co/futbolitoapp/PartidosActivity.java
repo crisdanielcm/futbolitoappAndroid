@@ -68,18 +68,14 @@ public class PartidosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_partidos);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         fechas = new ArrayList<>();
+        semanas = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         //solicitudpronostico();
         int idLiga = getIntent().getExtras().getInt("id");
-        solicitudPartidos(idLiga);
-        String respuesta = getIntent().getExtras().getString("partidos");
-        try {
-            JSONArray jsonArray = new JSONArray(respuesta);
-            procesarRespuestaPartidos(jsonArray);
+        //solicitudPartidos(idLiga);
+
             listarLigas();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         buttonGrupos = (ImageButton) findViewById(R.id.imageButton2);
         buttonGrupos.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +109,7 @@ public class PartidosActivity extends AppCompatActivity {
 //                intent.putExtra("nombreLiga", nombre);
                 procesarRespuestaPartidos(response);
 
-                tabs();
+
 
             }
         }, new Response.ErrorListener() {
@@ -283,7 +279,7 @@ public class PartidosActivity extends AppCompatActivity {
 
             }
         });
-        tabs();
+
     }
 
 
@@ -340,7 +336,7 @@ public class PartidosActivity extends AppCompatActivity {
                     idPartido[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getId();
                     if (semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico() != null) {
                         pronosticoLocal[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().getPronosticoLocal();
-                        pronosticoVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().getPronosticoLocal();
+                        pronosticoVisitante[k] = semanas.get(i).getFechas().get(j).getPartidos().get(k).getPronostico().getPronosticoVisitante();
                     } else {
                         pronosticoLocal[k] = -1;
                         pronosticoVisitante[k] = -1;
@@ -365,6 +361,7 @@ public class PartidosActivity extends AppCompatActivity {
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
 
                 LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                linearLayout2.setBackgroundColor(Color.parseColor("#FF1D1D1D"));
                 linearLayout2.setLayoutParams(layoutParams2);
                 linearLayout2.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
                 linearLayout2.addView(textViewFecha);
@@ -422,7 +419,7 @@ public class PartidosActivity extends AppCompatActivity {
                         JSONObject jsonObject = response.getJSONObject(i);
                         int goles_local = jsonObject.getInt("goles_local");
                         int goles_visitante = jsonObject.getInt("goles_visitante");
-                        int id_pronostico = jsonObject.getInt("id_pronostico");
+                        int id_pronostico = jsonObject.getInt("id");
                         Pronostico pronostico = new Pronostico(goles_local,goles_visitante,jsonObject.getJSONObject("partido").getInt("id"));
                         pronostico.setId(id_pronostico);
                         pronosticoList.add(pronostico);
@@ -432,7 +429,7 @@ public class PartidosActivity extends AppCompatActivity {
                             for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
                                 Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
                                 for (int z = 0; z < pronosticoList.size(); z++) {
-                                    if(partido.getId() == pronosticoList.get(z).getId()){
+                                    if(partido.getId() == pronosticoList.get(z).getIdPartido()){
                                         partido.setPronostico(new PronosticoP(pronosticoList.get(z).getId(),pronosticoList.get(z).getGolesLocal(),pronosticoList.get(z).getGolesVisitante()));
                                         break;
                                     }
@@ -440,6 +437,7 @@ public class PartidosActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    tabs();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

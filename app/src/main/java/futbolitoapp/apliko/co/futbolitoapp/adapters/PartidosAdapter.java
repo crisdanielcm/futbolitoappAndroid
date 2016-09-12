@@ -1,9 +1,6 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.NumberPicker;
+import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +21,6 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,28 +75,8 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         //this.item7 = item7;
     }
 
-    public static boolean setNumberPickerTextColor(NumberPicker numberPicker, int color) {
-        final int count = numberPicker.getChildCount();
-        for (int i = 0; i < count; i++) {
-            View child = numberPicker.getChildAt(i);
-            if (child instanceof EditText) {
-                try {
-                    Field selectorWheelPaintField = numberPicker.getClass()
-                            .getDeclaredField("mSelectorWheelPaint");
-                    selectorWheelPaintField.setAccessible(true);
-                    ((Paint) selectorWheelPaintField.get(numberPicker)).setColor(color);
-                    ((EditText) child).setTextColor(color);
-                    numberPicker.invalidate();
-                    return true;
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
+    public static void setTextColor(EditText numberPicker1, EditText numberPicker, int marcador) {
 
-            }
-        }
-        return false;
     }
 
     @Override
@@ -114,19 +90,13 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         linearLayout.setBackgroundResource(imageBackground);
 
 
-        final NumberPicker numberPicker = (NumberPicker) rowView.findViewById(R.id.textView_marcador_local);
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(20);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setValue(pronosticoLocal[position]);
-        setNumberPickerTextColor(numberPicker, Color.WHITE);
+        final EditText numberPicker = (EditText) rowView.findViewById(R.id.textView_marcador_local);
+        numberPicker.setText(pronosticoLocal[position] + "");
 
-        final NumberPicker numberPicker1 = (NumberPicker) rowView.findViewById(R.id.textView_marcador_visitante);
-        numberPicker1.setMinValue(0);
-        numberPicker1.setMaxValue(20);
-        numberPicker1.setWrapSelectorWheel(false);
-        numberPicker1.setValue(pronosticoVisitante[position]);
-        setNumberPickerTextColor(numberPicker1, Color.WHITE);
+
+        final EditText numberPicker1 = (EditText) rowView.findViewById(R.id.textView_marcador_visitante);
+        numberPicker1.setText(pronosticoVisitante[position] + "");
+
 
         TextView txtTitleLocal = (TextView) rowView.findViewById(R.id.textView_nombre_local);
         txtTitleLocal.setText(nombreLocal[position]);
@@ -134,25 +104,158 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         TextView txtTitlevisitante = (TextView) rowView.findViewById(R.id.textView_nombre_visitante);
         txtTitlevisitante.setText(nombreVisitante[position]);
 
-        TextView marcadorLocal = (TextView) rowView.findViewById(R.id.textView_marca);
-        marcadorLocal.setText(marcaLocal[position] + "-" + marcaVisitante[position]);
+        TextView textViewmarcadorLocal = (TextView) rowView.findViewById(R.id.textView_marca);
+        textViewmarcadorLocal.setText(marcaLocal[position] + "-" + marcaVisitante[position]);
 
         ImageButton localButton = (ImageButton) rowView.findViewById(R.id.localButton);
         ImageButton visitanteButton = (ImageButton) rowView.findViewById(R.id.visitanteButton);
+        ImageView imageViewEstadoLocal = (ImageView) rowView.findViewById(R.id.imageViewEstadoLocal);
+        ImageView imageViewEstadoVisitante = (ImageView) rowView.findViewById(R.id.imageViewEstadoVisitante);
+        ImageView imageViewEstadoMarcadorLocal = (ImageView) rowView.findViewById(R.id.imageViewEstadoMarcadorLocal);
+        ImageView imageViewEstadoMarcadorVisitante = (ImageView) rowView.findViewById(R.id.imageViewEstadoMarcadorVisitante);
+
+        //si acierta el marcador local
+        if (marcaLocal[position] == pronosticoLocal[position]) {
+            imageViewEstadoMarcadorLocal.setImageResource(R.drawable.chulitoverdep);
+        } else {
+            imageViewEstadoMarcadorLocal.setImageResource(R.drawable.xp);
+        }
+
+        //si acierta el marcador visitante
+        if (marcaVisitante[position] == pronosticoVisitante[position]) {
+            imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.chulitoverdep);
+        } else {
+            imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.xp);
+        }
+        int marcadorLocal = marcaLocal[position];
+        int marcadorVisitante = marcaVisitante[position];
+        int pronoLocal = pronosticoLocal[position];
+        int pronoVisitante = pronosticoVisitante[position];
+
+        //si acierta el marcador partido local
+        if (marcaLocal[position] > marcaVisitante[position] && pronosticoLocal[position] > pronosticoVisitante[position]) {
+            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+        } else if (marcaLocal[position] < marcaVisitante[position] && pronosticoLocal[position] < pronosticoVisitante[position]) {
+            imageViewEstadoLocal.setImageResource(R.drawable.xg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+        } else if (marcaLocal[position] == marcaVisitante[position] && pronosticoLocal[position] == pronosticoVisitante[position]) {
+            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+        } else if ((pronosticoLocal[position] > pronosticoVisitante[position] || pronosticoLocal[position] < pronosticoVisitante[position]) && (marcaLocal[position] == marcaVisitante[position])) {
+            imageViewEstadoLocal.setImageResource(R.drawable.xg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+        } else if ((marcaLocal[position] > marcaVisitante[position] || marcaLocal[position] < marcaVisitante[position]) && (pronosticoLocal[position] != pronosticoVisitante[position])) {
+            imageViewEstadoLocal.setImageResource(R.drawable.xg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+        }
+
+        boolean ganaLocal = marcadorLocal > marcadorVisitante;
+        boolean ganaVisitante = marcadorLocal < marcadorVisitante;
+        boolean empate = marcadorLocal == marcadorVisitante;
+
+        boolean ganaPronoLocal = pronoLocal > pronoVisitante;
+        boolean ganaPronoVisitante = pronoLocal < pronoVisitante;
+        boolean empateProno = pronoLocal == pronoVisitante;
+
+        boolean marcaLocalIPronoLocal = marcadorLocal == pronoLocal;
+
+
+        int puntos = 0;
+
+        // opciones ganadoras con todos los datos coincidiendo
+        if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal > marcadorVisitante) {
+            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+            puntos = 10;
+        } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal < marcadorVisitante) {
+            imageViewEstadoLocal.setImageResource(R.drawable.xg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+            puntos = 10;
+        } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal == marcadorVisitante) {
+            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+            puntos = 10;
+        } else // Opciones ganadoras pronosticos y marcadores diferentes
+            if (marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 5;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } else if (marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                puntos = 5;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } else if (marcadorLocal == marcadorVisitante && pronoLocal == pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                puntos = 5;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } // Opciones combinadas
+            else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 7;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 7;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && marcadorLocal == marcadorVisitante && pronoLocal > pronoVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 2;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            } else {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 0;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            }
+
+        TextView textViewPuntos = (TextView) rowView.findViewById(R.id.textViewPuntos);
+        textViewPuntos.setText(puntos+" puntos");
+
 
         localButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int value = numberPicker.getValue();
-                numberPicker.setValue(value + 1);
+                String valor = numberPicker.getText().toString();
+                if (!valor.equals("")) {
+                    int value = Integer.parseInt(valor);
+                    numberPicker.setText((value + 1) + "");
+                } else {
+                    numberPicker.setText(0 + "");
+                }
             }
         });
 
         visitanteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int value = numberPicker1.getValue();
-                numberPicker1.setValue(value + 1);
+                String valor = numberPicker1.getText().toString();
+                if (!valor.equals("")) {
+                    int value = Integer.parseInt(valor);
+                    numberPicker1.setText((value + 1) + "");
+                } else {
+                    numberPicker1.setText(0 + "");
+                }
             }
         });
 
@@ -160,8 +263,19 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int valueLocal = numberPicker.getValue();
-                int valueVisitante = numberPicker1.getValue();
+                int valueLocal;
+                int valueVisitante;
+                if (!numberPicker.getText().toString().equals("")) {
+                    valueLocal = Integer.parseInt(numberPicker.getText().toString());
+                } else {
+                    valueLocal = 0;
+                }
+                if (!numberPicker1.getText().toString().equals("")) {
+                    valueVisitante = Integer.parseInt(numberPicker1.getText().toString());
+                } else {
+                    valueVisitante = 0;
+                }
+
                 for (int i = 0; i < semanas.size(); i++) {
                     for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
                         for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
@@ -175,6 +289,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+
                                 }
                             }
                         }
@@ -185,6 +300,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         });
         return rowView;
     }
+
 
     public void solicitudpronostico(final int goles_local, final int goles_visitante, final int id_partido, final int i, final int j, final int k) {
 

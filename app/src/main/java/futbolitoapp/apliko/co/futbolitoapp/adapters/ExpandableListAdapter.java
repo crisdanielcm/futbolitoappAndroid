@@ -15,7 +15,7 @@ import android.widget.TextView;
 import futbolitoapp.apliko.co.futbolitoapp.R;
 import futbolitoapp.apliko.co.futbolitoapp.SettingsActivity;
 
-public class ExpandableListAdapte extends BaseExpandableListAdapter {
+public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
 
@@ -26,7 +26,7 @@ public class ExpandableListAdapte extends BaseExpandableListAdapter {
 //    }
 
 
-    public ExpandableListAdapte(Context context) {
+    public ExpandableListAdapter(Context context) {
         this.context = context;
     }
 

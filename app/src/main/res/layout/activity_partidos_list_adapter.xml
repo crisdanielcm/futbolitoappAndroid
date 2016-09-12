@@ -21,15 +21,32 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <ImageButton
-                    android:layout_width="73dp"
-                    android:layout_height="90dp"
-                    android:id="@+id/localButton"
-                    android:src="@drawable/barcelonafc"
-                    android:layout_gravity="center"
-                    android:scaleType="centerInside"
-                    android:background="#00ffffff"
-                    android:clickable="true" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/imageViewEstadoLocal"
+                        android:src="@drawable/xg"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:paddingLeft="10dp"
+                        android:layout_gravity="center" />
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:id="@+id/localButton"
+                        android:src="@drawable/barcelonafc"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:background="#00ffffff"
+                        android:clickable="true"
+                        android:layout_weight="0.5" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -49,47 +66,106 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal">
 
-                <NumberPicker
-                    android:layout_width="43dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView_marcador_local"
-                    android:layout_gravity="center_vertical"
+                <LinearLayout
                     android:orientation="vertical"
-                    android:background="#00ffffff"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/textView_marcador_local"
+                        android:text="0"
+                        android:layout_weight="0.4"
+                        android:textSize="26dp"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageViewEstadoMarcadorLocal"
+                        android:layout_weight="1"
+                        android:src="@drawable/chulitoverdep"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8">
 
-                    <Button
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Enviar"
-                        android:id="@+id/buttonEnviar"
-                        android:textSize="7dp"
-                        android:textAllCaps="false"/>
+                        android:layout_weight="1">
+
+                        <Button
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Enviar"
+                            android:id="@+id/buttonEnviar"
+                            android:textSize="7dp"
+                            android:textAllCaps="false"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView_marca"
+                            android:layout_gravity="center"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="1-1"
+                            android:background="@android:drawable/editbox_background" />
+
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView_marca"
+                        android:text="10 puntos"
+                        android:id="@+id/textViewPuntos"
+                        android:textColor="#1d9000"
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:singleLine="true"
                         android:layout_gravity="center"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:text="1-1"
-                        android:background="@android:drawable/editbox_background" />
+                        android:layout_weight="1" />
                 </LinearLayout>
 
-                <NumberPicker
-                    android:layout_width="43dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView_marcador_visitante"
-                    android:layout_gravity="center_vertical"
+                <LinearLayout
                     android:orientation="vertical"
-                    android:layout_weight="1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/textView_marcador_visitante"
+                        android:text="0"
+                        android:layout_weight="0.4"
+                        android:textSize="26dp"
+                        android:textAlignment="center"
+                        android:textColor="#ffffff" />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageViewEstadoMarcadorVisitante"
+                        android:layout_weight="1"
+                        android:src="@drawable/xp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -99,15 +175,33 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <ImageButton
-                    android:layout_width="73dp"
-                    android:layout_height="90dp"
-                    android:id="@+id/visitanteButton"
-                    android:src="@drawable/realmadrid"
-                    android:layout_gravity="center"
-                    android:scaleType="centerInside"
-                    android:background="#00ffffff"
-                    android:clickable="true" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:id="@+id/visitanteButton"
+                        android:src="@drawable/realmadrid"
+                        android:layout_gravity="center"
+                        android:scaleType="centerInside"
+                        android:background="#00ffffff"
+                        android:clickable="true"
+                        android:layout_weight="0.5" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/imageViewEstadoVisitante"
+                        android:src="@drawable/chulitoverdeg"
+                        android:scaleType="centerInside"
+                        android:layout_weight="1"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

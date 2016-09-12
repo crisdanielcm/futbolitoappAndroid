@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 
-import futbolitoapp.apliko.co.futbolitoapp.adapters.ExpandableListAdapte;
+import futbolitoapp.apliko.co.futbolitoapp.adapters.ExpandableListAdapter;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -14,7 +14,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
-        expandableListView.setAdapter(new ExpandableListAdapte(getApplicationContext()));
+        expandableListView.setAdapter(new ExpandableListAdapter(getApplicationContext()));
 
     }
 }
