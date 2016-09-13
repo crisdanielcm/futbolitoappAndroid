@@ -17,35 +17,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59a04c65-b07f-4af4-8eb5-b636cae1d236" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/assets/HelveticaNeue-Bold.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/border_texview_marcador.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/creargrupohover.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tab.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshotsToTreeSnapshotsIndex.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/GruposActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/GruposActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/PartidosActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/PartidosActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/LigasListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/LigasListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/LigasPartidosAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/LigasPartidosAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/webservices/Constantes.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/webservices/Constantes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_crear_grupo.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_crear_grupo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_grupos.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_grupos.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ligas_partidos_adapter.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ligas_partidos_adapter.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_partidos.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_partidos.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_partidos_list_adapter.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_partidos_list_adapter.xml" />
     </list>
     <ignored path="futbolitoappAndroid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,8 +92,8 @@
       <file leaf-file-name="PartidosAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4923077">
-              <caret line="396" column="51" selection-start-line="396" selection-start-column="51" selection-end-line="396" selection-end-column="51" />
+            <state vertical-scroll-proportion="-2.2307692">
+              <caret line="334" column="17" selection-start-line="334" selection-start-column="17" selection-end-line="334" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -3182,8 +3161,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4923077">
-          <caret line="396" column="51" selection-start-line="396" selection-start-column="51" selection-end-line="396" selection-end-column="51" />
+        <state vertical-scroll-proportion="-2.2307692">
+          <caret line="334" column="17" selection-start-line="334" selection-start-column="17" selection-end-line="334" selection-end-column="17" />
           <folding />
         </state>
       </provider>
