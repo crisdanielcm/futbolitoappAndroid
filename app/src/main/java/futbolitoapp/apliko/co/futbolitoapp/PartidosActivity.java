@@ -2,12 +2,16 @@ package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -28,7 +32,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,7 +64,8 @@ public class PartidosActivity extends AppCompatActivity {
     private ArrayList<Semana> semanas;
     private ArrayList<Fecha> fechas;
     private ImageButton buttonGrupos;
-
+    private ImageButton settings;
+    private Typeface typeface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +74,22 @@ public class PartidosActivity extends AppCompatActivity {
         fechas = new ArrayList<>();
         semanas = new ArrayList<>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
+        typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
         //solicitudpronostico();
         int idLiga = getIntent().getExtras().getInt("id");
         //solicitudPartidos(idLiga);
 
             listarLigas();
+        settings = (ImageButton) findViewById(R.id.imageButton3);
 
+settings.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+
+        startActivity(intent);
+    }
+});
 
         buttonGrupos = (ImageButton) findViewById(R.id.imageButton2);
         buttonGrupos.setOnClickListener(new View.OnClickListener() {
@@ -282,20 +296,99 @@ public class PartidosActivity extends AppCompatActivity {
 
     }
 
+    public View indicatorTabHost(String semana){
+
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab, null, false);
+        TextView textView = (TextView) view.findViewById(R.id.tabView);
+        textView.setText(semana);
+        textView.setWidth(200);
+        textView.setTypeface(typeface);
+
+        return view;
+    }
+
+    public Date parsearADateDiaMesAnio(String fecha){
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        try {
+            date = format.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public Date parsearADateHora(String hora){
+
+        SimpleDateFormat format = new SimpleDateFormat("'HH:mm:ss'Z'");
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        Date date = null;
+        try {
+            date = format.parse(hora);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public ArrayList<Integer>parsearFecha(Date date){
+
+        ArrayList<Integer>fechaParseada = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int anio = calendar.get(Calendar.YEAR);
+        int mes = calendar.get(Calendar.MONTH) + 1;
+        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        fechaParseada.add(0, dia);
+        fechaParseada.add(1, mes);
+        fechaParseada.add(2, anio);
+
+        return fechaParseada;
+    }
 
     public void tabs() {
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
         tabHost.clearAllTabs();
         //final ListView listView = (ListView) findViewById(R.id.listView_partidos);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
 
+        String fechaInicio;
+        String fechaFin;
 
+        int diaInicio;
+        int mesInicio;
+        int anioInicio;
+        int diaFin;
+        int mesFin;
+        int anioFin;
+
+        int f = 0;
         for (int i = semanas.size() - 1; i >= 0; i--) {
 
             TabHost.TabSpec tabSpect = tabHost.newTabSpec("Texto");
-            tabSpect.setIndicator("Semana " + ("\n") + semanas.get(i).getNumeroSemana());
+            tabSpect.setIndicator(("Semana " + ("\n") + semanas.get(i).getNumeroSemana()));
+
+            int dayAct = cal.get(Calendar.DAY_OF_MONTH);
+            int monthAct = cal.get(Calendar.MONTH) + 1;
+            int anioAct = cal.get(Calendar.YEAR);
+            fechaFin = semanas.get(i).getFechaFin();
+            fechaInicio = semanas.get(i).getFechaInicio();
+
+            Date dateActual = cal.getTime();
+            Date fechaInicioSemana = parsearADateDiaMesAnio(fechaInicio);
+            Date fechaFinSemana = parsearADateDiaMesAnio(fechaFin);
+
+            if(dateActual.compareTo(fechaInicioSemana) >= 0 && dateActual.compareTo(fechaFinSemana) <= 0){
+
+                tabSpect.setIndicator("Esta" + ("\n") + "semana");
+                tabHost.setCurrentTab(f);
+            }
+            f++;
+
             final ScrollView scrollView = new ScrollView(getApplicationContext());
             final LinearLayout linearLayout = new LinearLayout(getApplicationContext());
             linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -307,7 +400,9 @@ public class PartidosActivity extends AppCompatActivity {
                 int mes = semanas.get(i).getFechas().get(j).getMes();
                 int anio = semanas.get(i).getFechas().get(j).getAnio();
 
-                String fecha = new DateFormatSymbols().getMonths()[mes - 1] + " " + dia + ", " + anio;
+                String mesString = new DateFormatSymbols().getMonths()[mes -1];
+                mesString = Character.toString(mesString.charAt(0)).toUpperCase()+mesString.substring(1);
+                String fecha = mesString + " " + dia + ", " + anio;
                 String[] nombreLocal = new String[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 String[] nombreVisitante = new String[semanas.get(i).getFechas().get(j).getPartidos().size()];
                 Integer[] marcaLocal = new Integer[semanas.get(i).getFechas().get(j).getPartidos().size()];
@@ -322,7 +417,12 @@ public class PartidosActivity extends AppCompatActivity {
                 textViewFecha.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 textViewFecha.setGravity(Gravity.CENTER);
                 textViewFecha.setTextColor(Color.WHITE);
-                textViewFecha.setPadding(0, 10, 0, 10);
+                textViewFecha.setPadding(0, 20, 0, 20);
+                textViewFecha.setTypeface(typeface);
+               // textViewFecha.setTextSize(16);
+                SpannableString spanString = new SpannableString(fecha);
+                spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
+                textViewFecha.setText(spanString);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     textViewFecha.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 }
@@ -344,29 +444,30 @@ public class PartidosActivity extends AppCompatActivity {
 
                 }
                 int image = 0;
-                int dayAct = cal.get(Calendar.DAY_OF_MONTH);
-                int monthAct = cal.get(Calendar.MONTH) + 1;
+                int hora = cal.get(Calendar.HOUR);
                 if (dayAct == dia && monthAct == mes)
                     image = R.drawable.fondomarcadores01;
                 else
                     image = R.drawable.fondomarcadores02;
 
+
+
                 final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, pronosticoLocal, pronosticoVisitante, image, idPartido, semanas);
                 ListView listView = new ListView(getApplicationContext());
 
                 listView.setAdapter(partidosAdapter);
-                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(130) * (semanas.get(i).getFechas().get(j).getPartidos().size()) + textViewFecha.getLayoutParams().height + 50));
+                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(130) * (semanas.get(i).getFechas().get(j).getPartidos().size()) + textViewFecha.getLayoutParams().height -5));
 
                 LinearLayout linearLayout2 = new LinearLayout(getApplicationContext());
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
 
                 LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                linearLayout2.setBackgroundColor(Color.parseColor("#FF1D1D1D"));
+                linearLayout2.setBackgroundColor(Color.parseColor("#000000"));
                 linearLayout2.setLayoutParams(layoutParams2);
                 linearLayout2.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
                 linearLayout2.addView(textViewFecha);
                 linearLayout2.addView(listView);
-                linearLayout2.setPadding(0, 30, 0, 0);
+                linearLayout2.setPadding(0, 0, 0, 0);
 
                 linearLayout.addView(linearLayout2);
 
@@ -381,6 +482,7 @@ public class PartidosActivity extends AppCompatActivity {
             });
             tabHost.addTab(tabSpect);
 
+
         }
 
         for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
@@ -393,12 +495,35 @@ public class PartidosActivity extends AppCompatActivity {
                 textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             }
             //textView.setLayoutParams(new TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT));?
-            textView.setPadding(0, 5, 0, 0);
+            textView.setPadding(0, 10, 0, 0);
             textView.setWidth(120);
             textView.setHeight(70);
             textView.setTextSize(10);
+            textView.setTextColor(Color.parseColor("#ffffff"));
+            textView = (TextView) tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).findViewById(android.R.id.title);
+            textView.setTextColor(Color.parseColor("#FFFFB700"));
+            textView.setTypeface(typeface);
 
         }
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+
+                for (int i = 0; i < tabHost.getTabWidget().getTabCount(); i++) {
+
+                TextView textView = (TextView) tabHost.getTabWidget().getChildAt(i).findViewById(android.R.id.title);
+                textView.setTextColor(Color.parseColor("#ffffff"));
+                textView.setTypeface(typeface);
+
+                    if(tabHost.getCurrentTab() == i){
+
+                        textView.setTextColor(Color.parseColor("#FFFFB700"));
+                    }
+
+                }
+
+            }
+        });
 
     }
 

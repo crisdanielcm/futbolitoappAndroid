@@ -99,7 +99,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginBottom="25dp">
 
                 <ImageButton
                     android:layout_width="match_parent"
@@ -109,17 +110,8 @@
                     android:src="@drawable/btcreargrupo"
                     android:scaleType="fitCenter"
                     android:background="#00ffffff"
-                    android:padding="5dp" />
+                    android:padding="5dp"/>
 
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageButton_unirse_grupo"
-                    android:layout_weight="1"
-                    android:src="@drawable/btunirtegrupo"
-                    android:scaleType="fitCenter"
-                    android:background="#00ffffff"
-                    android:padding="5dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -132,9 +124,9 @@
             android:paddingBottom="10dp" >
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/imageButton4"
+                android:id="@+id/imageButton_partidos_activity"
                 android:src="@drawable/balon"
                 android:layout_weight="1"
                 android:background="#00ffffff"
@@ -143,7 +135,7 @@
                 android:clickable="true" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton5"
                 android:layout_gravity="center"
@@ -154,7 +146,7 @@
                 android:clickable="true" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton6"
                 android:layout_gravity="center"

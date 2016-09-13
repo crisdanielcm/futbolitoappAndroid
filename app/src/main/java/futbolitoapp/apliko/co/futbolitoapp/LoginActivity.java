@@ -231,7 +231,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         dataBaseHelper.dropDB();
-        registroView = (TextView) findViewById(R.id.textView_registrar);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -246,15 +245,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 enviarSolicitud(newUesername, email, pass);
             }
         });
-
-        registroView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RegistroActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 
 

@@ -132,10 +132,10 @@
             android:paddingBottom="10dp">
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton"
-                android:src="@drawable/balon"
+                android:src="@drawable/balonpres"
                 android:layout_weight="1"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
@@ -143,7 +143,7 @@
                 android:clickable="true" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton2"
                 android:layout_gravity="center"
@@ -154,7 +154,7 @@
                 android:clickable="true" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton3"
                 android:layout_gravity="center"

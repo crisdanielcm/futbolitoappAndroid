@@ -1,6 +1,7 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,9 @@ public class LigasPartidosAdapter extends BaseAdapter {
         rowView = inflater.inflate(R.layout.activity_ligas_partidos_adapter, null);
 
         TextView textViewLigaP = (TextView) rowView.findViewById(R.id.textView_ligas_partidos);
-        textViewLigaP.setText(itemList[position]);
+        textViewLigaP.setText(itemList[position].toUpperCase());
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
+        textViewLigaP.setTypeface(typeface);
         return rowView;
     }
 }

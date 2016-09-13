@@ -57,6 +57,14 @@ public class GruposActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageButton buttonPartidos = (ImageButton) findViewById(R.id.imageButton_partidos_activity);
+        buttonPartidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                GruposActivity.this.finish();
+            }
+        });
     }
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {

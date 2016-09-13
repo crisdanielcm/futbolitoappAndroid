@@ -1,27 +1,14 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
 import futbolitoapp.apliko.co.futbolitoapp.R;
-import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
-import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class LigasListAdapter extends ArrayAdapter<String> {
 
@@ -41,8 +28,11 @@ public class LigasListAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.activity_ligas_list_adapter, null, true);
 
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
+
         TextView txtTitle = (TextView) rowView.findViewById(R.id.textView_item_liga);
         txtTitle.setText(itemList[position]);
+        txtTitle.setTypeface(typeface);
         return rowView;
     }
 

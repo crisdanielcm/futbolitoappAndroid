@@ -1,11 +1,14 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,13 +24,19 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TimeZone;
 
 import futbolitoapp.apliko.co.futbolitoapp.R;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Pronostico;
+import futbolitoapp.apliko.co.futbolitoapp.objects.Fecha;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Partido;
 import futbolitoapp.apliko.co.futbolitoapp.objects.PronosticoP;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Semana;
@@ -89,23 +98,29 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         TableRow linearLayout = (TableRow) rowView.findViewById(R.id.layoutBackground);
         linearLayout.setBackgroundResource(imageBackground);
 
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
 
         final EditText numberPicker = (EditText) rowView.findViewById(R.id.textView_marcador_local);
         numberPicker.setText(pronosticoLocal[position] + "");
+        numberPicker.setTypeface(typeface);
 
 
         final EditText numberPicker1 = (EditText) rowView.findViewById(R.id.textView_marcador_visitante);
         numberPicker1.setText(pronosticoVisitante[position] + "");
+        numberPicker1.setTypeface(typeface);
 
 
         TextView txtTitleLocal = (TextView) rowView.findViewById(R.id.textView_nombre_local);
         txtTitleLocal.setText(nombreLocal[position]);
+        txtTitleLocal.setTypeface(typeface);
 
         TextView txtTitlevisitante = (TextView) rowView.findViewById(R.id.textView_nombre_visitante);
         txtTitlevisitante.setText(nombreVisitante[position]);
+        txtTitlevisitante.setTypeface(typeface);
 
         TextView textViewmarcadorLocal = (TextView) rowView.findViewById(R.id.textView_marca);
         textViewmarcadorLocal.setText(marcaLocal[position] + "-" + marcaVisitante[position]);
+        textViewmarcadorLocal.setTypeface(typeface);
 
         ImageButton localButton = (ImageButton) rowView.findViewById(R.id.localButton);
         ImageButton visitanteButton = (ImageButton) rowView.findViewById(R.id.visitanteButton);
@@ -149,17 +164,6 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             imageViewEstadoLocal.setImageResource(R.drawable.xg);
             imageViewEstadoVisitante.setImageResource(R.drawable.xg);
         }
-
-        boolean ganaLocal = marcadorLocal > marcadorVisitante;
-        boolean ganaVisitante = marcadorLocal < marcadorVisitante;
-        boolean empate = marcadorLocal == marcadorVisitante;
-
-        boolean ganaPronoLocal = pronoLocal > pronoVisitante;
-        boolean ganaPronoVisitante = pronoLocal < pronoVisitante;
-        boolean empateProno = pronoLocal == pronoVisitante;
-
-        boolean marcaLocalIPronoLocal = marcadorLocal == pronoLocal;
-
 
         int puntos = 0;
 
@@ -213,14 +217,22 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
                     puntos++;
                 }
-            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && marcadorLocal == marcadorVisitante && pronoLocal > pronoVisitante) {
+            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && marcadorLocal == marcadorVisitante && (pronoLocal > pronoVisitante || pronoLocal < pronoVisitante)) {
                 imageViewEstadoLocal.setImageResource(R.drawable.xg);
                 imageViewEstadoVisitante.setImageResource(R.drawable.xg);
                 puntos = 2;
                 if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
                     puntos++;
                 }
-            } else {
+            }else if((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && (marcadorLocal < marcadorVisitante || marcadorLocal > marcadorVisitante) && (pronoLocal == pronoVisitante)){
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 2;
+                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                    puntos++;
+                }
+            }
+            else {
                 imageViewEstadoLocal.setImageResource(R.drawable.xg);
                 imageViewEstadoVisitante.setImageResource(R.drawable.xg);
                 puntos = 0;
@@ -230,7 +242,13 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             }
 
         TextView textViewPuntos = (TextView) rowView.findViewById(R.id.textViewPuntos);
-        textViewPuntos.setText(puntos+" puntos");
+        if (puntos == 1) {
+            textViewPuntos.setText(puntos + " punto");
+            textViewPuntos.setTypeface(typeface);
+        } else {
+            textViewPuntos.setText(puntos + " puntos");
+            textViewPuntos.setTypeface(typeface);
+        }
 
 
         localButton.setOnClickListener(new View.OnClickListener() {
@@ -259,45 +277,129 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             }
         });
 
-        Button buttonEnviar = (Button) rowView.findViewById(R.id.buttonEnviar);
-        buttonEnviar.setOnClickListener(new View.OnClickListener() {
+        //Button buttonEnviar = (Button) rowView.findViewById(R.id.buttonEnviar);
+        TextView textmarcadorVisitante = (TextView) rowView.findViewById(R.id.textView_marcador_visitante);
+        textmarcadorVisitante.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View view) {
-                int valueLocal;
-                int valueVisitante;
-                if (!numberPicker.getText().toString().equals("")) {
-                    valueLocal = Integer.parseInt(numberPicker.getText().toString());
-                } else {
-                    valueLocal = 0;
-                }
-                if (!numberPicker1.getText().toString().equals("")) {
-                    valueVisitante = Integer.parseInt(numberPicker1.getText().toString());
-                } else {
-                    valueVisitante = 0;
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                
+            }
 
-                for (int i = 0; i < semanas.size(); i++) {
-                    for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
-                        for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
-                            Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
-                            if (partido.getId() == idPartido[position]) {
-                                try {
-                                    if (partido.getPronostico() == null) {
-                                        solicitudpronostico(valueLocal, valueVisitante, idPartido[position], i, j, k);
-                                    } else {
-                                        actualizarPronostico(partido.getPronostico().getId(), valueLocal, valueVisitante, i, j, k);
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(editable.length() != 0){
+                    int valueLocal;
+                    int valueVisitante;
+                    if (!numberPicker.getText().toString().equals("")) {
+                        valueLocal = Integer.parseInt(numberPicker.getText().toString());
+                    } else {
+                        valueLocal = 0;
+                    }
+                    if (!numberPicker1.getText().toString().equals("")) {
+                        valueVisitante = Integer.parseInt(numberPicker1.getText().toString());
+                    } else {
+                        valueVisitante = 0;
+                    }
+
+                    for (int i = 0; i < semanas.size(); i++) {
+                        for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
+                            for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
+                                Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
+                                if (partido.getId() == idPartido[position]) {
+                                    try {
+                                        if (partido.getPronostico() == null) {
+                                            solicitudpronostico(valueLocal, valueVisitante, idPartido[position], i, j, k);
+                                        } else {
+                                            actualizarPronostico(partido.getPronostico().getId(), valueLocal, valueVisitante, i, j, k);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-
                                 }
                             }
                         }
                     }
-                }
 
+                }
             }
         });
+
+
+        TextView textMarcadorLocal = (TextView) rowView.findViewById(R.id.textView_marcador_local);
+        textMarcadorLocal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(editable.length() != 0){
+                    int valueLocal;
+                    int valueVisitante;
+                    if (!numberPicker.getText().toString().equals("")) {
+                        valueLocal = Integer.parseInt(numberPicker.getText().toString());
+                    } else {
+                        valueLocal = 0;
+                    }
+                    if (!numberPicker1.getText().toString().equals("")) {
+                        valueVisitante = Integer.parseInt(numberPicker1.getText().toString());
+                    } else {
+                        valueVisitante = 0;
+                    }
+
+                    for (int i = 0; i < semanas.size(); i++) {
+                        for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
+                            for (int k = 0; k < semanas.get(i).getFechas().get(j).getPartidos().size(); k++) {
+                                Partido partido = semanas.get(i).getFechas().get(j).getPartidos().get(k);
+                                if (partido.getId() == idPartido[position]) {
+                                    try {
+                                        if (partido.getPronostico() == null) {
+                                            solicitudpronostico(valueLocal, valueVisitante, idPartido[position], i, j, k);
+                                        } else {
+                                            actualizarPronostico(partido.getPronostico().getId(), valueLocal, valueVisitante, i, j, k);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        });
+
+        if(partidoEnVivo(idPartido[position])){
+            textViewmarcadorLocal.setText("VIVO");
+            textMarcadorLocal.setEnabled(false);
+            textmarcadorVisitante.setEnabled(false);
+            textMarcadorLocal.setTextColor(Color.GRAY);
+            textmarcadorVisitante.setTextColor(Color.GRAY);
+            textViewPuntos.setText("");
+            localButton.setEnabled(false);
+            visitanteButton.setEnabled(false);
+            imageViewEstadoLocal.setEnabled(false);
+            imageViewEstadoVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorLocal.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorVisitante.setVisibility(ImageView.INVISIBLE);
+        }
+
         return rowView;
     }
 
@@ -370,6 +472,49 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             }
         }, context
         ));
+    }
+
+    public boolean partidoEnVivo(int idPartido){
+        Calendar calendar = Calendar.getInstance();
+        int anioA = calendar.get(Calendar.YEAR);
+        int mesA = calendar.get(Calendar.MONTH) + 1;
+        int diaA = calendar.get(Calendar.DAY_OF_MONTH);
+        int horaA = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutoA = calendar.get(Calendar.MINUTE);
+        int segundoA = calendar.get(Calendar.SECOND);
+
+        for (Semana semana: semanas) {
+            for (Fecha fecha: semana.getFechas()) {
+                for (Partido partido : fecha.getPartidos()) {
+                    if(partido.getId() == idPartido){
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        Date date = null;
+                        Calendar calendarP = Calendar.getInstance();
+                        try {
+                            date = format.parse(partido.getFechaHora());
+                            calendarP.setTime(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        int anio = calendarP.get(Calendar.YEAR);
+                        int mes = calendarP.get(Calendar.MONTH) + 1;
+                        int dia = calendarP.get(Calendar.DAY_OF_MONTH);
+                        int hora = calendarP.get(Calendar.HOUR_OF_DAY);
+                        int minuto = calendarP.get(Calendar.MINUTE);
+                        int segundo = calendarP.get(Calendar.SECOND);
+                        if(anio == anioA && mesA == mes && dia == diaA){
+                            if(hora <= horaA  && minuto <= minutoA){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        return false;
+
     }
 
 }

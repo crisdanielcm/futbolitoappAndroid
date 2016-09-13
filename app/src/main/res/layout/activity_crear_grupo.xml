@@ -35,12 +35,14 @@
                 android:layout_height="50dp"
                 android:id="@+id/textview_nombre_grupo"
                 android:layout_gravity="center_horizontal"
-                android:hint="@string/prompt_email_r"
+                android:hint="Nombre grupo"
                 android:textSize="25dp"
                 android:background="@drawable/border_textview"
                 android:textColor="#ffffff"
                 android:singleLine="true"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColorHint="#ffffff" />
 
             <Space
                 android:layout_width="match_parent"
@@ -50,7 +52,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:id="@+id/button_crear_grupo"
-                android:background="@drawable/btcreargrupo"
+                android:background="@drawable/creargrupohover"
                 android:layout_gravity="center" />
 
         </LinearLayout>
@@ -64,37 +66,37 @@
             android:paddingBottom="10dp">
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton4"
                 android:src="@drawable/balon"
-                android:layout_weight="1"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
                 android:layout_gravity="center"
-                android:clickable="true" />
+                android:clickable="true"
+                android:layout_weight="1" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton5"
                 android:layout_gravity="center"
                 android:src="@drawable/podium"
-                android:layout_weight="1"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
-                android:clickable="true" />
+                android:clickable="true"
+                android:layout_weight="1" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:id="@+id/imageButton6"
                 android:layout_gravity="center"
                 android:src="@drawable/settings"
-                android:layout_weight="1"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
-                android:clickable="true" />
+                android:clickable="true"
+                android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>
 
