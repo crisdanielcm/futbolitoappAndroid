@@ -59,6 +59,7 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class PartidosActivity extends AppCompatActivity {
 
+    List<Liga> ligas;
     private static final String TAG = "Partidos activity";
     private DataBaseHelper dataBaseHelper;
     private ArrayList<Semana> semanas;
@@ -73,6 +74,7 @@ public class PartidosActivity extends AppCompatActivity {
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         fechas = new ArrayList<>();
         semanas = new ArrayList<>();
+        ligas = new ArrayList<Liga>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
         //solicitudpronostico();
@@ -99,7 +101,13 @@ settings.setOnClickListener(new View.OnClickListener() {
                 Intent intent = new Intent(getApplicationContext(), GruposActivity.class);
                 String nombre = ((Spinner) findViewById(R.id.spinner_ligas)).getPrompt().toString();
                 intent.putExtra("nombreLiga", nombre);
-
+                int idLiga = 0;
+                for (int i = 0; i < ligas.size(); i++) {
+                    if (ligas.get(i).getNombre().equals(nombre)){
+                        idLiga = ligas.get(i).getId();
+                    }
+                }
+                intent.putExtra("id_liga", idLiga);
                 startActivity(intent);
             }
         });
@@ -258,7 +266,6 @@ settings.setOnClickListener(new View.OnClickListener() {
 
     public void listarLigas() {
 
-        List<Liga> ligas = new ArrayList<Liga>();
         ligas = dataBaseHelper.getAllLigas();
         ArrayList<String> arrayLigas = new ArrayList<>();
         final String[] contenido = new String[ligas.size()];

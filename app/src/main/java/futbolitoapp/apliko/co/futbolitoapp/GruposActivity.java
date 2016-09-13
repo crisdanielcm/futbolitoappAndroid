@@ -44,8 +44,9 @@ public class GruposActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grupos);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
-        enviarSolicitudGrupos();
+        int idLiga = getIntent().getExtras().getInt("id_liga");
         listarLigas();
+        enviarSolicitudGrupos(idLiga);
         ImageButton buttonRegistro = (ImageButton) findViewById(R.id.imageButton_crear_grupo);
 
 
@@ -75,10 +76,10 @@ public class GruposActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String nombre = jsonObject.getString("nombre_grupo");
+                String nombre = jsonObject.getString("nombre");
                 int posicion = jsonObject.getInt("puesto");
                 int numeroIntegrantes = jsonObject.getInt("total_miembros");
-                int idGrupo = jsonObject.getInt("id_grupo");
+                int idGrupo = jsonObject.getInt("id");
                 Grupo grupo = new Grupo(nombre, posicion, numeroIntegrantes);
                 grupo.setId(idGrupo);
                 grupos.add(grupo);
@@ -117,10 +118,15 @@ public class GruposActivity extends AppCompatActivity {
         });
     }
 
-    public void enviarSolicitudGrupos() {
+    public void enviarSolicitudGrupos(int idLiga) {
+
+        HashMap<String, Integer> solicitud = new HashMap<>();
+        solicitud.put("id_liga", idLiga);
+
+        JSONObject jsonObject = new JSONObject(solicitud);
 
         CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
-                Request.Method.GET, Constantes.GRUPOS, new Response.Listener<JSONArray>() {
+                Request.Method.POST, Constantes.GRUPOS,jsonObject, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
@@ -175,6 +181,7 @@ public class GruposActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = contenido[i];
                 idSelect = dataBaseHelper.getLiga(item).getId();
+                enviarSolicitudGrupos(idSelect);
             }
 
             @Override
