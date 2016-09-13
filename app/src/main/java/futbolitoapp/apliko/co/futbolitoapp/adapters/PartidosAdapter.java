@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,11 +104,12 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         final EditText numberPicker = (EditText) rowView.findViewById(R.id.textView_marcador_local);
         numberPicker.setText(pronosticoLocal[position] + "");
         numberPicker.setTypeface(typeface);
-
+        numberPicker.setEnabled(false);
 
         final EditText numberPicker1 = (EditText) rowView.findViewById(R.id.textView_marcador_visitante);
         numberPicker1.setText(pronosticoVisitante[position] + "");
         numberPicker1.setTypeface(typeface);
+        numberPicker1.setEnabled(false);
 
 
         TextView txtTitleLocal = (TextView) rowView.findViewById(R.id.textView_nombre_local);
@@ -122,8 +124,11 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         textViewmarcadorLocal.setText(marcaLocal[position] + "-" + marcaVisitante[position]);
         textViewmarcadorLocal.setTypeface(typeface);
 
+
         ImageButton localButton = (ImageButton) rowView.findViewById(R.id.localButton);
+        localButton.setEnabled(false);
         ImageButton visitanteButton = (ImageButton) rowView.findViewById(R.id.visitanteButton);
+        visitanteButton.setEnabled(false);
         ImageView imageViewEstadoLocal = (ImageView) rowView.findViewById(R.id.imageViewEstadoLocal);
         ImageView imageViewEstadoVisitante = (ImageView) rowView.findViewById(R.id.imageViewEstadoVisitante);
         ImageView imageViewEstadoMarcadorLocal = (ImageView) rowView.findViewById(R.id.imageViewEstadoMarcadorLocal);
@@ -224,15 +229,14 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
                     puntos++;
                 }
-            }else if((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && (marcadorLocal < marcadorVisitante || marcadorLocal > marcadorVisitante) && (pronoLocal == pronoVisitante)){
+            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && (marcadorLocal < marcadorVisitante || marcadorLocal > marcadorVisitante) && (pronoLocal == pronoVisitante)) {
                 imageViewEstadoLocal.setImageResource(R.drawable.xg);
                 imageViewEstadoVisitante.setImageResource(R.drawable.xg);
                 puntos = 2;
                 if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
                     puntos++;
                 }
-            }
-            else {
+            } else {
                 imageViewEstadoLocal.setImageResource(R.drawable.xg);
                 imageViewEstadoVisitante.setImageResource(R.drawable.xg);
                 puntos = 0;
@@ -282,7 +286,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         textmarcadorVisitante.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                
+
             }
 
             @Override
@@ -293,7 +297,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                if(editable.length() != 0){
+                if (editable.length() != 0) {
                     int valueLocal;
                     int valueVisitante;
                     if (!numberPicker.getText().toString().equals("")) {
@@ -330,6 +334,10 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 }
             }
         });
+        numberPicker.setEnabled(false);
+        numberPicker1.setEnabled(false);
+        localButton.setEnabled(false);
+        visitanteButton.setEnabled(false);
 
 
         TextView textMarcadorLocal = (TextView) rowView.findViewById(R.id.textView_marcador_local);
@@ -347,7 +355,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             @Override
             public void afterTextChanged(Editable editable) {
 
-                if(editable.length() != 0){
+                if (editable.length() != 0) {
                     int valueLocal;
                     int valueVisitante;
                     if (!numberPicker.getText().toString().equals("")) {
@@ -384,21 +392,40 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 }
             }
         });
-
-        if(partidoEnVivo(idPartido[position])){
+        if (partidoEnVivo(idPartido[position])) {
             textViewmarcadorLocal.setText("VIVO");
             textMarcadorLocal.setEnabled(false);
             textmarcadorVisitante.setEnabled(false);
             textMarcadorLocal.setTextColor(Color.GRAY);
             textmarcadorVisitante.setTextColor(Color.GRAY);
             textViewPuntos.setText("");
+            numberPicker.setEnabled(false);
+            numberPicker1.setEnabled(false);
             localButton.setEnabled(false);
             visitanteButton.setEnabled(false);
             imageViewEstadoLocal.setEnabled(false);
             imageViewEstadoVisitante.setVisibility(ImageView.INVISIBLE);
             imageViewEstadoMarcadorLocal.setVisibility(ImageView.INVISIBLE);
             imageViewEstadoMarcadorVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoLocal.setVisibility(ImageView.INVISIBLE);
         }
+
+        if(partidoSinJugar(idPartido[position], textViewmarcadorLocal)){
+            linearLayout.setBackgroundResource(R.drawable.fondomarcadores02);
+            textMarcadorLocal.setTextColor(context.getResources().getColor(R.color.colorAccent));
+            textmarcadorVisitante.setTextColor(context.getResources().getColor(R.color.colorAccent));
+            textViewPuntos.setText("");
+            numberPicker.setEnabled(true);
+            numberPicker1.setEnabled(true);
+            localButton.setEnabled(true);
+            visitanteButton.setEnabled(true);
+            imageViewEstadoLocal.setEnabled(false);
+            imageViewEstadoVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorLocal.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoLocal.setVisibility(ImageView.INVISIBLE);
+        }
+
 
         return rowView;
     }
@@ -474,7 +501,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         ));
     }
 
-    public boolean partidoEnVivo(int idPartido){
+    public boolean partidoEnVivo(int idPartido) {
         Calendar calendar = Calendar.getInstance();
         int anioA = calendar.get(Calendar.YEAR);
         int mesA = calendar.get(Calendar.MONTH) + 1;
@@ -483,10 +510,11 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         int minutoA = calendar.get(Calendar.MINUTE);
         int segundoA = calendar.get(Calendar.SECOND);
 
-        for (Semana semana: semanas) {
-            for (Fecha fecha: semana.getFechas()) {
+        for (Semana semana : semanas) {
+            for (Fecha fecha : semana.getFechas()) {
                 for (Partido partido : fecha.getPartidos()) {
-                    if(partido.getId() == idPartido){
+                    Log.i(TAG, "partidoSinJugar: "+partido.getFechaHora());
+                    if (partido.getId() == idPartido) {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
                         format.setTimeZone(TimeZone.getTimeZone("GMT"));
                         Date date = null;
@@ -503,8 +531,8 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                         int hora = calendarP.get(Calendar.HOUR_OF_DAY);
                         int minuto = calendarP.get(Calendar.MINUTE);
                         int segundo = calendarP.get(Calendar.SECOND);
-                        if(anio == anioA && mesA == mes && dia == diaA){
-                            if(hora <= horaA  && minuto <= minutoA){
+                        if (anio == anioA && mesA == mes && dia == diaA) {
+                            if (hora <= horaA && minuto <= minutoA) {
                                 return true;
                             }
                         }
@@ -515,6 +543,48 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         }
         return false;
 
+    }
+
+    public boolean partidoSinJugar(int idPartido, TextView textViewmarcadorLocal) {
+        Calendar calendar = Calendar.getInstance();
+        int anioA = calendar.get(Calendar.YEAR);
+        int mesA = calendar.get(Calendar.MONTH) + 1;
+        int diaA = calendar.get(Calendar.DAY_OF_MONTH);
+        int horaA = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutoA = calendar.get(Calendar.MINUTE);
+        int segundoA = calendar.get(Calendar.SECOND);
+
+        for (Semana semana : semanas) {
+            for (Fecha fecha : semana.getFechas()) {
+                for (Partido partido : fecha.getPartidos()) {
+                    Log.i(TAG, "partidoSinJugar: "+partido.getFechaHora());
+                    if (partido.getId() == idPartido) {
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        Date date = null;
+                        Calendar calendarP = Calendar.getInstance();
+                        try {
+                            date = format.parse(partido.getFechaHora());
+                            calendarP.setTime(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        int anio = calendarP.get(Calendar.YEAR);
+                        int mes = calendarP.get(Calendar.MONTH) + 1;
+                        int dia = calendarP.get(Calendar.DAY_OF_MONTH);
+                        int hora = calendarP.get(Calendar.HOUR_OF_DAY);
+                        int minuto = calendarP.get(Calendar.MINUTE);
+                        int segundo = calendarP.get(Calendar.SECOND);
+                        if (anio >= anioA && mesA <= mes && dia > diaA) {
+                            textViewmarcadorLocal.setText(dia+":"+minuto);
+                            return true;
+                        }
+                    }
+                }
+
+            }
+        }
+        return false;
     }
 
 }

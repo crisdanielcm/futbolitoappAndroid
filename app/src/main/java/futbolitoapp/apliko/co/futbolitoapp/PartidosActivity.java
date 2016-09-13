@@ -456,7 +456,7 @@ settings.setOnClickListener(new View.OnClickListener() {
                 ListView listView = new ListView(getApplicationContext());
 
                 listView.setAdapter(partidosAdapter);
-                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(130) * (semanas.get(i).getFechas().get(j).getPartidos().size()) + textViewFecha.getLayoutParams().height -5));
+                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(103) * (semanas.get(i).getFechas().get(j).getPartidos().size()) +20));
 
                 LinearLayout linearLayout2 = new LinearLayout(getApplicationContext());
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);

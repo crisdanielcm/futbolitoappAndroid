@@ -83,7 +83,8 @@
                         android:textSize="34dp"
                         android:textAlignment="center"
                         android:textColor="#ffffff"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:enabled="true" />
 
                     <ImageView
                         android:layout_width="10dp"
@@ -156,7 +157,9 @@
                         android:textAlignment="center"
                         android:textColor="#ffffff"
                         android:layout_gravity="center"
-                        android:layout_weight="5.05" />
+                        android:layout_weight="5.05"
+                        android:editable="false"
+                        android:enabled="true" />
 
                     <ImageView
                         android:layout_width="10dp"
