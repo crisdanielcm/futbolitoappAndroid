@@ -32,6 +32,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 import futbolitoapp.apliko.co.futbolitoapp.R;
@@ -95,7 +97,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
 
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.activity_partidos_list_adapter, null, true);
-
+        TextView textViewPuntos = (TextView) rowView.findViewById(R.id.textViewPuntos);
         TableRow linearLayout = (TableRow) rowView.findViewById(R.id.layoutBackground);
         linearLayout.setBackgroundResource(imageBackground);
 
@@ -134,124 +136,135 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         ImageView imageViewEstadoMarcadorLocal = (ImageView) rowView.findViewById(R.id.imageViewEstadoMarcadorLocal);
         ImageView imageViewEstadoMarcadorVisitante = (ImageView) rowView.findViewById(R.id.imageViewEstadoMarcadorVisitante);
 
-        //si acierta el marcador local
-        if (marcaLocal[position] == pronosticoLocal[position]) {
-            imageViewEstadoMarcadorLocal.setImageResource(R.drawable.chulitoverdep);
-        } else {
-            imageViewEstadoMarcadorLocal.setImageResource(R.drawable.xp);
-        }
+        if (pronosticoLocal[position] != -1 && pronosticoVisitante[position] != -1) {
 
-        //si acierta el marcador visitante
-        if (marcaVisitante[position] == pronosticoVisitante[position]) {
-            imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.chulitoverdep);
-        } else {
-            imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.xp);
-        }
-        int marcadorLocal = marcaLocal[position];
-        int marcadorVisitante = marcaVisitante[position];
-        int pronoLocal = pronosticoLocal[position];
-        int pronoVisitante = pronosticoVisitante[position];
-
-        //si acierta el marcador partido local
-        if (marcaLocal[position] > marcaVisitante[position] && pronosticoLocal[position] > pronosticoVisitante[position]) {
-            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-        } else if (marcaLocal[position] < marcaVisitante[position] && pronosticoLocal[position] < pronosticoVisitante[position]) {
-            imageViewEstadoLocal.setImageResource(R.drawable.xg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-        } else if (marcaLocal[position] == marcaVisitante[position] && pronosticoLocal[position] == pronosticoVisitante[position]) {
-            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-        } else if ((pronosticoLocal[position] > pronosticoVisitante[position] || pronosticoLocal[position] < pronosticoVisitante[position]) && (marcaLocal[position] == marcaVisitante[position])) {
-            imageViewEstadoLocal.setImageResource(R.drawable.xg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-        } else if ((marcaLocal[position] > marcaVisitante[position] || marcaLocal[position] < marcaVisitante[position]) && (pronosticoLocal[position] != pronosticoVisitante[position])) {
-            imageViewEstadoLocal.setImageResource(R.drawable.xg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-        }
-
-        int puntos = 0;
-
-        // opciones ganadoras con todos los datos coincidiendo
-        if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal > marcadorVisitante) {
-            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-            puntos = 10;
-        } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal < marcadorVisitante) {
-            imageViewEstadoLocal.setImageResource(R.drawable.xg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-            puntos = 10;
-        } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal == marcadorVisitante) {
-            imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-            imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-            puntos = 10;
-        } else // Opciones ganadoras pronosticos y marcadores diferentes
-            if (marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
-                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 5;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } else if (marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
-                imageViewEstadoLocal.setImageResource(R.drawable.xg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-                puntos = 5;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } else if (marcadorLocal == marcadorVisitante && pronoLocal == pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
-                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
-                puntos = 5;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } // Opciones combinadas
-            else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante) {
-                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 7;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante) {
-                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 7;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && marcadorLocal == marcadorVisitante && (pronoLocal > pronoVisitante || pronoLocal < pronoVisitante)) {
-                imageViewEstadoLocal.setImageResource(R.drawable.xg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 2;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
-            } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && (marcadorLocal < marcadorVisitante || marcadorLocal > marcadorVisitante) && (pronoLocal == pronoVisitante)) {
-                imageViewEstadoLocal.setImageResource(R.drawable.xg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 2;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
+            //si acierta el marcador local
+            if (marcaLocal[position] == pronosticoLocal[position]) {
+                imageViewEstadoMarcadorLocal.setImageResource(R.drawable.chulitoverdep);
             } else {
-                imageViewEstadoLocal.setImageResource(R.drawable.xg);
-                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
-                puntos = 0;
-                if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
-                    puntos++;
-                }
+                imageViewEstadoMarcadorLocal.setImageResource(R.drawable.xp);
             }
 
-        TextView textViewPuntos = (TextView) rowView.findViewById(R.id.textViewPuntos);
-        if (puntos == 1) {
-            textViewPuntos.setText(puntos + " punto");
-            textViewPuntos.setTypeface(typeface);
+            //si acierta el marcador visitante
+            if (marcaVisitante[position] == pronosticoVisitante[position]) {
+                imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.chulitoverdep);
+            } else {
+                imageViewEstadoMarcadorVisitante.setImageResource(R.drawable.xp);
+            }
+            int marcadorLocal = marcaLocal[position];
+            int marcadorVisitante = marcaVisitante[position];
+            int pronoLocal = pronosticoLocal[position];
+            int pronoVisitante = pronosticoVisitante[position];
+
+            //si acierta el marcador partido local
+            if (marcaLocal[position] > marcaVisitante[position] && pronosticoLocal[position] > pronosticoVisitante[position]) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+            } else if (marcaLocal[position] < marcaVisitante[position] && pronosticoLocal[position] < pronosticoVisitante[position]) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+            } else if (marcaLocal[position] == marcaVisitante[position] && pronosticoLocal[position] == pronosticoVisitante[position]) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+            } else if ((pronosticoLocal[position] > pronosticoVisitante[position] || pronosticoLocal[position] < pronosticoVisitante[position]) && (marcaLocal[position] == marcaVisitante[position])) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+            } else if ((marcaLocal[position] > marcaVisitante[position] || marcaLocal[position] < marcaVisitante[position]) && (pronosticoLocal[position] != pronosticoVisitante[position])) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+            }
+
+            int puntos = 0;
+
+            // opciones ganadoras con todos los datos coincidiendo
+            if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal > marcadorVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                puntos = 10;
+            } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal < marcadorVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                puntos = 10;
+            } else if (marcadorLocal == pronoLocal && marcadorVisitante == pronoVisitante && marcadorLocal == marcadorVisitante) {
+                imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                puntos = 10;
+            } else // Opciones ganadoras pronosticos y marcadores diferentes
+                if (marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 5;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else if (marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                    puntos = 5;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else if (marcadorLocal == marcadorVisitante && pronoLocal == pronoVisitante && marcadorLocal != pronoLocal && marcadorVisitante != pronoVisitante) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.chulitoverdeg);
+                    puntos = 5;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } // Opciones combinadas
+                else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal > marcadorVisitante && pronoLocal > pronoVisitante) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 7;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else if ((pronoVisitante == marcadorVisitante || pronoLocal == marcadorLocal) && marcadorLocal < marcadorVisitante && pronoLocal < pronoVisitante) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.chulitoverdeg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 7;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && marcadorLocal == marcadorVisitante && (pronoLocal > pronoVisitante || pronoLocal < pronoVisitante)) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 2;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else if ((marcadorLocal == pronoLocal || marcadorVisitante == pronoVisitante) && (marcadorLocal < marcadorVisitante || marcadorLocal > marcadorVisitante) && (pronoLocal == pronoVisitante)) {
+                    imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 2;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                } else {
+                    imageViewEstadoLocal.setImageResource(R.drawable.xg);
+                    imageViewEstadoVisitante.setImageResource(R.drawable.xg);
+                    puntos = 0;
+                    if (Math.abs(marcadorLocal - marcadorVisitante) == Math.abs(pronoLocal - pronoVisitante)) {
+                        puntos++;
+                    }
+                }
+
+
+            if (puntos == 1) {
+                textViewPuntos.setText(puntos + " punto");
+                textViewPuntos.setTypeface(typeface);
+            } else {
+                textViewPuntos.setText(puntos + " puntos");
+                textViewPuntos.setTypeface(typeface);
+            }
         } else {
-            textViewPuntos.setText(puntos + " puntos");
-            textViewPuntos.setTypeface(typeface);
+            numberPicker.setText("00");
+            numberPicker1.setText("00");
+            imageViewEstadoVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorLocal.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoMarcadorVisitante.setVisibility(ImageView.INVISIBLE);
+            imageViewEstadoLocal.setVisibility(ImageView.INVISIBLE);
+            textViewPuntos.setText("0 puntos");
         }
 
 
@@ -392,6 +405,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                 }
             }
         });
+        boolean vivo = false;
         if (partidoEnVivo(idPartido[position])) {
             textViewmarcadorLocal.setText("VIVO");
             textMarcadorLocal.setEnabled(false);
@@ -408,9 +422,9 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             imageViewEstadoMarcadorLocal.setVisibility(ImageView.INVISIBLE);
             imageViewEstadoMarcadorVisitante.setVisibility(ImageView.INVISIBLE);
             imageViewEstadoLocal.setVisibility(ImageView.INVISIBLE);
+            vivo = true;
         }
-
-        if(partidoSinJugar(idPartido[position], textViewmarcadorLocal)){
+        if (vivo != true && partidoSinJugar(idPartido[position], textViewmarcadorLocal)) {
             linearLayout.setBackgroundResource(R.drawable.fondomarcadores02);
             textMarcadorLocal.setTextColor(context.getResources().getColor(R.color.colorAccent));
             textmarcadorVisitante.setTextColor(context.getResources().getColor(R.color.colorAccent));
@@ -501,6 +515,49 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         ));
     }
 
+    public boolean partidoJugado(int idPartido) {
+        Calendar calendar = Calendar.getInstance();
+        int anioA = calendar.get(Calendar.YEAR);
+        int mesA = calendar.get(Calendar.MONTH) + 1;
+        int diaA = calendar.get(Calendar.DAY_OF_MONTH);
+        int horaA = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutoA = calendar.get(Calendar.MINUTE);
+        int segundoA = calendar.get(Calendar.SECOND);
+
+        for (Semana semana : semanas) {
+            for (Fecha fecha : semana.getFechas()) {
+                for (Partido partido : fecha.getPartidos()) {
+                    if (partido.getId() == idPartido) {
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                        format.setTimeZone(TimeZone.getDefault());
+                        Date date = null;
+                        Calendar calendarP = Calendar.getInstance();
+                        try {
+                            date = format.parse(partido.getFechaHora());
+                            Log.i(TAG, "partidoJugados: " + partido.getEquipoLocal().getNombre() + " vs " + partido.getEquipoVisitante().getNombre() + " Hora: " + date.getHours() + " -- " + horaA);
+                            calendarP.setTime(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        int anio = calendarP.get(Calendar.YEAR);
+                        int mes = calendarP.get(Calendar.MONTH) + 1;
+                        int dia = calendarP.get(Calendar.DAY_OF_MONTH);
+                        int hora = calendarP.get(Calendar.HOUR_OF_DAY);
+                        int minuto = calendarP.get(Calendar.MINUTE);
+                        int segundo = calendarP.get(Calendar.SECOND);
+                        if (anio == anioA && mesA == mes && dia == diaA) {
+                            if (hora <= horaA && minuto <= minutoA) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        return false;
+    }
+
     public boolean partidoEnVivo(int idPartido) {
         Calendar calendar = Calendar.getInstance();
         int anioA = calendar.get(Calendar.YEAR);
@@ -513,11 +570,11 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         for (Semana semana : semanas) {
             for (Fecha fecha : semana.getFechas()) {
                 for (Partido partido : fecha.getPartidos()) {
-                    Log.i(TAG, "partidoSinJugar: "+partido.getFechaHora());
                     if (partido.getId() == idPartido) {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        format.setTimeZone(TimeZone.getDefault());
                         Date date = null;
+
                         Calendar calendarP = Calendar.getInstance();
                         try {
                             date = format.parse(partido.getFechaHora());
@@ -532,7 +589,11 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                         int minuto = calendarP.get(Calendar.MINUTE);
                         int segundo = calendarP.get(Calendar.SECOND);
                         if (anio == anioA && mesA == mes && dia == diaA) {
-                            if (hora <= horaA && minuto <= minutoA) {
+                            Log.i(TAG, "partidoEnVivo: " + partido.getEquipoLocal().getNombre() + " vs " + partido.getEquipoVisitante().getNombre() + " Hora: " + date.getHours() + " -- " + horaA);
+                            Calendar calendarActual = Calendar.getInstance();
+                            int  comparar = calendar.compareTo(calendarP);
+
+                            if (comparar>0) {
                                 return true;
                             }
                         }
@@ -557,10 +618,9 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         for (Semana semana : semanas) {
             for (Fecha fecha : semana.getFechas()) {
                 for (Partido partido : fecha.getPartidos()) {
-                    Log.i(TAG, "partidoSinJugar: "+partido.getFechaHora());
                     if (partido.getId() == idPartido) {
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+                        format.setTimeZone(TimeZone.getDefault());
                         Date date = null;
                         Calendar calendarP = Calendar.getInstance();
                         try {
@@ -575,8 +635,15 @@ public class PartidosAdapter extends ArrayAdapter<String> {
                         int hora = calendarP.get(Calendar.HOUR_OF_DAY);
                         int minuto = calendarP.get(Calendar.MINUTE);
                         int segundo = calendarP.get(Calendar.SECOND);
-                        if (anio >= anioA && mesA <= mes && dia > diaA) {
-                            textViewmarcadorLocal.setText(dia+":"+minuto);
+                        if (anio >= anioA && mesA <= mes && dia >= diaA) {
+                            Log.i(TAG, "partidoSinJugar: " + partido.getEquipoLocal().getNombre() + " vs " + partido.getEquipoVisitante().getNombre() + " Hora: " + date.getHours() + " -- " + horaA);
+                            if(hora<10){
+                                textViewmarcadorLocal.setText("0"+hora + ":" + minuto);
+                            }else if(minuto<10){
+                                textViewmarcadorLocal.setText(hora + ":0" + minuto);
+                            }else{
+                                textViewmarcadorLocal.setText(hora + ":" + minuto);
+                            }
                             return true;
                         }
                     }

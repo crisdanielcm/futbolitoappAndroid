@@ -187,7 +187,7 @@ settings.setOnClickListener(new View.OnClickListener() {
                     String fechaHora = partido.getString("fecha_hora");
                     int id_partido = partido.getInt("id");
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-                    format.setTimeZone(TimeZone.getTimeZone("GMT"));
+                    format.setTimeZone(TimeZone.getDefault());
                     Date date = null;
                     Calendar calendar = Calendar.getInstance();
                     try {
@@ -318,7 +318,7 @@ settings.setOnClickListener(new View.OnClickListener() {
     public Date parsearADateDiaMesAnio(String fecha){
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        format.setTimeZone(TimeZone.getDefault());
         Date date = null;
         try {
             date = format.parse(fecha);
@@ -331,7 +331,7 @@ settings.setOnClickListener(new View.OnClickListener() {
     public Date parsearADateHora(String hora){
 
         SimpleDateFormat format = new SimpleDateFormat("'HH:mm:ss'Z'");
-        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        format.setTimeZone(TimeZone.getDefault());
         Date date = null;
         try {
             date = format.parse(hora);
