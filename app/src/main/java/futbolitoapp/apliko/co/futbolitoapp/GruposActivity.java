@@ -59,7 +59,18 @@ public class GruposActivity extends AppCompatActivity {
                 intent.putExtra("idLiga", idSelect);
                 startActivity(intent);
             }
+
         });
+
+        /**ImageButton buttonSet = (ImageButton) findViewById(R.id.imageButton_settings);
+        buttonSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(intent);
+                GruposActivity.this.finish();
+            }
+        });**/
 
         ImageButton buttonPartidos = (ImageButton) findViewById(R.id.imageButton_partidos_activity);
         buttonPartidos.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +78,7 @@ public class GruposActivity extends AppCompatActivity {
             public void onClick(View view) {
                 GruposActivity.this.finish();
             }   });
+
     }
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {

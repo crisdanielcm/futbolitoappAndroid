@@ -40,13 +40,13 @@ public class MiembrosAdapter extends ArrayAdapter<String> {
         textViewPuntos.setText(itemListPuntos[position]+"");
         //Estable
         if(itemListImage[position] == 0){
-
+            imageView.setImageResource(R.drawable.flechaamarillavistagrupo);
         }else //subio
         if(itemListImage[position] == 1){
-
+            imageView.setImageResource(R.drawable.flechaverde);
         }else //Bajo
         if(itemListImage[position] == 2){
-
+            imageView.setImageResource(R.drawable.flecharoja);
         }
 
         return rowView;

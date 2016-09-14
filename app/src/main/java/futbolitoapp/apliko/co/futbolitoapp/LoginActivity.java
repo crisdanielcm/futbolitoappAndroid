@@ -381,8 +381,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Token keyToken = new Token(key);
                 long id = dataBaseHelper.createToDo(keyToken);
                 Toast.makeText(LoginActivity.this, id + "", Toast.LENGTH_SHORT).show();
+
                 JSONObject jsonObjectToken = new JSONObject();
                 String token = FirebaseInstanceId.getInstance().getToken();
+                Log.i(TAG, "procesarRespuestaRegistro: "+token);
                 jsonObject.put("Token",token);
                 VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(new CustomJSONObjectRequest(
                         Request.Method.POST, Constantes.REGISTRAR_DISPOSITIVO, jsonObjectToken,
@@ -397,7 +399,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-
+                                Log.e(TAG, "onErrorResponse: ",error );
                             }
                         }, getApplicationContext()
                 ));

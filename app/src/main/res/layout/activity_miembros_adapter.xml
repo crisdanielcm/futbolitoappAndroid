@@ -42,12 +42,12 @@
                 android:layout_weight="0.5">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="50dp"
                     android:layout_height="match_parent"
                     android:id="@+id/imageViewEstado"
                     android:layout_weight="1"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/com_facebook_tooltip_blue_bottomnub" />
+                    android:src="@drawable/flecharoja" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                     android:textSize="16dp"
                     android:gravity="center_vertical"
                     android:layout_weight="0.3"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="15dp" />
             </LinearLayout>
 
             <LinearLayout

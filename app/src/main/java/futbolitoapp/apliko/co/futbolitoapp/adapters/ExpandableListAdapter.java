@@ -3,13 +3,10 @@ package futbolitoapp.apliko.co.futbolitoapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,7 +14,6 @@ import android.widget.TextView;
 import futbolitoapp.apliko.co.futbolitoapp.CambioContrasenia;
 import futbolitoapp.apliko.co.futbolitoapp.LoginActivity;
 import futbolitoapp.apliko.co.futbolitoapp.R;
-import futbolitoapp.apliko.co.futbolitoapp.SettingsActivity;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -124,7 +120,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 }
             });
         }
-        if(groupPosition == 2){
+        if(groupPosition == 0){
             textView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
