@@ -284,7 +284,7 @@ public class PartidosActivity extends AppCompatActivity {
         //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
         //spinner_ligas.setAdapter(adapterLigas);
-        spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
+        spinner_ligas.setPrompt(nombreLiga);
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
         spinner_ligas.setAdapter(listAdapter);
         spinner_ligas.setSelection(posLigaSelect);

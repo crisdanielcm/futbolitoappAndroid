@@ -20,7 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.adapters.MiembrosAdapter;
@@ -37,17 +37,18 @@ public class MiembrosActivity extends AppCompatActivity {
     private int idSelect = 0;
     private int idGrupo;
     private String nombreGrupo;
+    private ArrayList<Grupo> grupos;
 
-    public MiembrosActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miembros);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
+        grupos = new ArrayList<>();
         String respuesta = getIntent().getExtras().getString("miembros");
         enviarSolicitudGrupos();
+
 
         try {
             JSONArray jsonArray = new JSONArray(respuesta);
@@ -112,7 +113,7 @@ public class MiembrosActivity extends AppCompatActivity {
         itemListPuntos = new int[miembros.size()];
 
         for (int i = 0; i < miembros.size(); i++) {
-            itemListNombre[i] = miembros.get(i).getFirstName() + miembros.get(i).getLastname();
+            itemListNombre[i] = miembros.get(i).getUsername();
             itemListPosicion[i] = miembros.get(i).getPuestoActual();
             itemListPuntos[i] = miembros.get(i).getPuntaje();
             int estado = 0;
@@ -135,11 +136,12 @@ public class MiembrosActivity extends AppCompatActivity {
     public void enviarSolicitudGrupos() {
 
         CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
-                Request.Method.GET, Constantes.GRUPOS, new Response.Listener<JSONArray>() {
+                Request.Method.GET, Constantes.GRUPOS_IND, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
                 procesarRespuestaGrupos(response);
+                listarGrupos();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -163,7 +165,6 @@ public class MiembrosActivity extends AppCompatActivity {
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {
 
-        final List<Grupo> grupos = new ArrayList<>();
         final int[] arrayGrupo = new int[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -219,10 +220,80 @@ public class MiembrosActivity extends AppCompatActivity {
 
     }
 
+    public void enviarSolicitudMiembros(final int idGrupo){
+
+        HashMap<String, Integer> solicitudMiembros = new HashMap<>();
+        solicitudMiembros.put("id_grupo", idGrupo);
+
+        JSONObject jsonObject = new JSONObject(solicitudMiembros);
+
+        CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
+                Request.Method.POST, Constantes.MIEMBROS, jsonObject, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.i( "onResponse: ",response.toString());
+                procesarRespuesta(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+//                String respuesta = new String(networkResponse.data);
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 400:
+
+                    }
+                }
+            }
+        }, getApplicationContext());
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+    }
+
 
     public void listarGrupos() {
 
-        List<Grupo> grupos = new ArrayList<>();
+
+        final String []nombreGrupos = new String[grupos.size()];
+        final String grupo = getIntent().getExtras().getString("nombreGrupo");
+        int posGrupoSelect = 0;
+        for (int i = 0; i < grupos.size(); i++) {
+
+            nombreGrupos[i] = grupos.get(i).getNombre();
+            if(nombreGrupos[i].equals(grupo))
+                posGrupoSelect = i;
+        }
+
+        final Spinner spinner_grupos = (Spinner) findViewById(R.id.spinner_grupos);
+        spinner_grupos.setPrompt(grupo);
+        LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, nombreGrupos);
+        spinner_grupos.setAdapter(listAdapter);
+        spinner_grupos.setSelection(posGrupoSelect);
+        spinner_grupos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = nombreGrupos[i];
+                spinner_grupos.setPrompt(item);
+                int id = 0;
+
+                if(grupos.get(i).getNombre().equals(item)){
+                    id = grupos.get(i).getId();
+                }
+                enviarSolicitudMiembros(id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
+
+
+
 }

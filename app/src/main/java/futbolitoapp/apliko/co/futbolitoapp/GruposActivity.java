@@ -38,6 +38,7 @@ public class GruposActivity extends AppCompatActivity {
     private DataBaseHelper dataBaseHelper;
     private ImageButton buttonRegistro;
     private int idSelect = 0;
+    List<Grupo> grupos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class GruposActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grupos);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         int idLiga = getIntent().getExtras().getInt("id_liga");
+        grupos = new ArrayList<>();
         listarLigas();
         enviarSolicitudGrupos(idLiga);
         ImageButton buttonRegistro = (ImageButton) findViewById(R.id.imageButton_crear_grupo);
@@ -69,7 +71,7 @@ public class GruposActivity extends AppCompatActivity {
 
     public void procesarRespuestaGrupos(JSONArray jsonArray) {
 
-        List<Grupo> grupos = new ArrayList<>();
+        grupos = new ArrayList<>();
         final int[] arrayGrupo = new int[jsonArray.length()];
         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -190,7 +192,7 @@ public class GruposActivity extends AppCompatActivity {
         });
     }
 
-    public void enviarSolicitudMiembros(int idGrupo, final String nombre){
+    public void enviarSolicitudMiembros(final int idGrupo, final String nombre){
 
         HashMap<String, Integer> solicitudMiembros = new HashMap<>();
         solicitudMiembros.put("id_grupo", idGrupo);
@@ -204,6 +206,7 @@ public class GruposActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MiembrosActivity.class);
                 intent.putExtra("miembros",response.toString());
                 intent.putExtra("nombreGrupo", nombre);
+                intent.putExtra(("idGrupo"), idGrupo);
                 startActivity(intent);
             }
         }, new Response.ErrorListener() {
