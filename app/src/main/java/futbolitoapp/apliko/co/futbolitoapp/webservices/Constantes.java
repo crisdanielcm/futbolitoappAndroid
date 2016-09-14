@@ -35,4 +35,8 @@ public class Constantes {
     public static final String MIEMBROS = IP + PUERTO_HOST + "/obtener_miembros/";
 
     public static final String CREAR_GRUPO = IP + PUERTO_HOST + "/crear_grupo/";
+
+    public static final String CAMBIAR_CONTRASENIA = IP + PUERTO_HOST + "/rest-auth/password/change/";
+
+    public static final String REGISTRAR_DISPOSITIVO = IP + PUERTO_HOST + "/registrar_dispositivo/";
 }
