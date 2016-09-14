@@ -81,17 +81,17 @@ public class PartidosActivity extends AppCompatActivity {
         int idLiga = getIntent().getExtras().getInt("id");
         //solicitudPartidos(idLiga);
 
-            listarLigas();
+        listarLigas();
         settings = (ImageButton) findViewById(R.id.imageButton3);
 
-settings.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
 
-        startActivity(intent);
-    }
-});
+                startActivity(intent);
+            }
+        });
 
         buttonGrupos = (ImageButton) findViewById(R.id.imageButton2);
         buttonGrupos.setOnClickListener(new View.OnClickListener() {
@@ -282,7 +282,7 @@ settings.setOnClickListener(new View.OnClickListener() {
 
         //ArrayAdapter<String> adapterLigas = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayLigas);
         //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
+        final Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
         //spinner_ligas.setAdapter(adapterLigas);
         spinner_ligas.setPrompt(getIntent().getStringExtra("nombreLiga"));
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
@@ -292,6 +292,7 @@ settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = contenido[i];
+                spinner_ligas.setPrompt(item);
                 int id = dataBaseHelper.getLiga(item).getId();
                 solicitudPartidos(id);
             }

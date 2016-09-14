@@ -139,7 +139,7 @@
                 android:layout_height="35dp"
                 android:id="@+id/imageButton5"
                 android:layout_gravity="center"
-                android:src="@drawable/podium"
+                android:src="@drawable/podiumpres"
                 android:layout_weight="1"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
