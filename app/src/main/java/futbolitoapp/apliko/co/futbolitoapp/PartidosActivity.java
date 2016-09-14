@@ -103,7 +103,8 @@ settings.setOnClickListener(new View.OnClickListener() {
                 intent.putExtra("nombreLiga", nombre);
                 int idLiga = 0;
                 for (int i = 0; i < ligas.size(); i++) {
-                    if (ligas.get(i).getNombre().equals(nombre)){
+                    if (ligas.get(i).getNombre().equals(nombre))
+                    {
                         idLiga = ligas.get(i).getId();
                     }
                 }
