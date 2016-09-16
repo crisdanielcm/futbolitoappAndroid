@@ -2,20 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     tools:context="futbolitoapp.apliko.co.futbolitoapp.adapters.GruposAdapter"
     android:orientation="vertical">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="58dp"
         android:paddingBottom="5dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="47dp"
             android:background="@drawable/fondomarcadores02"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -32,11 +32,13 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical">
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="65dp"
+                        android:layout_height="match_parent"
                         android:id="@+id/imageView3"
                         android:src="@drawable/iconogrupos"
                         android:scaleType="fitCenter" />

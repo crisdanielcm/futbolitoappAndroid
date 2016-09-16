@@ -19,17 +19,19 @@
                 android:orientation="vertical"
                 android:layout_width="105dp"
                 android:layout_height="match_parent"
-                android:paddingTop="5dp">
+                android:paddingTop="5dp"
+                android:gravity="center">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left">
+                    android:layout_gravity="top|left"
+                    android:gravity="top">
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:id="@+id/imageViewEstadoLocal"
                         android:src="@drawable/xg"
                         android:layout_weight="1"
@@ -42,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/localButton"
                         android:src="@drawable/barcelonafc"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top|center_horizontal"
                         android:scaleType="fitStart"
                         android:background="#00ffffff"
                         android:clickable="true" />
@@ -137,8 +139,9 @@
                             android:textStyle="bold"
                             android:textSize="14dp"
                             android:singleLine="true"
-                            android:layout_gravity="center"
-                            android:gravity="center" />
+                            android:layout_gravity="top|center"
+                            android:gravity="top|center"
+                            android:foregroundGravity="top" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -179,26 +182,29 @@
                 android:layout_width="105dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:paddingTop="5dp">
+                android:paddingTop="5dp"
+                android:gravity="center">
 
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="top">
 
                     <ImageButton
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/visitanteButton"
                         android:src="@drawable/realmadrid"
-                        android:layout_gravity="center"
+                        android:layout_gravity="top|center_horizontal"
                         android:scaleType="fitEnd"
                         android:background="#00ffffff"
                         android:clickable="true" />
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="25dp"
                         android:id="@+id/imageViewEstadoVisitante"
                         android:src="@drawable/chulitoverdeg"
                         android:scaleType="fitEnd"

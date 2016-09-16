@@ -42,4 +42,8 @@ public class Constantes {
 
     public static final String DAR_BAJA= IP + PUERTO_HOST + "/dar_baja_usuario/";
 
+    public static final String FACEBOOK= IP + PUERTO_HOST + "/rest-auth/facebook/";
+
+
+
 }

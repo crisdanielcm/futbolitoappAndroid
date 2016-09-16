@@ -100,7 +100,7 @@ public class MiembrosActivity extends AppCompatActivity {
                 int puesto = jsonObject.getInt("puesto");
                 int puestoanterior = jsonObject.getInt("puesto_anterior");
                 int puntaje = jsonObject.getInt("puntaje");
-                int id = jsonObject.getInt("usuario_id");
+                int id = jsonObject.getInt("id");
 
                 JSONObject objectusuarios = jsonObject.getJSONObject("usuario");
                 String firstName = objectusuarios.getString("first_name");

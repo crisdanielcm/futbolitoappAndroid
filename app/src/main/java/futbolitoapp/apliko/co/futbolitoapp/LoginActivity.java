@@ -223,12 +223,60 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 try {
                                     String email = object.getString("email");
                                     String token = loginResult.getAccessToken().getToken();
-                                    Log.i("","User id: " + token);
                                     String appId = loginResult.getAccessToken().getApplicationId();
-                                    Log.i("","App id: "+ appId);
-                                    enviarSolicitud(email,email,token);
 
-                                    registrarUsuario(email, email, token, token);
+                                    HashMap<String, String> solicitud = new HashMap<>();
+                                    solicitud.put("Access_token", token);
+                                    solicitud.put("code", appId);
+                                    JSONObject jsonObject = new JSONObject(solicitud);
+                                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Constantes.FACEBOOK,
+                                            jsonObject, new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+
+                                        }
+                                    }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            String json = null;
+                                            NetworkResponse networkResponse = error.networkResponse;
+                                            if (networkResponse != null && networkResponse.data != null) {
+                                                switch (networkResponse.statusCode) {
+
+                                                    case 400:
+                                                        json = new String(networkResponse.data);
+                                                        JSONObject jsonObject1 = null;
+                                                        try {
+                                                            jsonObject1 = new JSONObject(json);
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                    objectRequest.setRetryPolicy(new RetryPolicy() {
+                                        @Override
+                                        public int getCurrentTimeout() {
+                                            return 50000;
+                                        }
+
+                                        @Override
+                                        public int getCurrentRetryCount() {
+                                            return 50000;
+                                        }
+
+                                        @Override
+                                        public void retry(VolleyError error) throws VolleyError {
+
+                                        }
+                                    });
+                                    VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(objectRequest);
+
+
+                                    //enviarSolicitud(email,email,token);
+                                    //registrarUsuario(email, email, token, token);
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

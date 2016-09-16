@@ -32,8 +32,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 
 import futbolitoapp.apliko.co.futbolitoapp.R;
@@ -102,6 +100,7 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         linearLayout.setBackgroundResource(imageBackground);
 
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
+        Typeface typeface2 = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Light.otf");
 
         final EditText numberPicker = (EditText) rowView.findViewById(R.id.textView_marcador_local);
         numberPicker.setText(pronosticoLocal[position] + "");
@@ -408,6 +407,8 @@ public class PartidosAdapter extends ArrayAdapter<String> {
         boolean vivo = false;
         if (partidoEnVivo(idPartido[position])) {
             textViewmarcadorLocal.setText("VIVO");
+            textViewmarcadorLocal.setTextColor(Color.parseColor("#ffb700"));
+            textViewmarcadorLocal.setTypeface(typeface2);
             textMarcadorLocal.setEnabled(false);
             textmarcadorVisitante.setEnabled(false);
             textMarcadorLocal.setTextColor(Color.GRAY);
