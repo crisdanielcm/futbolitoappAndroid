@@ -223,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 try {
                                     String email = object.getString("email");
                                     String token = loginResult.getAccessToken().getToken();
-                                    String appId = loginResult.getAccessToken().getApplicationId();
+                                    String appId = loginResult.getAccessToken().getUserId();
 
                                     HashMap<String, String> solicitud = new HashMap<>();
                                     solicitud.put("Access_token", token);
@@ -233,7 +233,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                             jsonObject, new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
-
+                                            Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                                         }
                                     }, new Response.ErrorListener() {
                                         @Override
@@ -246,6 +246,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                                     case 400:
                                                         json = new String(networkResponse.data);
                                                         JSONObject jsonObject1 = null;
+                                                        Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
                                                         try {
                                                             jsonObject1 = new JSONObject(json);
                                                         } catch (JSONException e) {
