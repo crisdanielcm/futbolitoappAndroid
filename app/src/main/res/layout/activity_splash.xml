@@ -9,23 +9,26 @@
     android:orientation="vertical"
     android:baselineAligned="false">
 
-    <ImageView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageView4"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/imago"
-        android:scaleType="centerCrop"
-        android:layout_weight="0.2"
-        android:background="#00ffffff" />
+        android:background="@drawable/imago">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView5"
-        android:src="@drawable/fabricado"
-        android:layout_weight="1"
-        android:scaleType="fitStart"
-        android:layout_gravity="left"
-        android:paddingBottom="36dp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView5"
+            android:src="@drawable/fabricado"
+            android:layout_weight="1"
+            android:scaleType="fitEnd"
+            android:paddingBottom="36dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>
