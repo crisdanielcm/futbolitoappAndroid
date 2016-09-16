@@ -20,7 +20,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -34,9 +34,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/btcreargrupo.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btcreargrupo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/btcreargrupoover.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btcreargrupoover.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_miembros_adapter.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_miembros_adapter.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
     </list>
     <ignored path="futbolitoappAndroid.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,120 +80,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="activity_grupos.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grupos.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="157" column="23" selection-start-line="157" selection-start-column="23" selection-end-line="157" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_miembros_adapter.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_miembros_adapter.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.25">
-              <caret line="79" column="23" selection-start-line="79" selection-start-column="23" selection-end-line="79" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MiembrosAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/MiembrosAdapter.java">
+      <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckedLinearLayout.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4017094">
-              <caret line="35" column="113" selection-start-line="35" selection-start-column="113" selection-end-line="35" selection-end-column="113" />
+              <caret line="227" column="88" selection-start-line="227" selection-start-column="88" selection-end-line="227" selection-end-column="88" />
               <folding>
-                <element signature="e#868#869#0" expanded="true" />
-                <element signature="e#898#899#0" expanded="true" />
-                <element signature="e#1927#1928#0" expanded="true" />
-                <element signature="e#1958#1959#0" expanded="true" />
-                <element signature="e#2119#2120#0" expanded="true" />
-                <element signature="e#2156#2157#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#enviarSolicitud#0;class#LoginActivity#0" expanded="false" />
+                <element signature="method#procesarRespuesta#0;class#LoginActivity#0" expanded="false" />
+                <element signature="e#8581#12811#0" expanded="true" />
+                <element signature="e#9699#10080#0" expanded="true" />
+                <element signature="e#10079#10080#0" expanded="true" />
+                <element signature="e#10082#11550#0" expanded="true" />
+                <element signature="e#11549#11550#0" expanded="true" />
+                <element signature="e#12810#12811#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MiembrosActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/MiembrosActivity.java">
+      <file leaf-file-name="FCMInstanceIdService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMInstanceIdService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="44" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="44" />
+              <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
               <folding>
-                <element signature="method#onCreate#0;class#MiembrosActivity#0" expanded="false" />
-                <element signature="method#enviarSolicitudGrupos#0;class#MiembrosActivity#0" expanded="false" />
-                <element signature="method#procesarRespuestaGrupos#0;class#MiembrosActivity#0" expanded="false" />
-                <element signature="method#listarGrupos#0;class#MiembrosActivity#0" expanded="false" />
-                <element signature="method#onItemSelected#0;class#14533:15117" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2902#3793#0" expanded="true" />
+                <element signature="e#3792#3793#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_miembros.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_miembros.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="15" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_grupos.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v14/activity_grupos.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="161" column="23" selection-start-line="161" selection-start-column="23" selection-end-line="161" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_grupos_adapter.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grupos_adapter.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PartidosAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java">
+      <file leaf-file-name="FCMMessagingService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2222223">
-              <caret line="410" column="33" selection-start-line="410" selection-start-column="33" selection-end-line="410" selection-end-column="33" />
-              <folding />
+            <state vertical-scroll-proportion="0.6581197">
+              <caret line="16" column="87" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2577,7 +2508,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/MiembrosAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/GruposActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LigasActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/Splash.java" />
@@ -2587,7 +2517,6 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/PartidosAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_partidos_list_adapter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_grupos_adapter.xml" />
@@ -2597,6 +2526,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_miembros.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_miembros_adapter.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java" />
       </list>
     </option>
   </component>
@@ -2657,38 +2588,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="futbolitoappAndroid" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="futbolitoappAndroid" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="futbolitoappAndroid" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -3078,7 +2977,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4676898" order="7" side_tool="false" content_ui="tabs" />
@@ -3184,13 +3083,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java</url>
-          <line>437</line>
+          <line>438</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java</url>
-          <line>452</line>
+          <line>453</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
@@ -3224,12 +3123,6 @@
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java</url>
-          <line>224</line>
-          <properties />
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/MiembrosActivity.java</url>
           <line>371</line>
@@ -3248,13 +3141,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/LigasListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.26598465">
@@ -3454,18 +3340,6 @@
         <state theme-name="AppTheme" module-name="app" proportion="0.67" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LigasActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6539589">
-          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-          <folding>
-            <element signature="method#procesarRespuestaLiga#0;class#LigasActivity#0" expanded="false" />
-            <element signature="method#enviarSolicitudLigas#0;class#LigasActivity#0" expanded="false" />
-            <element signature="method#solicitudPartidos#0;class#LigasActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/Splash.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6920821">
@@ -3488,29 +3362,6 @@
             <element signature="method#parsearADateHora#0;class#PartidosActivity#0" expanded="false" />
             <element signature="method#parsearFecha#0;class#PartidosActivity#0" expanded="false" />
             <element signature="method#dpToPx#0;class#PartidosActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="65" selection-start-line="7" selection-start-column="65" selection-end-line="7" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMInstanceIdService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="99" selection-start-line="47" selection-start-column="8" selection-end-line="97" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3792#3793#0" expanded="false" />
-            <element signature="e#3944#3945#0" expanded="false" />
-            <element signature="e#3988#3989#0" expanded="false" />
-            <element signature="e#4059#4060#0" expanded="false" />
-            <element signature="e#4103#4104#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3539,17 +3390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-android-sdk/4.0.0/e8be813a4ee52180c0635360f1d1985dce8dc6a8/facebook-android-sdk-4.0.0-sources.jar!/com/facebook/GraphRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6420118">
-          <caret line="1249" column="0" selection-start-line="1249" selection-start-column="0" selection-end-line="1249" selection-end-column="0" />
-          <folding>
-            <element signature="e#55937#56449#0" expanded="false" />
-            <element signature="e#56448#56449#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-24/android.jar!/android/os/Handler.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0035211">
@@ -3566,30 +3406,6 @@
         <state vertical-scroll-proportion="0.6893491">
           <caret line="44" column="80" selection-start-line="44" selection-start-column="80" selection-end-line="44" selection-end-column="80" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56804734">
-          <caret line="383" column="38" selection-start-line="383" selection-start-column="38" selection-end-line="383" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#enviarSolicitud#0;class#LoginActivity#0" expanded="false" />
-            <element signature="method#procesarRespuesta#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#7548#7819#0" expanded="true" />
-            <element signature="e#7818#7819#0" expanded="true" />
-            <element signature="e#8581#12554#0" expanded="true" />
-            <element signature="e#9962#11293#0" expanded="true" />
-            <element signature="e#11292#11293#0" expanded="true" />
-            <element signature="e#11503#11504#0" expanded="true" />
-            <element signature="e#11603#11604#0" expanded="true" />
-            <element signature="e#11730#11731#0" expanded="true" />
-            <element signature="e#11830#11831#0" expanded="true" />
-            <element signature="e#12553#12554#0" expanded="true" />
-            <element signature="e#13214#13822#0" expanded="true" />
-            <element signature="e#13821#13822#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3669,6 +3485,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/MiembrosAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#868#869#0" expanded="true" />
+            <element signature="e#898#899#0" expanded="true" />
+            <element signature="e#1927#1928#0" expanded="true" />
+            <element signature="e#1958#1959#0" expanded="true" />
+            <element signature="e#2119#2120#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grupos_adapter.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3702,17 +3541,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grupos.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="23" selection-start-line="157" selection-start-column="23" selection-end-line="157" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_miembros_adapter.xml">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="6.25">
@@ -3724,25 +3552,84 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/adapters/MiembrosAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_grupos.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="157" column="23" selection-start-line="157" selection-start-column="23" selection-end-line="157" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LigasActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <caret line="164" column="0" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding>
+            <element signature="method#procesarRespuestaLiga#0;class#LigasActivity#0" expanded="false" />
+            <element signature="method#enviarSolicitudLigas#0;class#LigasActivity#0" expanded="false" />
+            <element signature="method#solicitudPartidos#0;class#LigasActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-android-sdk/4.0.0/e8be813a4ee52180c0635360f1d1985dce8dc6a8/facebook-android-sdk-4.0.0-sources.jar!/com/facebook/GraphRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28698224">
+          <caret line="1241" column="0" selection-start-line="1241" selection-start-column="0" selection-end-line="1241" selection-end-column="0" />
+          <folding>
+            <element signature="e#13027#13287#0" expanded="false" />
+            <element signature="e#13286#13287#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="227" column="88" selection-start-line="227" selection-start-column="88" selection-end-line="227" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#enviarSolicitud#0;class#LoginActivity#0" expanded="false" />
+            <element signature="method#procesarRespuesta#0;class#LoginActivity#0" expanded="false" />
+            <element signature="e#8581#12811#0" expanded="true" />
+            <element signature="e#9699#10080#0" expanded="true" />
+            <element signature="e#10079#10080#0" expanded="true" />
+            <element signature="e#10082#11550#0" expanded="true" />
+            <element signature="e#11549#11550#0" expanded="true" />
+            <element signature="e#12810#12811#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.4.0/jars/classes.jar!/com/google/firebase/iid/FirebaseInstanceIdService.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3601286">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/CheckedLinearLayout.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMInstanceIdService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4017094">
-          <caret line="35" column="113" selection-start-line="35" selection-start-column="113" selection-end-line="35" selection-end-column="113" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
           <folding>
-            <element signature="e#868#869#0" expanded="true" />
-            <element signature="e#898#899#0" expanded="true" />
-            <element signature="e#1927#1928#0" expanded="true" />
-            <element signature="e#1958#1959#0" expanded="true" />
-            <element signature="e#2119#2120#0" expanded="true" />
-            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2902#3793#0" expanded="true" />
+            <element signature="e#3792#3793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/futbolitoapp/apliko/co/futbolitoapp/FCMMessagingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6581197">
+          <caret line="16" column="87" selection-start-line="16" selection-start-column="87" selection-end-line="16" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
