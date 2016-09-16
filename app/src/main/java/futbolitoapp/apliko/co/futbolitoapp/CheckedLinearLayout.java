@@ -3,6 +3,7 @@ package futbolitoapp.apliko.co.futbolitoapp;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
 
@@ -32,6 +33,8 @@ public class CheckedLinearLayout extends LinearLayout implements Checkable {
 
     public CheckedLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
     }
 
     /**
@@ -42,9 +45,9 @@ public class CheckedLinearLayout extends LinearLayout implements Checkable {
     public void setChecked(boolean checked) {
         mChecked = checked;
         if(checked){
-            setBackgroundResource(R.drawable.fondomarcadores01);
+            setBackgroundColor(Color.DKGRAY);
         }else {
-            setBackgroundResource(R.drawable.fondomarcadores02);
+            setBackgroundColor(Color.BLACK);
         }
         //Cuando cambiamos el estado, debemos informar a los drawables
         //que este widget tenga vinculados
