@@ -2,80 +2,90 @@
 <futbolitoapp.apliko.co.futbolitoapp.CheckedLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="48dp"
     tools:context="futbolitoapp.apliko.co.futbolitoapp.adapters.MiembrosAdapter"
-    android:id="@+id/linear_check">
+    android:id="@+id/linear_check"
+    android:orientation="horizontal">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="3dp"
-        android:paddingTop="3dp">
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#00ffffff">
+            android:layout_height="48dp"
+            android:paddingBottom="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8">
+                android:layout_height="47dp"
+                android:background="@drawable/fondomarcadores02">
 
-                <TextView
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="1"
-                    android:id="@+id/textViewPosicion"
-                    android:textColor="#ffffff"
-                    android:textSize="16dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                    android:layout_weight="0.8">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="1"
+                        android:id="@+id/textViewPosicion"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/imageViewEstado"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/flecharoja" />
-
-                <TextView
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Cristian"
-                    android:id="@+id/textViewNombre_miembro"
-                    android:textColor="#ffffff"
-                    android:textSize="16dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="0.3"
-                    android:paddingLeft="15dp" />
-            </LinearLayout>
+                    android:layout_weight="0.5">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.8">
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/imageViewEstado"
+                        android:layout_weight="1"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/flecharoja" />
 
-                <TextView
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Cristian"
+                        android:id="@+id/textViewNombre_miembro"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.3"
+                        android:paddingLeft="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="165"
-                    android:id="@+id/textViewPuntos"
-                    android:textColor="#ffffff"
-                    android:textSize="16dp"
-                    android:gravity="center_vertical|center_horizontal" />
+                    android:layout_weight="0.8">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="165"
+                        android:id="@+id/textViewPuntos"
+                        android:textColor="#ffffff"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical|center_horizontal" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

@@ -61,31 +61,16 @@ public class MiembrosActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ImageButton invitarAmigo = (ImageButton) findViewById(R.id.imageButton_invitar_amigo);
-        invitarAmigo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo);
-
-                }catch (Exception e){
-
-                }
-            }
-        });
-        ImageButton eliminarAmigo = (ImageButton) findViewById(R.id.imageButton_eliminar_amigo);
-
-
 
     }
 
     public void share(String subject, String text) {
         Intent sharingIntent = new Intent(Intent.ACTION_SENDTO);
         sharingIntent.setType("text/plain");
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);
-//        context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.compartir)));
-        startActivity(sharingIntent);
+        startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.app_name)));
+        //startActivity(sharingIntent);
     }
     List<Miembro> miembros;
 
@@ -148,6 +133,14 @@ public class MiembrosActivity extends AppCompatActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(miembrosAdapter);
 
+    }
+    public void inviteSelected(View view) {
+        try{
+            share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo);
+
+        }catch (Exception e){
+
+        }
     }
 
     public void deleteSelected(View view) {
