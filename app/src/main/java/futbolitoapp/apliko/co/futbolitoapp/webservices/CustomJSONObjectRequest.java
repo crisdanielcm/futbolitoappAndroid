@@ -39,7 +39,8 @@ public class CustomJSONObjectRequest extends JsonObjectRequest {
         hashMap.put("Content-Type", "application/json");
         DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
         List<Token> token = dataBaseHelper.getAllTokens();
-        hashMap.put("Authorization", "Token " + token.get(0).getToken());
+        if(token.size()>0)
+            hashMap.put("Authorization", "Token " + token.get(0).getToken());
         return hashMap;
     }
 

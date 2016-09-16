@@ -42,9 +42,9 @@ public class CheckedLinearLayout extends LinearLayout implements Checkable {
     public void setChecked(boolean checked) {
         mChecked = checked;
         if(checked){
-            setBackgroundColor(Color.GRAY);
+            setBackgroundResource(R.drawable.fondomarcadores01);
         }else {
-            setBackgroundColor(Color.TRANSPARENT);
+            setBackgroundResource(R.drawable.fondomarcadores02);
         }
         //Cuando cambiamos el estado, debemos informar a los drawables
         //que este widget tenga vinculados

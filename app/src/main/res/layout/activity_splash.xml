@@ -5,49 +5,27 @@
     android:layout_height="match_parent"
 
     tools:context="futbolitoapp.apliko.co.futbolitoapp.Splash"
-    android:background="#242424"
-    android:orientation="vertical">
+    android:background="@drawable/splashbackground"
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingTop="50dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView4"
-            android:src="@drawable/logo1fsplash"
-            android:scaleType="centerCrop"
-            android:layout_weight="1"
-            android:background="#00ffffff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:id="@+id/imageView4"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/imago"
+        android:scaleType="centerCrop"
+        android:layout_weight="0.2"
+        android:background="#00ffffff" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView6"
-            android:src="@drawable/balongrande"
-            android:scaleType="fitEnd"
-            android:layout_weight="0.3" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView5"
-            android:layout_weight="1"
-            android:src="@drawable/logoapliko_small"
-            android:scaleType="fitEnd"
-            android:layout_gravity="bottom" />
-
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView5"
+        android:src="@drawable/fabricado"
+        android:layout_weight="1"
+        android:scaleType="fitStart"
+        android:layout_gravity="left"
+        android:paddingBottom="36dp" />
 </LinearLayout>

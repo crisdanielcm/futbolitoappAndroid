@@ -216,7 +216,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 coordenadaList.add(td);
             } while (c.moveToNext());
         }
-
+        c.close();
         return coordenadaList;
     }
 
@@ -238,6 +238,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 coordenadaList.add(td);
             } while (c.moveToNext());
         }
+        c.close();
 
         return coordenadaList;
     }
@@ -260,6 +261,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 coordenadaList.add(td);
             } while (c.moveToNext());
         }
+        c.close();
 
         return coordenadaList;
     }
@@ -295,7 +297,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
 
         Liga td = new Liga(c.getInt(c.getColumnIndex(KEY_ID)), c.getString(c.getColumnIndex(LIGA)));
-
+        c.close();
         return td;
     }
 
@@ -313,7 +315,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
 
         Grupo td = new Grupo(c.getString(c.getColumnIndex(NOMBRE_GRUPO)), c.getInt(c.getColumnIndex(POSICION_MIEMBRO)), c.getInt(c.getColumnIndex(NUMERO_INTEGRANTES)));
-
+        c.close();
         return td;
     }
 
