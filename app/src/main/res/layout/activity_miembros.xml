@@ -107,25 +107,27 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:layout_weight="1">
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton_invitar_amigo"
                 android:layout_weight="1"
                 android:src="@drawable/btinvitaramigo"
-                android:background="#00ffffff" />
+                android:background="#00ffffff"
+                android:scaleType="centerInside" />
 
             <ImageButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton_eliminar_amigo"
                 android:layout_weight="1"
                 android:src="@drawable/com_facebook_tooltip_blue_xout"
                 android:background="#00ffffff"
-                android:onClick="deleteSelected"/>
+                android:onClick="deleteSelected"
+                android:scaleType="centerInside" />
         </LinearLayout>
     </LinearLayout>
 
