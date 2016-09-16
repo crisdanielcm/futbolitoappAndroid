@@ -121,12 +121,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_bottom_panel"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp" >
+            android:paddingBottom="10dp">
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/imageButton_partidos_activity"
+                android:id="@+id/imageButton"
                 android:src="@drawable/balon"
                 android:layout_weight="1"
                 android:background="#00ffffff"
@@ -137,7 +137,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/imageButton5"
+                android:id="@+id/imageButton2"
                 android:layout_gravity="center"
                 android:src="@drawable/podiumpres"
                 android:layout_weight="1"
@@ -148,7 +148,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:id="@+id/imageButton6"
+                android:id="@+id/imageButton3"
                 android:layout_gravity="center"
                 android:src="@drawable/settings"
                 android:layout_weight="1"

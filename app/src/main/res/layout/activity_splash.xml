@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageView5"
             android:layout_weight="1"
-            android:src="@drawable/logoapliko"
+            android:src="@drawable/logoapliko_small"
             android:scaleType="fitEnd"
             android:layout_gravity="bottom" />
 

@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "74936133906",
-    "project_id": "futbolitoapp-142704"
+    "firebase_url": "https://futbolitoapp-142704.firebaseio.com",
+    "project_id": "futbolitoapp-142704",
+    "storage_bucket": "futbolitoapp-142704.appspot.com"
   },
   "client": [
     {
@@ -21,6 +23,10 @@
           }
         },
         {
+          "client_id": "74936133906-qgtej30f92bpdvrllid79cqtb4fqnu7j.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "74936133906-ithufk33scoarsqf63ii8g3p0767jndv.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74936133906-qgtej30f92bpdvrllid79cqtb4fqnu7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

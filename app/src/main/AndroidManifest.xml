@@ -65,15 +65,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".CambioContrasenia" />
-
-        <service android:name=".FCMService">
+        <service
+            android:name=".FCMMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
-        <service android:name=".FCMInstanceIdService">
+        <service
+            android:name=".FCMInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
     </application>

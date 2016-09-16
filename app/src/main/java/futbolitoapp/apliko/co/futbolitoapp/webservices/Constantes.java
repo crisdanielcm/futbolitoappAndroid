@@ -14,7 +14,7 @@ public class Constantes {
     /**
      * Dirección IP de genymotion o AVD
      */
-    private static final String IP = "http://192.168.0.19:";
+    private static final String IP = "http://192.168.0.11:";
     /**
      * URLs del Web Service
      */
@@ -39,4 +39,7 @@ public class Constantes {
     public static final String CAMBIAR_CONTRASENIA = IP + PUERTO_HOST + "/rest-auth/password/change/";
 
     public static final String REGISTRAR_DISPOSITIVO = IP + PUERTO_HOST + "/registrar_dispositivo/";
+
+    public static final String DAR_BAJA= IP + PUERTO_HOST + "/dar_baja_usuario/";
+
 }

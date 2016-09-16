@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -21,6 +23,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import futbolitoapp.apliko.co.futbolitoapp.adapters.LigasPartidosAdapter;
 import futbolitoapp.apliko.co.futbolitoapp.adapters.MiembrosAdapter;
@@ -29,6 +32,7 @@ import futbolitoapp.apliko.co.futbolitoapp.objects.Grupo;
 import futbolitoapp.apliko.co.futbolitoapp.objects.Miembro;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONArrayRequest;
+import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 public class MiembrosActivity extends AppCompatActivity {
@@ -61,24 +65,33 @@ public class MiembrosActivity extends AppCompatActivity {
         invitarAmigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo);
+                try{
+                    share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo);
+
+                }catch (Exception e){
+
+                }
             }
         });
+        ImageButton eliminarAmigo = (ImageButton) findViewById(R.id.imageButton_eliminar_amigo);
+
+
 
     }
 
     public void share(String subject, String text) {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent sharingIntent = new Intent(Intent.ACTION_SENDTO);
         sharingIntent.setType("text/plain");
 //        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);
 //        context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.compartir)));
         startActivity(sharingIntent);
     }
+    List<Miembro> miembros;
 
     public void procesarRespuesta(JSONArray jsonArray) {
 
-        ArrayList<Miembro> miembros = new ArrayList<>();
+        miembros= new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
 
             try {
@@ -87,6 +100,7 @@ public class MiembrosActivity extends AppCompatActivity {
                 int puesto = jsonObject.getInt("puesto");
                 int puestoanterior = jsonObject.getInt("puesto_anterior");
                 int puntaje = jsonObject.getInt("puntaje");
+                int id = jsonObject.getInt("usuario_id");
 
                 JSONObject objectusuarios = jsonObject.getJSONObject("usuario");
                 String firstName = objectusuarios.getString("first_name");
@@ -97,6 +111,7 @@ public class MiembrosActivity extends AppCompatActivity {
 
                 Miembro miembro = new Miembro(firstName, lastName, username, email, idGrupo, esCreador
                         , puesto, puestoanterior, puntaje);
+                miembro.setId(id);
                 miembros.add(miembro);
 
             } catch (JSONException e) {
@@ -129,9 +144,88 @@ public class MiembrosActivity extends AppCompatActivity {
 
         MiembrosAdapter miembrosAdapter = new MiembrosAdapter(this, itemListNombre, itemListPuntos, itemListPosicion, itemListImage);
         ListView listView = (ListView) findViewById(R.id.listViewMiembros);
+        //listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setAdapter(miembrosAdapter);
 
     }
+
+    public void deleteSelected(View view) {
+        //Obtengo los elementos seleccionados de mi lista
+        SparseBooleanArray seleccionados = ((ListView) findViewById(R.id.listViewMiembros)).getCheckedItemPositions();
+
+        if(seleccionados==null || seleccionados.size()==0){
+            //Si no había elementos seleccionados...
+            Toast.makeText(this,"No hay elementos seleccionados",Toast.LENGTH_SHORT).show();
+        }else{
+            //si los había, miro sus valores
+
+            //Esto es para ir creando un mensaje largo que mostraré al final
+            StringBuilder resultado=new StringBuilder();
+            resultado.append("Se eliminarán los siguientes elementos:\n");
+
+            //Recorro my "array" de elementos seleccionados
+            Integer [] idusuarios = new Integer [seleccionados.size()];
+            final Integer size=seleccionados.size();
+            for (int i=0; i<size; i++) {
+                //Si valueAt(i) es true, es que estaba seleccionado
+                if (seleccionados.valueAt(i)) {
+                    //en keyAt(i) obtengo su posición
+                    resultado.append("El elemento "+miembros.get(seleccionados.keyAt(i)).getId()+" estaba seleccionado\n");
+                    idusuarios[i] = miembros.get(seleccionados.keyAt(i)).getId();
+                }
+            }
+
+
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id_grupo", idGrupo);
+            JSONArray jsonArray = new JSONArray();
+            for (int i = 0; i < idusuarios.length; i++) {
+                jsonArray.put(idusuarios[i]);
+            }
+
+            jsonObject.put("lista_miembros",jsonArray);
+            Log.i("deleteSelected: ", jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CustomJSONObjectRequest customJSONArrayRequest = new CustomJSONObjectRequest(
+                Request.Method.POST, Constantes.DAR_BAJA,jsonObject, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Toast.makeText(MiembrosActivity.this,response.getString("mensaje"),Toast.LENGTH_LONG).show();
+                    MiembrosActivity.this.finish();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+//                String respuesta = new String(networkResponse.data);
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 500:
+                            String men=new String(networkResponse.data);
+                            Log.e("lkiuyytrf", "onErrorResponse: "+men, error );
+                    }
+                }
+            }
+        }, getApplicationContext()
+        );
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+     }
+    }
+
 
     public void enviarSolicitudGrupos() {
 

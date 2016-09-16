@@ -99,7 +99,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/listViewMiembros"
                 android:layout_weight="1"
-                tools:listitem="@layout/activity_miembros_adapter" />
+                tools:listitem="@layout/activity_miembros_adapter"
+                android:choiceMode="multipleChoice"
+                android:clickable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,8 +123,9 @@
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton_eliminar_amigo"
                 android:layout_weight="1"
-                android:src="@drawable/btinvitaramigo"
-                android:background="#00ffffff" />
+                android:src="@drawable/com_facebook_tooltip_blue_xout"
+                android:background="#00ffffff"
+                android:onClick="deleteSelected"/>
         </LinearLayout>
     </LinearLayout>
 

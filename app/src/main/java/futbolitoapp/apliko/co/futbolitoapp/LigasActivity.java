@@ -3,6 +3,7 @@ package futbolitoapp.apliko.co.futbolitoapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -58,7 +59,7 @@ public class LigasActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listView_ligas);
         LigasListAdapter ligasListAdapter = new LigasListAdapter(this, contenido);
-        listView.setAdapter(ligasListAdapter);
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -73,6 +74,7 @@ public class LigasActivity extends AppCompatActivity {
 
             }
         });
+        listView.setAdapter(ligasListAdapter);
     }
 
     public void enviarSolicitudLigas() {
@@ -89,8 +91,10 @@ public class LigasActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 String json = null;
                 NetworkResponse networkResponse = error.networkResponse;
-                String respuesta = new String(networkResponse.data);
+                Log.e("t", "onErrorResponse: ",error );
+
                 if (networkResponse != null && networkResponse.data != null) {
+                    Log.i("T", "onErrorResponse: "+networkResponse.statusCode);
                     switch (networkResponse.statusCode) {
 
                         case 400:
@@ -158,6 +162,7 @@ public class LigasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ligas);
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         enviarSolicitudLigas();
+
 
     }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.AccessToken;
@@ -38,7 +40,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,13 +50,13 @@ import java.util.HashMap;
 import futbolitoapp.apliko.co.futbolitoapp.helper.DataBaseHelper;
 import futbolitoapp.apliko.co.futbolitoapp.helper.Token;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.Constantes;
-import futbolitoapp.apliko.co.futbolitoapp.webservices.CustomJSONObjectRequest;
 import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+
 
 
     private static final String TAG = "vista_login";
@@ -75,7 +76,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private GoogleApiClient googleApiClient;
     private SignInButton signInButtonGoogle;
     private AccessTokenTracker accessTokenTracker;
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.i(TAG, "onResponse: procesando");
                 procesarRespuesta(response, email, password);
 
             }
@@ -102,7 +103,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onErrorResponse(VolleyError error) {
                 String json = null;
                 NetworkResponse networkResponse = error.networkResponse;
+                Log.e(TAG, "onErrorResponse: ",error );
                 if (networkResponse != null && networkResponse.data != null) {
+                    Log.i(TAG, "onErrorResponse: "+networkResponse.statusCode);
                     switch (networkResponse.statusCode) {
 
                         case 400:
@@ -119,6 +122,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
+        objectRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(objectRequest);
 
     }
@@ -126,14 +145,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void procesarRespuesta(JSONObject jsonObject, String email, String password) {
 
         try {
-            if (jsonObject.has("key")) {
+            if(jsonObject.has("key")){
                 String key = jsonObject.getString("key");
                 Log.i(TAG, key);
                 Token keyToken = new Token(key);
                 long id = dataBaseHelper.createToDo(keyToken);
-                Intent intent = new Intent(getApplicationContext(), LigasActivity.class);
+                Intent intent = new Intent(getApplicationContext(),LigasActivity.class);
                 startActivity(intent);
-            } else if (jsonObject.has("non_field_errors")) {
+            }else if(jsonObject.has("non_field_errors")){
                 registrarUsuario(email, email, password, password);
             }
         } catch (JSONException e) {
@@ -178,7 +197,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View view) {
 
                 Intent signIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(signIntent, RC_SIGN_IN);
+                startActivityForResult(signIntent, RC_SIGN_IN );
             }
         });
 
@@ -204,7 +223,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 try {
                                     String email = object.getString("email");
                                     String token = loginResult.getAccessToken().getToken();
-                                    enviarSolicitud(email, email, token);
+                                    Log.i("","User id: " + token);
+                                    String appId = loginResult.getAccessToken().getApplicationId();
+                                    Log.i("","App id: "+ appId);
+                                    enviarSolicitud(email,email,token);
+
                                     registrarUsuario(email, email, token, token);
 
                                 } catch (JSONException e) {
@@ -241,7 +264,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 String email = ((EditText) findViewById(R.id.email)).getText().toString();
                 String pass = ((EditText) findViewById(R.id.password)).getText().toString();
                 Log.i(TAG, "onClick: asd");
-                String[] usernameA = username.split("@");
+                String [] usernameA = username.split("@");
                 String newUesername = usernameA[0];
                 enviarSolicitud(newUesername, email, pass);
             }
@@ -298,7 +321,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RC_SIGN_IN) {
+        if(requestCode == RC_SIGN_IN){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
@@ -313,10 +336,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             String tokenGoogle = acct.getIdToken();
             String emailGoogle = acct.getEmail();
 
-            String[] usernameA = emailGoogle.split("@");
+            String [] usernameA = emailGoogle.split("@");
             String newUesername = usernameA[0];
-            Log.i(TAG, "handleSignInResult: " + newUesername);
-            enviarSolicitud(newUesername, emailGoogle, tokenGoogle);
+            Log.i(TAG, "handleSignInResult: "+newUesername);
+            enviarSolicitud(newUesername, emailGoogle,tokenGoogle);
             //registrarUsuario(emailGoogle, emailGoogle, tokenGoogle, tokenGoogle);
         } else {
 
@@ -326,7 +349,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void registrarUsuario(String username, final String email, final String pass1, String pass2) {
 
         HashMap<String, String> solicitudRegistro = new HashMap<>();
-        String[] usernameA = username.split("@");
+        String [] usernameA = username.split("@");
         String newUesername = usernameA[0];
 
         solicitudRegistro.put("username", newUesername);
@@ -342,11 +365,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         Constantes.REGISTRO, jsonObject,
                         new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONObject response) {
+                            public void onResponse(JSONObject response)
+                            {
                                 procesarRespuestaRegistro(response);
                             }
                         },
-                        new Response.ErrorListener() {
+                        new Response.ErrorListener()
+                        {
                             @Override
                             public void onErrorResponse(VolleyError error) {
 
@@ -375,41 +400,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void procesarRespuestaRegistro(JSONObject jsonObject) {
 
         try {
-            if (jsonObject.has("key")) {
+            if(jsonObject.has("key")) {
                 String key = jsonObject.getString("key");
                 Log.i(TAG, key);
                 Token keyToken = new Token(key);
                 long id = dataBaseHelper.createToDo(keyToken);
-                Toast.makeText(LoginActivity.this, id + "", Toast.LENGTH_SHORT).show();
-
-                JSONObject jsonObjectToken = new JSONObject();
-                String token = FirebaseInstanceId.getInstance().getToken();
-                Log.i(TAG, "procesarRespuestaRegistro: "+token);
-                jsonObject.put("Token",token);
-                VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(new CustomJSONObjectRequest(
-                        Request.Method.POST, Constantes.REGISTRAR_DISPOSITIVO, jsonObjectToken,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                                Intent intent = new Intent(getApplicationContext(), LigasActivity.class);
-                                startActivity(intent);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Log.e(TAG, "onErrorResponse: ",error );
-                            }
-                        }, getApplicationContext()
-                ));
-
-
-            } else if (jsonObject.has("non_field_errors")) {
+                Toast.makeText(LoginActivity.this,id+"", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),LigasActivity.class);
+                startActivity(intent);
+            }else if(jsonObject.has("non_field_errors")){
                 Toast.makeText(LoginActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-            } else if (jsonObject.has("email")) {
+            }else if(jsonObject.has("email")){
                 Toast.makeText(LoginActivity.this, "Su contraseña es incorrecta", Toast.LENGTH_SHORT).show();
-            } else if (jsonObject.has("username")) {
+            }else if(jsonObject.has("username")){
                 Toast.makeText(LoginActivity.this, "Ya existe un usuario con el nombre de usuario registrado", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
@@ -418,7 +421,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }

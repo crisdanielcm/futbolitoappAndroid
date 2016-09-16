@@ -88,7 +88,6 @@ public class PartidosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-
                 startActivity(intent);
             }
         });
@@ -112,6 +111,7 @@ public class PartidosActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
 
     }
@@ -141,7 +141,6 @@ public class PartidosActivity extends AppCompatActivity {
 
                 String json = null;
                 NetworkResponse networkResponse = error.networkResponse;
-                String respuesta = new String(networkResponse.data);
                 if (networkResponse != null && networkResponse.data != null) {
                     switch (networkResponse.statusCode) {
 
@@ -465,7 +464,9 @@ public class PartidosActivity extends AppCompatActivity {
                 ListView listView = new ListView(getApplicationContext());
 
                 listView.setAdapter(partidosAdapter);
-                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(103) * (semanas.get(i).getFechas().get(j).getPartidos().size()) +25));
+                int size = (int) ( dpToPx(103)*0.25);
+                Log.i(TAG, "tabs: "+size);
+                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(103) * (semanas.get(i).getFechas().get(j).getPartidos().size()) +size));
 
                 LinearLayout linearLayout2 = new LinearLayout(getApplicationContext());
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);
@@ -477,7 +478,6 @@ public class PartidosActivity extends AppCompatActivity {
                 linearLayout2.addView(textViewFecha);
                 linearLayout2.addView(listView);
                 linearLayout2.setPadding(0, 0, 0, 0);
-
                 linearLayout.addView(linearLayout2);
 
 

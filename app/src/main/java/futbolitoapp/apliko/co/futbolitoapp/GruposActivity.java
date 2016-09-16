@@ -39,6 +39,8 @@ public class GruposActivity extends AppCompatActivity {
     private ImageButton buttonRegistro;
     private int idSelect = 0;
     List<Grupo> grupos;
+    private ImageButton buttonGrupos;
+    private ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +64,25 @@ public class GruposActivity extends AppCompatActivity {
 
         });
 
-        /**ImageButton buttonSet = (ImageButton) findViewById(R.id.imageButton_settings);
-        buttonSet.setOnClickListener(new View.OnClickListener() {
+        settings = (ImageButton) findViewById(R.id.imageButton3);
+
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
                 GruposActivity.this.finish();
             }
-        });**/
+        });
 
-        ImageButton buttonPartidos = (ImageButton) findViewById(R.id.imageButton_partidos_activity);
-        buttonPartidos.setOnClickListener(new View.OnClickListener() {
+        buttonGrupos = (ImageButton) findViewById(R.id.imageButton);
+        buttonGrupos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GruposActivity.this.finish();
-            }   });
+
+               GruposActivity.this.finish();
+            }
+        });
 
     }
 
