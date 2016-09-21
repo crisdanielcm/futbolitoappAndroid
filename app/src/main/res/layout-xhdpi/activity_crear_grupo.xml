@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.RegistroActivity"
+    android:orientation="vertical"
+    android:background="#262626">
+
+    <fragment
+        tools:layout="@layout/fragment_title_login"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:name="futbolitoapp.apliko.co.futbolitoapp.fragments.TitleLoginFragment"
+        android:id="@+id/fragment2" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="73dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/textview_nombre_grupo"
+                android:layout_gravity="center_horizontal"
+                android:hint="Nombre grupo"
+                android:textSize="25dp"
+                android:background="@drawable/border_textview"
+                android:textColor="#ffffff"
+                android:singleLine="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:textColorHint="#ffffff" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="46dp" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/button_crear_grupo"
+                android:background="@drawable/creargrupohover"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_bottom_panel"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/imageButton4"
+                android:src="@drawable/balon"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/imageButton5"
+                android:layout_gravity="center"
+                android:src="@drawable/podium"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/imageButton6"
+                android:layout_gravity="center"
+                android:src="@drawable/settings"
+                android:background="#00ffffff"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

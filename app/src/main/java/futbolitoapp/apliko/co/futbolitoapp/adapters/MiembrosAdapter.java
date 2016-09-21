@@ -41,13 +41,17 @@ public class MiembrosAdapter extends ArrayAdapter<String> {
         //Estable
         if(itemListImage[position] == 0){
             imageView.setImageResource(R.drawable.flechaamarillavistagrupo);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.getLayoutParams().height = 50;imageView.getLayoutParams().width = 100;
         }else //subio
         if(itemListImage[position] == 1){
             imageView.setImageResource(R.drawable.flechaverde);
-        }else //Bajo
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.getLayoutParams().height = 50;imageView.getLayoutParams().width = 100;        }else //Bajo
         if(itemListImage[position] == 2){
             imageView.setImageResource(R.drawable.flecharoja);
-        }
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.getLayoutParams().height = 50;imageView.getLayoutParams().width = 100;        }
 
         return rowView;
     }

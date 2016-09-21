@@ -1,0 +1,154 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.LoginActivity"
+    android:gravity="center_horizontal"
+    android:background="#262626">
+
+    <!-- Login progress -->
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:name="futbolitoapp.apliko.co.futbolitoapp.fragments.TitleLoginFragment"
+        android:id="@+id/fragment"
+        tools:layout="@layout/fragment_title_login" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <com.facebook.login.widget.LoginButton
+                xmlns:fb="http://schemas.android.com/apk/res-auto"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/imageButton_fb"
+                android:background="@drawable/hover_button_fb"
+                android:gravity="center_vertical|center_horizontal"
+                android:text=""
+                fb:login_text=""
+                fb:logout_text=""
+                android:scaleType="centerInside"
+                android:clickable="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <com.google.android.gms.common.SignInButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/imageButton_google"
+                android:background="@drawable/hover_button_google"
+                android:clickable="true" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/login_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical|center_horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="#ffffff"
+                android:text="dcuz@futbolito.com"
+                android:textAlignment="center"
+                android:background="@drawable/border_textview"
+                android:textSize="25dp"
+                android:layout_weight="0.63"
+                android:hint="@string/prompt_email"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.56" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/prompt_password"
+                android:imeActionId="@+id/login"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="qwerty1234"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:background="@drawable/border_textview"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="25dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1.63" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_olvidar_c"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.63"
+                android:text="@string/olvidar_contrasenia"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:paddingBottom="10dp" />
+
+            <Button
+                android:id="@+id/email_sign_in_button"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:background="@drawable/over_button_registro"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

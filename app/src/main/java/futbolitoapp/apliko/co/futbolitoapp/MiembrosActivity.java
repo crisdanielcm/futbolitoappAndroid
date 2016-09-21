@@ -7,7 +7,6 @@ import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -65,12 +64,12 @@ public class MiembrosActivity extends AppCompatActivity {
     }
 
     public void share(String subject, String text) {
-        Intent sharingIntent = new Intent(Intent.ACTION_SENDTO);
+        String shareBody = "Here is the share content body";
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);
         startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.app_name)));
-        //startActivity(sharingIntent);
     }
     List<Miembro> miembros;
 
@@ -85,7 +84,7 @@ public class MiembrosActivity extends AppCompatActivity {
                 int puesto = jsonObject.getInt("puesto");
                 int puestoanterior = jsonObject.getInt("puesto_anterior");
                 int puntaje = jsonObject.getInt("puntaje");
-                int id = jsonObject.getInt("id");
+                int id = jsonObject.getInt("usuario_id");
 
                 JSONObject objectusuarios = jsonObject.getJSONObject("usuario");
                 String firstName = objectusuarios.getString("first_name");
@@ -136,7 +135,7 @@ public class MiembrosActivity extends AppCompatActivity {
     }
     public void inviteSelected(View view) {
         try{
-            share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo);
+            share("Invitación a grupo","Te invito a unite al grupo "+nombreGrupo+" en 1F");
 
         }catch (Exception e){
 
@@ -176,7 +175,10 @@ public class MiembrosActivity extends AppCompatActivity {
             jsonObject.put("id_grupo", idGrupo);
             JSONArray jsonArray = new JSONArray();
             for (int i = 0; i < idusuarios.length; i++) {
+                if(idusuarios[i] != null){
+
                 jsonArray.put(idusuarios[i]);
+                }
             }
 
             jsonObject.put("lista_miembros",jsonArray);
@@ -193,6 +195,7 @@ public class MiembrosActivity extends AppCompatActivity {
                 try {
                     Toast.makeText(MiembrosActivity.this,response.getString("mensaje"),Toast.LENGTH_LONG).show();
                     MiembrosActivity.this.finish();
+                    recreate();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -357,6 +360,7 @@ public class MiembrosActivity extends AppCompatActivity {
 
         final Spinner spinner_grupos = (Spinner) findViewById(R.id.spinner_grupos);
         spinner_grupos.setPrompt(grupo);
+        nombreGrupo=grupo;
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, nombreGrupos);
         spinner_grupos.setAdapter(listAdapter);
         spinner_grupos.setSelection(posGrupoSelect);

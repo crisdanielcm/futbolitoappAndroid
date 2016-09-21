@@ -357,11 +357,18 @@ public class PartidosActivity extends AppCompatActivity {
         return fechaParseada;
     }
 
+    public void puntajeSemana(int idLiga){
+
+    }
+
+    public void puntajeTemporada(int idLiga){
+
+    }
+
     public void tabs() {
         final TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
         tabHost.clearAllTabs();
-        //final ListView listView = (ListView) findViewById(R.id.listView_partidos);
         Calendar cal = Calendar.getInstance();
 
         String fechaInicio;
@@ -376,6 +383,9 @@ public class PartidosActivity extends AppCompatActivity {
 
         int f = 0;
         for (int i = semanas.size() - 1; i >= 0; i--) {
+
+            puntajeSemana(semanas.get(i).getTemporada().getLiga().getId());
+            puntajeTemporada(semanas.get(i).getTemporada().getLiga().getId());
 
             TabHost.TabSpec tabSpect = tabHost.newTabSpec("Texto");
             tabSpect.setIndicator(("Semana " + ("\n") + semanas.get(i).getNumeroSemana()));
@@ -402,6 +412,7 @@ public class PartidosActivity extends AppCompatActivity {
             linearLayout.setOrientation(LinearLayout.VERTICAL);
             linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
 
             for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
                 int dia = semanas.get(i).getFechas().get(j).getDia();
@@ -463,10 +474,18 @@ public class PartidosActivity extends AppCompatActivity {
                 final PartidosAdapter partidosAdapter = new PartidosAdapter(this, nombreLocal, nombreVisitante, marcaLocal, marcaVisitante, pronosticoLocal, pronosticoVisitante, image, idPartido, semanas);
                 ListView listView = new ListView(getApplicationContext());
 
+                int height = 0;
+                if(nombreLocal.length == 1){
+
+                    height = dpToPx(88);
+                }
+                if(nombreLocal.length == 4)
+                    height = dpToPx(105);
+
                 listView.setAdapter(partidosAdapter);
-                int size = (int) ( dpToPx(103)*0.25);
+                int size = (int) (height*0.25);
                 Log.i(TAG, "tabs: "+size);
-                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpToPx(103) * (semanas.get(i).getFechas().get(j).getPartidos().size()) +size));
+                listView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height * (semanas.get(i).getFechas().get(j).getPartidos().size()) +size));
 
                 LinearLayout linearLayout2 = new LinearLayout(getApplicationContext());
                 linearLayout2.setOrientation(LinearLayout.VERTICAL);

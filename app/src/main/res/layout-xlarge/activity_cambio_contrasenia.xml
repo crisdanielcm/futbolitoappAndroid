@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.CambioContrasenia"
+    android:orientation="vertical">
+
+    <!-- Login progress -->
+    <fragment
+        android:id="@+id/fragment"
+        android:name="futbolitoapp.apliko.co.futbolitoapp.fragments.TitleLoginFragment"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        tools:layout="@layout/fragment_title_login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:padding="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="#262626">
+
+        <ScrollView
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:id="@+id/email_login_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/contraActual"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#ffffff"
+                    android:text="Contraseña actual"
+                    android:textAlignment="center"
+                    android:background="@drawable/border_textview"
+                    android:textSize="25dp"
+                    android:layout_weight="0.63"
+                    android:hint="@string/prompt_email"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1.56" />
+
+                <EditText
+                    android:id="@+id/editTextContraNueva1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:background="@drawable/border_textview"
+                    android:textSize="25dp"
+                    android:layout_weight="0.63"
+                    android:hint="Contraseña nueva"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColorHint="#fff" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1.56" />
+
+                <EditText
+                    android:id="@+id/editTextContraNueva2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Contraseña nueva"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:textAlignment="center"
+                    android:background="@drawable/border_textview"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textSize="25dp"
+                    android:textColorHint="#fff" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1.63" />
+
+                <Button
+                    android:id="@+id/buttonCambio"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/cambiar_contrasena"
+                    android:scaleType="fitCenter" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

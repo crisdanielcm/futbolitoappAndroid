@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.fragments.TitleLoginFragment"
+    tools:showIn="@layout/activity_ligas">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:id="@+id/linear_title_login">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView_1F_login"
+            android:src="@drawable/logo1f"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView_barra_login"
+            android:src="@drawable/fondo_parte_de_arriba"
+            android:scaleType="center" />
+    </LinearLayout>
+</FrameLayout>

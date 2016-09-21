@@ -42,8 +42,7 @@ public class FCMInstanceIdService extends FirebaseInstanceIdService {
             if (size == 1) {
                 sendRegistrationToServer(refreshedToken);
                 break;
-            }
-            else{
+            } else {
                 size = db.getAllTokens().size();
             }
         }
@@ -65,37 +64,39 @@ public class FCMInstanceIdService extends FirebaseInstanceIdService {
         solicitud.put("token", token);
         JSONObject jsonObject = new JSONObject(solicitud);
         CustomJSONObjectRequest objectRequest = new CustomJSONObjectRequest(Request.Method.POST, Constantes.REGISTRAR_DISPOSITIVO,
-                jsonObject, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.i("", "onResponse: procesando: " + token);
-                Toast.makeText(FCMInstanceIdService.this, response.toString(), Toast.LENGTH_SHORT).show();
-                DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
-                dataBaseHelper.createToDo(new Token(token));
-                //procesarRespuesta(response, email, password);
-                registro = true;
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                String json = null;
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String errorS = new String(networkResponse.data);
-                    Log.i(TAG, "onErrorResponse: " + errorS);
-                    switch (networkResponse.statusCode) {
-
-                        case 401:
-                            json = new String(networkResponse.data);
-                            Log.i(TAG, "onErrorResponse: 401");
-                        case 500:
-                            json = new String(networkResponse.data);
-                            Log.i(TAG, "onErrorResponse: 500");
-
+                jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("", "onResponse: procesando: " + token);
+                        Toast.makeText(FCMInstanceIdService.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
+                        dataBaseHelper.createToDo(new Token(token));
+                        //procesarRespuesta(response, email, password);
+                        registro = true;
                     }
-                }
-            }
-        }, getApplicationContext());
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        String json = null;
+                        NetworkResponse networkResponse = error.networkResponse;
+                        if (networkResponse != null && networkResponse.data != null) {
+                            String errorS = new String(networkResponse.data);
+                            Log.i(TAG, "onErrorResponse: " + errorS);
+                            switch (networkResponse.statusCode) {
+
+                                case 401:
+                                    json = new String(networkResponse.data);
+                                    Log.i(TAG, "onErrorResponse: 401");
+                                case 500:
+                                    json = new String(networkResponse.data);
+                                    Log.i(TAG, "onErrorResponse: 500");
+
+                            }
+                        }
+                    }
+                }, getApplicationContext());
 
         objectRequest.setRetryPolicy(new RetryPolicy() {
             @Override

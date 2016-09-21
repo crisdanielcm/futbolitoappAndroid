@@ -14,7 +14,7 @@ public class Constantes {
     /**
      * Dirección IP de genymotion o AVD
      */
-    private static final String IP = "http://192.168.0.11:";
+    private static final String IP = "http://192.168.1.9:";
     /**
      * URLs del Web Service
      */
@@ -43,6 +43,8 @@ public class Constantes {
     public static final String DAR_BAJA= IP + PUERTO_HOST + "/dar_baja_usuario/";
 
     public static final String FACEBOOK= IP + PUERTO_HOST + "/rest-auth/facebook/";
+
+    public static final String GLOBAL= IP + PUERTO_HOST + "/registrar_global/";
 
 
 

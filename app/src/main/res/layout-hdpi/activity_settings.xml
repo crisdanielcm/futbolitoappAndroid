@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="futbolitoapp.apliko.co.futbolitoapp.SettingsActivity"
+    android:orientation="vertical"
+    android:background="#262626">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="69dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView2"
+            android:src="@drawable/logo1f"
+            android:background="#262626" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/fondo_parte_de_arriba">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="AJUSTES"
+                android:id="@+id/textView"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="#FFF"
+                android:textSize="39dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="30dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_weight="1">
+
+        <ExpandableListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/expandableListView"
+            android:layout_gravity="center_horizontal"
+            tools:listitem="@android:layout/simple_expandable_list_item_1"
+            android:choiceMode="singleChoice" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_bottom_panel"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/imageButton_partidos_activity"
+            android:src="@drawable/balon"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:clickable="true" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton_grupos"
+            android:layout_gravity="center"
+            android:src="@drawable/podium"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:clickable="true" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/imageButton_settings"
+            android:layout_gravity="center"
+            android:src="@drawable/settingspres"
+            android:layout_weight="1"
+            android:background="#00ffffff"
+            android:scaleType="fitCenter"
+            android:clickable="true" />
+    </LinearLayout>
+</LinearLayout>
