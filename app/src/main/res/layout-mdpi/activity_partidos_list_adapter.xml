@@ -17,10 +17,11 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="105dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="5dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -40,14 +41,15 @@
                         android:layout_gravity="center" />
 
                     <ImageButton
-                        android:layout_width="70dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/localButton"
                         android:src="@drawable/barcelonafc"
-                        android:layout_gravity="top|center_horizontal"
-                        android:scaleType="fitStart"
+                        android:layout_gravity="top|left"
+                        android:scaleType="fitCenter"
                         android:background="#00ffffff"
-                        android:clickable="true" />
+                        android:clickable="true"
+                        android:layout_weight="0.5" />
                 </LinearLayout>
 
                 <TextView
@@ -55,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_nombre_local"
                     android:layout_gravity="center"
-                    android:textSize="14dp"
+                    android:textSize="11dp"
                     android:text="F:C Barcelona"
                     android:textColor="#ffffff"
                     android:textAlignment="center" />
@@ -65,14 +67,15 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
+                android:layout_weight="0.7"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_gravity="center">
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="45dp"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
                     <EditText
                         android:layout_width="44dp"
@@ -82,7 +85,7 @@
                         android:id="@+id/textView_marcador_local"
                         android:text="10"
                         android:layout_weight="0.3"
-                        android:textSize="34dp"
+                        android:textSize="20dp"
                         android:textAlignment="center"
                         android:textColor="#ffffff"
                         android:layout_gravity="center"
@@ -100,8 +103,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
                     <LinearLayout
                         android:orientation="vertical"
@@ -119,7 +123,7 @@
                             android:background="@drawable/border_texview_marcador"
                             android:layout_marginBottom="15dp"
                             android:textColor="#fff"
-                            android:textSize="22dp"
+                            android:textSize="16dp"
                             android:gravity="center" />
 
                     </LinearLayout>
@@ -137,7 +141,7 @@
                             android:id="@+id/textViewPuntos"
                             android:textColor="#1d9000"
                             android:textStyle="bold"
-                            android:textSize="14dp"
+                            android:textSize="10dp"
                             android:singleLine="true"
                             android:layout_gravity="top|center"
                             android:gravity="top|center"
@@ -147,8 +151,9 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="40dp"
-                    android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
                     <EditText
                         android:layout_width="44dp"
@@ -157,7 +162,7 @@
                         android:ems="10"
                         android:id="@+id/textView_marcador_visitante"
                         android:text="10"
-                        android:textSize="34dp"
+                        android:textSize="20dp"
                         android:textAlignment="center"
                         android:textColor="#ffffff"
                         android:layout_gravity="center"
@@ -179,11 +184,12 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="105dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:paddingTop="5dp"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -193,14 +199,15 @@
                     android:gravity="top">
 
                     <ImageButton
-                        android:layout_width="70dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/visitanteButton"
                         android:src="@drawable/realmadrid"
                         android:layout_gravity="top|center_horizontal"
                         android:scaleType="fitEnd"
                         android:background="#00ffffff"
-                        android:clickable="true" />
+                        android:clickable="true"
+                        android:layout_weight="1" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -219,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_nombre_visitante"
                     android:layout_gravity="center"
-                    android:textSize="14dp"
+                    android:textSize="11dp"
                     android:text="Real Mandril F.C."
                     android:textColor="#ffffff"
                     android:textAlignment="center" />

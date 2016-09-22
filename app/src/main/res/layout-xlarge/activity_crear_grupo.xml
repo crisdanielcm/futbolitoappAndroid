@@ -31,7 +31,7 @@
             android:layout_weight="1">
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="496dp"
                 android:layout_height="50dp"
                 android:id="@+id/textview_nombre_grupo"
                 android:layout_gravity="center_horizontal"

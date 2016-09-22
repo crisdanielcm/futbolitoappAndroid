@@ -33,7 +33,8 @@
                 android:spinnerMode="dropdown"
                 android:popupBackground="#000"
                 android:textAlignment="center"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:prompt="LIGAS" />
 
         </LinearLayout>
 
