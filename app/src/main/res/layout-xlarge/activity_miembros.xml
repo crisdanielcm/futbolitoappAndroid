@@ -105,32 +105,33 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             android:layout_weight="0.9">
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton_invitar_amigo"
-                android:layout_weight="1"
+                android:layout_weight="0.2"
                 android:src="@drawable/btinvitaramigo"
                 android:background="#00ffffff"
                 android:scaleType="fitCenter"
-                android:paddingBottom="10dp"
-                android:onClick="inviteSelected" />
+                android:onClick="inviteSelected"
+                android:layout_gravity="bottom" />
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/imageButton_eliminar_amigo"
-                android:layout_weight="1"
-                android:src="@drawable/com_facebook_tooltip_blue_xout"
+                android:layout_weight="0.9"
+                android:src="@drawable/eliminarover"
                 android:background="#00ffffff"
                 android:onClick="deleteSelected"
                 android:scaleType="centerInside"
-                android:paddingBottom="10dp" />
+                android:layout_gravity="top"
+                android:paddingBottom="5dp" />
         </LinearLayout>
     </LinearLayout>
 

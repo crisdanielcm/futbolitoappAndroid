@@ -383,6 +383,42 @@ public class PartidosActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
     }
 
+    public void solicitudPuntajeTemporada(int idLiga){
+
+        JSONObject  jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id_liga", idLiga);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
+                Request.Method.POST, Constantes.PUNTAJE_TEMPORADA, jsonObject, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                procesarRespuestaPuntajeSemanal(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 404:
+                            String mensaje = new String(networkResponse.data);
+                            Log.i(TAG, "onErrorResponse: "+mensaje);
+
+                    }
+                }
+            }
+        }, getApplicationContext());
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+    }
+
     public void procesarRespuestaPuntajeSemanal(JSONArray jsonArray){
 
         for (int i = 0; i < semanas.size(); i++) {
@@ -397,6 +433,25 @@ public class PartidosActivity extends AppCompatActivity {
                     if(numero == semanas.get(i).getNumeroSemana()){
                         semanas.get(i).setPuntaje(puntaje);
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        tabs();
+    }
+
+    public void procesarRespuestaPuntajeTemporada(JSONArray jsonArray){
+
+        for (int i = 0; i < semanas.size(); i++) {
+            for (int j = 0; j < jsonArray.length(); j++) {
+
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(j);
+                    int puntaje = jsonObject.getInt("valor");
+                    semanas.get(i).getTemporada().setPuntaje(puntaje);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -424,8 +479,21 @@ public class PartidosActivity extends AppCompatActivity {
         return rowView;
     }
 
-    public void puntajeTemporada(int idLiga){
+    public View puntajeTemporada(int puntaje){
 
+        LayoutInflater inflater = this.getLayoutInflater();
+        View rowView = inflater.inflate(R.layout.box_puntos, null, true);
+        TextView textView1 = (TextView) rowView.findViewById(R.id.textViewT1);
+        TextView textView2 = (TextView) rowView.findViewById(R.id.textViewT2);
+        TextView textView3 = (TextView) rowView.findViewById(R.id.textViewT3);
+        String puntajeF = "00"+puntaje;
+        int pos1 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-1)+"");
+        int pos2 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-2)+"");
+        int pos3 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-3)+"");
+        textView3.setText(pos1+"");
+        textView2.setText(pos2+"");
+        textView1.setText(pos3+"");
+        return rowView;
     }
 
     public void tabs() {
@@ -478,7 +546,7 @@ public class PartidosActivity extends AppCompatActivity {
             if(dateActual.compareTo(fechaFinSemana) > 0)
             {
                 linearLayout.addView(puntajeSemana(semanas.get(i).getPuntaje()));
-                puntajeTemporada(semanas.get(i).getTemporada().getLiga().getId());
+                puntajeTemporada(semanas.get(i).getPuntaje());
             }
 
 

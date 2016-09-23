@@ -11,6 +11,7 @@ public class Temporada {
     private String fechaFin;
     private Liga liga;
     private boolean esActual;
+    private int puntaje;
 
     public Temporada(String fechaInicio, String fechaFin, Liga liga, boolean esActual) {
         this.fechaInicio = fechaInicio;
@@ -49,5 +50,13 @@ public class Temporada {
 
     public void setEsActual(boolean esActual) {
         this.esActual = esActual;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
     }
 }
