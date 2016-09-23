@@ -67,6 +67,8 @@ public class PartidosActivity extends AppCompatActivity {
     private ImageButton buttonGrupos;
     private ImageButton settings;
     private Typeface typeface;
+    private int idLiga;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +79,6 @@ public class PartidosActivity extends AppCompatActivity {
         ligas = new ArrayList<Liga>();
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
-        //solicitudpronostico();
-        int idLiga = getIntent().getExtras().getInt("id");
-        //solicitudPartidos(idLiga);
-
         listarLigas();
         settings = (ImageButton) findViewById(R.id.imageButton3);
 
@@ -100,7 +98,7 @@ public class PartidosActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GruposActivity.class);
                 String nombre = ((Spinner) findViewById(R.id.spinner_ligas)).getPrompt().toString();
                 intent.putExtra("nombreLiga", nombre);
-                int idLiga = 0;
+                idLiga = 0;
                 for (int i = 0; i < ligas.size(); i++) {
                     if (ligas.get(i).getNombre().equals(nombre))
                     {
@@ -116,7 +114,7 @@ public class PartidosActivity extends AppCompatActivity {
 
     }
 
-    public void solicitudPartidos(int id) {
+    public void solicitudPartidos(final int id) {
 
         HashMap<String, Integer> solicitudPartidos = new HashMap<>();
         solicitudPartidos.put("id_liga", id);
@@ -127,12 +125,7 @@ public class PartidosActivity extends AppCompatActivity {
                 Request.Method.POST, Constantes.PARTIDOS, jsonObject, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-//                Intent intent = new Intent(getApplicationContext(), PartidosActivity.class);
-//                intent.putExtra("partidos", response.toString());
-//                intent.putExtra("nombreLiga", nombre);
                 procesarRespuestaPartidos(response);
-
-
 
             }
         }, new Response.ErrorListener() {
@@ -279,10 +272,7 @@ public class PartidosActivity extends AppCompatActivity {
             }
         }
 
-        //ArrayAdapter<String> adapterLigas = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, arrayLigas);
-        //adapterLigas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         final Spinner spinner_ligas = (Spinner) findViewById(R.id.spinner_ligas);
-        //spinner_ligas.setAdapter(adapterLigas);
         spinner_ligas.setPrompt(nombreLiga);
         LigasPartidosAdapter listAdapter = new LigasPartidosAdapter(this, contenido);
         spinner_ligas.setAdapter(listAdapter);
@@ -292,8 +282,8 @@ public class PartidosActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = contenido[i];
                 spinner_ligas.setPrompt(item);
-                int id = dataBaseHelper.getLiga(item).getId();
-                solicitudPartidos(id);
+                idLiga = dataBaseHelper.getLiga(item).getId();
+                solicitudPartidos(idLiga);
             }
 
             @Override
@@ -357,8 +347,81 @@ public class PartidosActivity extends AppCompatActivity {
         return fechaParseada;
     }
 
-    public void puntajeSemana(int idLiga){
+    public void solicitudPuntajeSemanal(int idLiga){
 
+        JSONObject  jsonObject = new JSONObject();
+        try {
+            jsonObject.put("id_liga", idLiga);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        CustomJSONArrayRequest customJSONArrayRequest = new CustomJSONArrayRequest(
+                Request.Method.POST, Constantes.PUNTAJE_SEMANAL, jsonObject, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                procesarRespuestaPuntajeSemanal(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String json = null;
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.data != null) {
+                    switch (networkResponse.statusCode) {
+
+                        case 404:
+                            String mensaje = new String(networkResponse.data);
+                            Log.i(TAG, "onErrorResponse: "+mensaje);
+
+                    }
+                }
+            }
+        }, getApplicationContext());
+
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(customJSONArrayRequest);
+    }
+
+    public void procesarRespuestaPuntajeSemanal(JSONArray jsonArray){
+
+        for (int i = 0; i < semanas.size(); i++) {
+            for (int j = 0; j < jsonArray.length(); j++) {
+
+                try {
+                    JSONObject jsonObject = jsonArray.getJSONObject(j);
+                    int puntaje = jsonObject.getInt("puntaje");
+                    JSONObject semanaObject = jsonObject.getJSONObject("semana");
+                    int numero = semanaObject.getInt("numero");
+
+                    if(numero == semanas.get(i).getNumeroSemana()){
+                        semanas.get(i).setPuntaje(puntaje);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        tabs();
+    }
+
+    public View puntajeSemana(int puntaje){
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View rowView = inflater.inflate(R.layout.box_puntos, null, true);
+        TextView textView1 = (TextView) rowView.findViewById(R.id.textViewPP);
+        TextView textView2 = (TextView) rowView.findViewById(R.id.textViewSp);
+        TextView textView3 = (TextView) rowView.findViewById(R.id.textViewTP);
+        String puntajeF = "00"+puntaje;
+        int pos1 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-1)+"");
+        int pos2 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-2)+"");
+        int pos3 = Integer.parseInt(puntajeF.charAt(puntajeF.length()-3)+"");
+        textView3.setText(pos1+"");
+        textView2.setText(pos2+"");
+        textView1.setText(pos3+"");
+        return rowView;
     }
 
     public void puntajeTemporada(int idLiga){
@@ -381,11 +444,10 @@ public class PartidosActivity extends AppCompatActivity {
         int mesFin;
         int anioFin;
 
+
+
         int f = 0;
         for (int i = semanas.size() - 1; i >= 0; i--) {
-
-            puntajeSemana(semanas.get(i).getTemporada().getLiga().getId());
-            puntajeTemporada(semanas.get(i).getTemporada().getLiga().getId());
 
             TabHost.TabSpec tabSpect = tabHost.newTabSpec("Texto");
             tabSpect.setIndicator(("Semana " + ("\n") + semanas.get(i).getNumeroSemana()));
@@ -413,6 +475,14 @@ public class PartidosActivity extends AppCompatActivity {
             linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
+            if(dateActual.compareTo(fechaFinSemana) > 0)
+            {
+                linearLayout.addView(puntajeSemana(semanas.get(i).getPuntaje()));
+                puntajeTemporada(semanas.get(i).getTemporada().getLiga().getId());
+            }
+
+
+
 
             for (int j = 0; j < semanas.get(i).getFechas().size(); j++) {
                 int dia = semanas.get(i).getFechas().get(j).getDia();
@@ -438,7 +508,6 @@ public class PartidosActivity extends AppCompatActivity {
                 textViewFecha.setTextColor(Color.WHITE);
                 textViewFecha.setPadding(0, 20, 0, 20);
                 textViewFecha.setTypeface(typeface);
-               // textViewFecha.setTextSize(16);
                 SpannableString spanString = new SpannableString(fecha);
                 spanString.setSpan(new StyleSpan(Typeface.BOLD), 0, spanString.length(), 0);
                 textViewFecha.setText(spanString);
@@ -479,8 +548,49 @@ public class PartidosActivity extends AppCompatActivity {
 
                     height = dpToPx(88);
                 }
+
+                if(nombreLocal.length == 2){
+
+                    height = dpToPx(94);
+                }
+
+                if(nombreLocal.length == 3){
+
+                    height = dpToPx(100);
+                }
+
                 if(nombreLocal.length == 4)
                     height = dpToPx(105);
+
+                if(nombreLocal.length == 5){
+
+                    height = dpToPx(111);
+                }
+
+                if(nombreLocal.length == 6){
+
+                    height = dpToPx(117);
+                }
+
+                if(nombreLocal.length == 7){
+
+                    height = dpToPx(123);
+                }
+
+                if(nombreLocal.length == 8){
+
+                    height = dpToPx(130);
+                }
+
+                if(nombreLocal.length == 9){
+
+                    height = dpToPx(137);
+                }
+
+                if(nombreLocal.length == 10){
+
+                    height = dpToPx(143);
+                }
 
                 listView.setAdapter(partidosAdapter);
                 int size = (int) (height*0.25);
@@ -590,7 +700,7 @@ public class PartidosActivity extends AppCompatActivity {
                             }
                         }
                     }
-                    tabs();
+                    solicitudPuntajeSemanal(idLiga);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -293,7 +293,6 @@ public class PartidosAdapter extends ArrayAdapter<String> {
             }
         });
 
-        //Button buttonEnviar = (Button) rowView.findViewById(R.id.buttonEnviar);
         TextView textmarcadorVisitante = (TextView) rowView.findViewById(R.id.textView_marcador_visitante);
         textmarcadorVisitante.addTextChangedListener(new TextWatcher() {
             @Override

@@ -14,7 +14,7 @@ public class Constantes {
     /**
      * Dirección IP de genymotion o AVD
      */
-    private static final String IP = "http://192.168.1.9:";
+    private static final String IP = "http://192.168.0.22:";
     /**
      * URLs del Web Service
      */
@@ -46,6 +46,9 @@ public class Constantes {
 
     public static final String GLOBAL= IP + PUERTO_HOST + "/registrar_global/";
 
+    public static final String PUNTAJE_SEMANAL= IP + PUERTO_HOST + "/puntaje_semanal/";
+
+    public static final String PUNTAJE_TEMPORADA= IP + PUERTO_HOST + "/puntaje_temporada/";
 
 
 }

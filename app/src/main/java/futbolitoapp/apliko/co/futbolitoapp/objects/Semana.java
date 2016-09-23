@@ -12,6 +12,7 @@ public class Semana {
     private Temporada temporada;
     private ArrayList<Fecha> fechas;
     private int numeroSemana;
+    private int puntaje;
 
     public Semana(String fechaInicio, String fechaFin, Temporada temporada, ArrayList<Fecha> fechas, int numeroSemana) {
         this.fechaInicio = fechaInicio;
@@ -59,5 +60,13 @@ public class Semana {
 
     public void setFechas(ArrayList<Fecha> fechas) {
         this.fechas = fechas;
+    }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
     }
 }
