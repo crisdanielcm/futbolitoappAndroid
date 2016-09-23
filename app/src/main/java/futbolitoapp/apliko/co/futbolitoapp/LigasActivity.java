@@ -1,12 +1,14 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -31,6 +33,8 @@ import futbolitoapp.apliko.co.futbolitoapp.webservices.VolleySingleton;
 public class LigasActivity extends AppCompatActivity {
 
     private DataBaseHelper dataBaseHelper;
+
+    public static boolean activeNotification = true;
 
     public void procesarRespuestaLiga(JSONArray jsonArray) {
 
@@ -163,7 +167,24 @@ public class LigasActivity extends AppCompatActivity {
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         enviarSolicitudLigas();
 
+        Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
+        TextView textView = (TextView) findViewById(R.id.textView2);
+        textView.setTypeface(typeface);
 
 
+    }
+
+    public static void onNotification(){
+        activeNotification = true;
+        Log.i("onNotification: ", String.valueOf(activeNotification));
+    }
+
+    public static void offNotification(){
+        activeNotification = false;
+        Log.i("onNotification: ", String.valueOf(activeNotification));
+    }
+
+    public static boolean getActiveNotification(){
+        return activeNotification;
     }
 }

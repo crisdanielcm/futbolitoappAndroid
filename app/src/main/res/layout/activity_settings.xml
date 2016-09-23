@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,6 +36,7 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:textColor="#FFF"
                 android:textSize="39dp" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -43,19 +45,141 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="30dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:layout_weight="1">
+        android:paddingTop="30dp">
 
-        <ExpandableListView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/expandableListView"
-            android:layout_gravity="center_horizontal"
-            tools:listitem="@android:layout/simple_expandable_list_item_1"
-            android:choiceMode="singleChoice" />
+            android:layout_height="70dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/fondomarcadores02">
+
+            <Switch
+                android:text="Notificaciones"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/switchNotificacion"
+                android:layout_weight="0.2"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:checked="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textStyle="normal|bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="1dp"
+            android:layout_height="70dp"
+            android:background="@drawable/fondomarcadores02">
+
+            <TextView
+                android:text="¿Cómo Jugar?"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView13"
+                android:layout_weight="0.2"
+                android:textColor="@android:color/white"
+                android:textStyle="normal|bold"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/pregunta"
+                android:id="@+id/imageView10"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_height="70dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@drawable/fondomarcadores01"
+            android:layout_height="90dp">
+
+            <TextView
+                android:text="5 puntos por pronóstico de ganador o empate correcto\n2 puntos por cada marcador correcto\n1 punto por diferencia de gol correcta sin importar ganador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView15"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/fondomarcadores02"
+            android:clickable="true"
+            android:id="@+id/cambiarcontrasena">
+
+            <TextView
+                android:text="Cambiar Contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView14"
+                android:layout_weight="0.2"
+                android:textColor="@android:color/white"
+                android:textStyle="normal|bold"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/notificaciones"
+                android:id="@+id/imageView8"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_height="70dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/fondomarcadores02"
+            android:clickable="true"
+            android:id="@+id/cerrarsesion">
+
+            <TextView
+                android:text="Cerrar Sesión"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView11"
+                android:layout_weight="0.2"
+                android:textColor="@android:color/white"
+                android:textStyle="normal|bold"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                app:srcCompat="@drawable/cerrarsesion"
+                android:id="@+id/imageView7"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_height="70dp" />
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

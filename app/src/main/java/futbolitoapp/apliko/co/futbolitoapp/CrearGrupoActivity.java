@@ -1,5 +1,6 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -37,12 +38,14 @@ public class CrearGrupoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_crear_grupo);
         final int idLiga = (int) getIntent().getExtras().get("idLiga");
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
-
+        Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
         Button buttonCrearGrupo = (Button) findViewById(R.id.button_crear_grupo);
+        ((EditText) findViewById(R.id.textview_nombre_grupo)).setTypeface(typeface);
         buttonCrearGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String nombreGrupo = ((EditText) findViewById(R.id.textview_nombre_grupo)).getText().toString();
+
                 enviarSolicitudNuevoGrupo(nombreGrupo, nombreGrupo,idLiga);
             }
         });

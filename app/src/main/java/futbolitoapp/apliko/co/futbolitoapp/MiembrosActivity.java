@@ -1,6 +1,7 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -51,8 +53,11 @@ public class MiembrosActivity extends AppCompatActivity {
         grupos = new ArrayList<>();
         String respuesta = getIntent().getExtras().getString("miembros");
         enviarSolicitudGrupos();
+        Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
 
-
+        ((TextView)findViewById(R.id.textView6)).setTypeface(typeface);
+        ((TextView)findViewById(R.id.textView7)).setTypeface(typeface);
+        ((TextView)findViewById(R.id.textView8)).setTypeface(typeface);
         try {
             JSONArray jsonArray = new JSONArray(respuesta);
             procesarRespuesta(jsonArray);

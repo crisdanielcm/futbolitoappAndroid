@@ -1,6 +1,7 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +35,14 @@ public class MiembrosAdapter extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageViewEstado);
         TextView textViewNombre_miembro = (TextView) rowView.findViewById(R.id.textViewNombre_miembro);
         TextView textViewPuntos = (TextView) rowView.findViewById(R.id.textViewPuntos);
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
 
         textViewPosicion.setText(itemListPosicion[position]+"");
         textViewNombre_miembro.setText(itemListNombre[position]+"");
         textViewPuntos.setText(itemListPuntos[position]+"");
+        textViewNombre_miembro.setTypeface(typeface);
+        textViewPosicion.setTypeface(typeface);
+        textViewPuntos.setTypeface(typeface);
         //Estable
         if(itemListImage[position] == 0){
             imageView.setImageResource(R.drawable.flechaamarillavistagrupo);

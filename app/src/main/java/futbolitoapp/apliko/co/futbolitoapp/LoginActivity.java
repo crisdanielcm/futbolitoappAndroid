@@ -3,6 +3,7 @@ package futbolitoapp.apliko.co.futbolitoapp;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -174,7 +175,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         };
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
+        Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestIdToken("74936133906-ithufk33scoarsqf63ii8g3p0767jndv.apps.googleusercontent.com").build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
@@ -307,6 +308,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
+        ((EditText) findViewById(R.id.email)).setTypeface(typeface);
+        ((EditText) findViewById(R.id.password)).setTypeface(typeface);
+
         dataBaseHelper = new DataBaseHelper(getApplicationContext());
         dataBaseHelper.dropDB();
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
@@ -315,7 +319,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View view) {
 
                 String username = ((EditText) findViewById(R.id.email)).getText().toString();
-                String email = ((EditText) findViewById(R.id.email)).getText().toString();
+                String email = username;
                 String pass = ((EditText) findViewById(R.id.password)).getText().toString();
                 Log.i(TAG, "onClick: asd");
                 String[] usernameA = username.split("@");

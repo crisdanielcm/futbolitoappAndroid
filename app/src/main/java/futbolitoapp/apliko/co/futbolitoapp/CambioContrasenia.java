@@ -1,5 +1,6 @@
 package futbolitoapp.apliko.co.futbolitoapp;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,11 +25,14 @@ public class CambioContrasenia extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambio_contrasenia);
-
+        Typeface typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "HelveticaNeue-Bold.otf");
         final EditText textViewActual = (EditText) findViewById(R.id.contraActual);
         final EditText editTextPass1 = (EditText) findViewById(R.id.editTextContraNueva1);
         final EditText editTextPass2 = (EditText) findViewById(R.id.editTextContraNueva2);
 
+        textViewActual.setTypeface(typeface);
+        editTextPass1.setTypeface(typeface);
+        editTextPass2.setTypeface(typeface);
         Button buttonCambio = (Button) findViewById(R.id.buttonCambio);
         buttonCambio.setOnClickListener(new View.OnClickListener() {
             @Override

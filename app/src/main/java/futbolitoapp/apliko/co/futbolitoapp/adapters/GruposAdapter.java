@@ -1,6 +1,7 @@
 package futbolitoapp.apliko.co.futbolitoapp.adapters;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,13 +32,13 @@ public class GruposAdapter extends ArrayAdapter {
 
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.activity_grupos_adapter, null, true);
-
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "HelveticaNeue-Bold.otf");
         TextView textViewNombreGrupo = (TextView) rowView.findViewById(R.id.textView_nombre_grupo);
         textViewNombreGrupo.setText(itemList[position]);
-
+        textViewNombreGrupo.setTypeface(typeface);
         TextView textViewPosicion = (TextView) rowView.findViewById(R.id.textView_posicion_miembro);
         textViewPosicion.setText(itemList2[position] + "/" + itemList3[position]);
-
+        textViewPosicion.setTypeface(typeface);
         return rowView;
     }
 

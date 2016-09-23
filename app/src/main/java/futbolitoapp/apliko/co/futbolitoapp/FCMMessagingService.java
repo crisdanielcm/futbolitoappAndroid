@@ -19,15 +19,18 @@ public class FCMMessagingService extends FirebaseMessagingService {
 
         Log.e("FIREBASE", remoteMessage.getNotification().getBody());
 
-        showNotification(remoteMessage.getNotification().getBody());
+        if (LigasActivity.getActiveNotification() == true) {
+
+            showNotification(remoteMessage.getNotification().getBody());
+        }
     }
 
     private void showNotification(String message) {
 
-        Intent i = new Intent(this,LigasActivity.class);
+        Intent i = new Intent(this, LigasActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setAutoCancel(true)
@@ -38,7 +41,7 @@ public class FCMMessagingService extends FirebaseMessagingService {
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        manager.notify(0,builder.build());
+        manager.notify(0, builder.build());
     }
 
 

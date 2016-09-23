@@ -30,12 +30,12 @@
                 android:text="Selecciona una Liga"
                 android:id="@+id/textView2"
                 android:background="#262626"
-                android:textSize="25dp"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:paddingLeft="12dp" />
+                android:paddingLeft="12dp"
+                android:textSize="29dp" />
 
             <ListView
                 android:layout_width="match_parent"

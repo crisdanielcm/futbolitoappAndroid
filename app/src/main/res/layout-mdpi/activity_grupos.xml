@@ -40,7 +40,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="66dp">
+            android:layout_height="40dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,12 +48,12 @@
                 android:id="@+id/textView4"
                 android:text="Grupos"
                 android:textStyle="bold"
-                android:textSize="14dp"
                 android:layout_gravity="center"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/fondotitulotabla"
                 android:layout_weight="1"
-                android:textColor="#ffd11b" />
+                android:textColor="#ffd11b"
+                android:textSize="12dp" />
                 android:layout_weight="1"
                 android:textColor="#FFFFD11B" />
 
@@ -67,12 +67,13 @@
                 android:id="@+id/textView5"
                 android:text="Posición"
                 android:textStyle="bold"
-                android:textSize="14dp"
                 android:layout_gravity="center"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="@drawable/fondotitulotabla"
                 android:layout_weight="1"
-                android:textColor="#ffd11b" />
+                android:textColor="#ffd11b"
+                android:textSize="12dp"
+                android:fontFamily="sans-serif" />
 
         </LinearLayout>
 
