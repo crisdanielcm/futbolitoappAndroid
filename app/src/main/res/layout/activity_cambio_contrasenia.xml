@@ -47,7 +47,7 @@
                     android:text="Contraseña actual"
                     android:textAlignment="center"
                     android:background="@drawable/border_textview"
-                    android:textSize="16dp"
+                    android:textSize="25dp"
                     android:layout_weight="0.63"
                     android:hint="@string/prompt_email"
                     android:layout_marginLeft="20dp"
@@ -66,7 +66,7 @@
                     android:textColor="#ffffff"
                     android:textAlignment="center"
                     android:background="@drawable/border_textview"
-                    android:textSize="16dp"
+                    android:textSize="25dp"
                     android:layout_weight="0.63"
                     android:hint="Contraseña nueva"
                     android:layout_marginLeft="20dp"
@@ -95,7 +95,7 @@
                     android:background="@drawable/border_textview"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="16dp"
+                    android:textSize="25dp"
                     android:textColorHint="#fff" />
 
                 <Space

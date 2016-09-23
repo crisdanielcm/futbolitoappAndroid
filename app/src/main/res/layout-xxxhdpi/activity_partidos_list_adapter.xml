@@ -45,7 +45,7 @@
                         android:id="@+id/localButton"
                         android:src="@drawable/barcelonafc"
                         android:layout_gravity="top|center_horizontal"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitStart"
                         android:background="#00ffffff"
                         android:clickable="true" />
                 </LinearLayout>
@@ -198,7 +198,7 @@
                         android:id="@+id/visitanteButton"
                         android:src="@drawable/realmadrid"
                         android:layout_gravity="top|center_horizontal"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitEnd"
                         android:background="#00ffffff"
                         android:clickable="true" />
 
@@ -219,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView_nombre_visitante"
                     android:layout_gravity="center"
-                    android:textSize="12dp"
+                    android:textSize="14dp"
                     android:text="Real Mandril F.C."
                     android:textColor="#ffffff"
                     android:textAlignment="center" />

@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="205dp"
+                android:layout_width="105dp"
                 android:layout_height="match_parent"
                 android:paddingTop="5dp"
                 android:gravity="center">
@@ -35,7 +35,7 @@
                         android:id="@+id/imageViewEstadoLocal"
                         android:src="@drawable/xg"
                         android:layout_weight="1"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitStart"
                         android:paddingLeft="5dp"
                         android:layout_gravity="center" />
 
@@ -45,7 +45,7 @@
                         android:id="@+id/localButton"
                         android:src="@drawable/barcelonafc"
                         android:layout_gravity="top|center_horizontal"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitStart"
                         android:background="#00ffffff"
                         android:clickable="true" />
                 </LinearLayout>
@@ -179,7 +179,7 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="205dp"
+                android:layout_width="105dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
                 android:paddingTop="5dp"
@@ -198,7 +198,7 @@
                         android:id="@+id/visitanteButton"
                         android:src="@drawable/realmadrid"
                         android:layout_gravity="top|center_horizontal"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitEnd"
                         android:background="#00ffffff"
                         android:clickable="true" />
 
@@ -207,7 +207,7 @@
                         android:layout_height="25dp"
                         android:id="@+id/imageViewEstadoVisitante"
                         android:src="@drawable/chulitoverdeg"
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitEnd"
                         android:paddingRight="5dp"
                         android:layout_weight="1"
                         android:layout_gravity="center" />
